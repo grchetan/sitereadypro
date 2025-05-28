@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiteReadyPro - Download Ready-Made Website Templates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#6366f1", secondary: "#4f46e5" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        transition: background-color 0.3s ease;
+      }
+      .theme-dark {
+        --bg-primary: #121212;
+        --bg-secondary: #1e1e1e;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --card-bg: #1e1e1e;
+        --border-color: #2d2d2d;
+      }
+      .theme-light {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --text-primary: #111827;
+        --text-secondary: #4b5563;
+        --card-bg: #ffffff;
+        --border-color: #e5e7eb;
+      }
+      .theme-dark {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+      .theme-light {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+      }
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .template-image {
+        transition: transform 0.3s ease;
+      }
+      .card:hover .template-image {
+        transform: scale(1.05);
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .custom-switch {
+        position: relative;
+        display: inline-block;
+        width: 52px;
+        height: 26px;
+      }
+      .custom-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .switch-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #374151;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+      .switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .switch-slider {
+        background-color: #6366f1;
+      }
+      input:checked + .switch-slider:before {
+        transform: translateX(26px);
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #6366f1;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      .custom-checkbox {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        border: 2px solid #6366f1;
+        border-radius: 4px;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+        background-color: #6366f1;
+      }
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+      }
+      .custom-checkbox .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body class="theme-dark min-h-screen">
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-opacity-95 backdrop-blur-sm transition-all duration-300"
+      id="header"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <a href="#"></a>
+          <img
+            src="assets/images/SiteReadyPro Logo Design.png"
+            class="w-[6rem]"
+            alt=""
+        /></a>
+        <nav class="hidden md:flex items-center space-x-8">
+          <a
+            href="#home"
+            class="nav-link text-sm font-medium hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="#templates"
+            class="nav-link text-sm font-medium hover:text-primary transition-colors"
+            >Templates</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-sm font-medium hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-sm font-medium hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center space-x-4">
+          <label class="custom-switch">
+            <input type="checkbox" id="themeToggle" />
+            <span class="switch-slider"></span>
+          </label>
+          <button
+            class="md:hidden w-10 h-10 flex items-center justify-center"
+            id="mobileMenuBtn"
+          >
+            <i class="ri-menu-line text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <div
+        class="mobile-menu hidden md:hidden px-4 py-4 bg-opacity-95 backdrop-blur-sm transition-all duration-300"
+        id="mobileMenu"
+      >
+        <nav class="flex flex-col space-y-4">
+          <a
+            href="#home"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="#templates"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Templates</a
+          >
+          <a
+            href="#about"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section
+        id="home"
+        class="pt-24 md:pt-32 relative overflow-hidden"
+        style="
+          background-image: url('assets/images/Luminous\ Wave\ with\ Abstract\ UI\ Elements.png');
+          background-size: cover;
+          background-position: center;
+          height: 100vh;
+        "
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"
+        ></div>
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+          <div class="max-w-3xl">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
+            >
+              Download Ready-Made Website Templates Instantly
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8">
+              Professional, responsive, and customizable templates for
+              developers, students, and businesses. Save time and launch your
+              website faster.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#templates"
+                class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
+                >Browse Templates</a
+              >
+              <a
+                href="#about"
+                class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[var(--bg-primary)] to-transparent"
+        ></div>
+      </section>
+      <section id="features" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose SiteReadyPro?
+            </h2>
+            <p
+              class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+              Our platform offers a comprehensive collection of high-quality
+              templates designed for various purposes.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card p-8 rounded-lg text-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-speed-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Quick Deployment</h3>
+              <p class="text-gray-500 dark:text-gray-400">
+                Download and deploy ready-to-use templates in minutes, not days.
+              </p>
+            </div>
+            <div class="card p-8 rounded-lg text-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-responsive-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Fully Responsive</h3>
+              <p class="text-gray-500 dark:text-gray-400">
+                All templates are designed to work perfectly on any device size.
+              </p>
+            </div>
+            <div class="card p-8 rounded-lg text-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-code-s-slash-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Clean Code</h3>
+              <p class="text-gray-500 dark:text-gray-400">
+                Well-structured HTML/CSS that's easy to customize and extend.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="templates"
+        class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900"
+      >
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Browse Our Templates
+            </h2>
+            <p
+              class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+              Find the perfect starting point for your next web project.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+            <button
+              class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap"
+            >
+              All Templates
+            </button>
+            <button
+              class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 px-6 py-2 !rounded-button whitespace-nowrap transition-colors"
+            >
+              Landing Pages
+            </button>
+            <button
+              class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 px-6 py-2 !rounded-button whitespace-nowrap transition-colors"
+            >
+              E-commerce
+            </button>
+            <button
+              class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 px-6 py-2 !rounded-button whitespace-nowrap transition-colors"
+            >
+              Portfolios
+            </button>
+            <button
+              class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 px-6 py-2 !rounded-button whitespace-nowrap transition-colors"
+            >
+              Blogs
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=modern%20business%20website%20template%20with%20clean%20design%2C%20professional%20layout%2C%20hero%20section%20with%20call%20to%20action%2C%20about%20us%20section%2C%20services%20section%2C%20testimonials%2C%20contact%20form%2C%20footer%2C%20light%20color%20scheme%20with%20blue%20accents&width=600&height=400&seq=temp1&orientation=landscape"
+                  alt="Business Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Business Pro</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Professional template for corporate websites with service
+                  sections and testimonials.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=e-commerce%20website%20template%20with%20product%20grid%2C%20shopping%20cart%2C%20product%20details%20page%2C%20checkout%20process%2C%20clean%20modern%20design%20with%20white%20background%20and%20minimal%20aesthetic%2C%20responsive%20layout%20for%20online%20store&width=600&height=400&seq=temp2&orientation=landscape"
+                  alt="E-commerce Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">ShopStart</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Complete e-commerce template with product listings, cart, and
+                  checkout pages.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=creative%20portfolio%20website%20template%20for%20designers%20and%20artists%2C%20project%20gallery%20with%20grid%20layout%2C%20about%20section%2C%20skills%20display%2C%20contact%20form%2C%20dark%20mode%20design%20with%20accent%20colors%2C%20modern%20typography&width=600&height=400&seq=temp3&orientation=landscape"
+                  alt="Portfolio Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Portfolio X</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Showcase your creative work with this elegant portfolio
+                  template.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=blog%20website%20template%20with%20featured%20posts%2C%20categories%2C%20sidebar%2C%20author%20profiles%2C%20comment%20section%2C%20clean%20typography%2C%20responsive%20design%20for%20content%20creators%20and%20writers&width=600&height=400&seq=temp4&orientation=landscape"
+                  alt="Blog Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">BlogMaster</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Modern blog template with category filtering and comment
+                  sections.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=restaurant%20website%20template%20with%20food%20menu%2C%20reservation%20system%2C%20chef%20profiles%2C%20testimonials%2C%20gallery%20of%20dishes%2C%20elegant%20design%20with%20warm%20colors%2C%20perfect%20for%20cafes%20and%20restaurants&width=600&height=400&seq=temp5&orientation=landscape"
+                  alt="Restaurant Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Cuisine</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Perfect for restaurants with menu displays and reservation
+                  forms.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=real%20estate%20website%20template%20with%20property%20listings%2C%20search%20filters%2C%20agent%20profiles%2C%20neighborhood%20information%2C%20map%20integration%2C%20modern%20clean%20design%20for%20property%20websites&width=600&height=400&seq=temp6&orientation=landscape"
+                  alt="Real Estate Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">PropertyHub</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Real estate template with property listings and agent
+                  profiles.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=fitness%20website%20template%20with%20class%20schedules%2C%20trainer%20profiles%2C%20membership%20plans%2C%20testimonials%2C%20workout%20programs%2C%20modern%20energetic%20design%20with%20motivational%20elements&width=600&height=400&seq=temp7&orientation=landscape"
+                  alt="Fitness Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">FitLife</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Fitness studio template with class schedules and trainer
+                  profiles.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=educational%20website%20template%20with%20course%20listings%2C%20instructor%20profiles%2C%20learning%20dashboard%2C%20progress%20tracking%2C%20modern%20academic%20design%20for%20online%20learning%20platforms&width=600&height=400&seq=temp8&orientation=landscape"
+                  alt="Education Template"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">EduPortal</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                  Educational platform template with course listings and student
+                  dashboards.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-12">
+            <a
+              href="#"
+              class="inline-block border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
+              >View All Templates</a
+            >
+          </div>
+        </div>
+      </section>
+      <section id="about" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/2">
+              <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                About SiteReadyPro
+              </h2>
+              <p class="text-lg text-gray-500 dark:text-gray-400 mb-6">
+                SiteReadyPro was created with a simple mission: to provide
+                high-quality, ready-to-use website templates for developers,
+                students, and businesses who need to launch websites quickly
+                without compromising on design or functionality.
+              </p>
+              <p class="text-lg text-gray-500 dark:text-gray-400 mb-8">
+                Our team of experienced designers and developers craft each
+                template with attention to detail, ensuring clean code,
+                responsive layouts, and modern aesthetics that work across all
+                devices.
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div
+                    class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-1 mr-3"
+                  >
+                    <i
+                      class="ri-check-line text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    100+ professionally designed templates
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-1 mr-3"
+                  >
+                    <i
+                      class="ri-check-line text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    Regular updates with new designs
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-1 mr-3"
+                  >
+                    <i
+                      class="ri-check-line text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    Dedicated support for all templates
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-1 mr-3"
+                  >
+                    <i
+                      class="ri-check-line text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    Detailed documentation for easy customization
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="md:w-1/2">
+              <img
+                src="https://readdy.ai/api/search-image?query=web%20design%20team%20working%20together%20in%20modern%20office%2C%20diverse%20group%20of%20designers%20and%20developers%20collaborating%20on%20website%20templates%2C%20creative%20workspace%20with%20computers%20showing%20design%20mockups%2C%20professional%20environment&width=600&height=500&seq=about1&orientation=portrait"
+                alt="About SiteReadyPro"
+                class="rounded-lg shadow-lg w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              What Our Users Say
+            </h2>
+            <p
+              class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+              Hear from developers and businesses who have used our templates.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <div class="text-primary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                "SiteReadyPro templates saved me countless hours of development
+                time. The code is clean, well-organized, and easy to customize.
+                I was able to launch my client's website in just two days!"
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
+                >
+                  <i class="ri-user-line text-gray-500 dark:text-gray-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Michael Reynolds</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Freelance Developer
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <div class="text-primary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                "As a startup founder with limited resources, SiteReadyPro was a
+                game-changer. Their e-commerce template had everything we needed
+                to launch our online store quickly and professionally."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
+                >
+                  <i class="ri-user-line text-gray-500 dark:text-gray-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Sarah Johnson</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Startup Founder
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card p-8 rounded-lg">
+              <div class="flex items-center mb-4">
+                <div class="text-primary">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-6">
+                "I'm a design student learning web development, and these
+                templates have been invaluable for my education. Being able to
+                study professional code structure has accelerated my learning
+                tremendously."
+              </p>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
+                >
+                  <i class="ri-user-line text-gray-500 dark:text-gray-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">David Chen</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Design Student
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="pricing" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p
+              class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+              Choose the plan that works best for your needs.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div
+              class="card p-8 rounded-lg border-t-4 border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-2">Free</h3>
+              <div class="text-3xl font-bold mb-1">$0</div>
+              <p class="text-gray-500 dark:text-gray-400 mb-6">
+                Perfect for beginners
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Access to 5 basic templates</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Basic documentation</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Community support</span>
+                </li>
+                <li class="flex items-start text-gray-400">
+                  <i class="ri-close-line mt-1 mr-2"></i>
+                  <span>Premium templates</span>
+                </li>
+                <li class="flex items-start text-gray-400">
+                  <i class="ri-close-line mt-1 mr-2"></i>
+                  <span>Priority support</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block text-center border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                >Get Started</a
+              >
+            </div>
+            <div
+              class="card p-8 rounded-lg border-t-4 border-primary relative transform md:-translate-y-4"
+            >
+              <div
+                class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
+              >
+                POPULAR
+              </div>
+              <h3 class="text-xl font-bold mb-2">Pro</h3>
+              <div class="text-3xl font-bold mb-1">$29</div>
+              <p class="text-gray-500 dark:text-gray-400 mb-6">
+                Monthly subscription
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Access to all 100+ templates</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Detailed documentation</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Priority email support</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Monthly new templates</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Use on unlimited projects</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block text-center bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                >Get Started</a
+              >
+            </div>
+            <div
+              class="card p-8 rounded-lg border-t-4 border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+              <div class="text-3xl font-bold mb-1">$99</div>
+              <p class="text-gray-500 dark:text-gray-400 mb-6">
+                Monthly subscription
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Everything in Pro plan</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Custom template requests</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Dedicated support manager</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>Team collaboration tools</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+                  <span>White-label options</span>
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="block text-center border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                >Contact Sales</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+              <p class="text-lg text-gray-500 dark:text-gray-400">
+                Have questions or need help? Reach out to our team.
+              </p>
+            </div>
+            <div class="card p-8 rounded-lg">
+              <form id="contactForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium mb-2"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium mb-2"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="subject" class="block text-sm font-medium mb-2"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    placeholder="What's this about?"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label for="message" class="block text-sm font-medium mb-2"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="5"
+                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    placeholder="Your message here..."
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-6">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" required />
+                    <span class="checkmark"></span>
+                    <span class="ml-2"
+                      >I agree to the
+                      <a href="#" class="text-primary hover:underline"
+                        >Terms of Service</a
+                      >
+                      and
+                      <a href="#" class="text-primary hover:underline"
+                        >Privacy Policy</a
+                      ></span
+                    >
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div class="mt-12 text-center">
+              <p class="text-lg mb-4">Connect with us</p>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 flex items-center justify-center transition-colors"
+                >
+                  <i
+                    class="ri-github-fill text-gray-700 dark:text-gray-300"
+                  ></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 flex items-center justify-center transition-colors"
+                >
+                  <i
+                    class="ri-instagram-fill text-gray-700 dark:text-gray-300"
+                  ></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 flex items-center justify-center transition-colors"
+                >
+                  <i
+                    class="ri-twitter-x-fill text-gray-700 dark:text-gray-300"
+                  ></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 flex items-center justify-center transition-colors"
+                >
+                  <i
+                    class="ri-linkedin-fill text-gray-700 dark:text-gray-300"
+                  ></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-16 md:py-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6">
+            Ready to build your website?
+          </h2>
+          <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            Join thousands of developers who are already using SiteReadyPro
+            templates to build beautiful websites.
+          </p>
+          <a
+            href="#templates"
+            class="inline-block bg-white text-primary hover:bg-gray-100 font-medium py-3 px-8 !rounded-button whitespace-nowrap transition-colors"
+            >Browse Templates</a
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a
+              href="#"
+              ><img src="assets/images/SiteReadyPro Logo Design.png" class="w-[9rem]" alt=""></a
+            >
+            <p class="text-gray-400 mb-6">
+              Professional website templates for developers, students, and
+              businesses.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="ri-github-fill text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="ri-instagram-fill text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="ri-twitter-x-fill text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="ri-linkedin-fill text-xl"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Templates</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Landing Pages</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >E-commerce</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Portfolios</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Blogs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Business</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Education</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Press</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Partners</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Support</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+              © 2025 SiteReadyPro. All rights reserved.
+            </p>
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center">
+                <i class="ri-visa-fill text-2xl text-gray-400 mr-2"></i>
+                <i class="ri-mastercard-fill text-2xl text-gray-400 mr-2"></i>
+                <i class="ri-paypal-fill text-2xl text-gray-400 mr-2"></i>
+                <i class="ri-apple-fill text-2xl text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script id="themeToggleScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+        // Check for saved theme preference or use default
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        body.classList.add(`theme-${savedTheme}`);
+        themeToggle.checked = savedTheme === "light";
+        // Toggle theme
+        themeToggle.addEventListener("change", function () {
+          if (this.checked) {
+            body.classList.remove("theme-dark");
+            body.classList.add("theme-light");
+            localStorage.setItem("theme", "light");
+          } else {
+            body.classList.remove("theme-light");
+            body.classList.add("theme-dark");
+            localStorage.setItem("theme", "dark");
+          }
+        });
+      });
+    </script>
+    <script id="mobileMenuScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        mobileMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          // Toggle icon
+          const icon = mobileMenuBtn.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          } else {
+            icon.classList.remove("ri-menu-line");
+            icon.classList.add("ri-close-line");
+          }
+        });
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            const icon = mobileMenuBtn.querySelector("i");
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          });
+        });
+      });
+    </script>
+    <script id="scrollScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust for header height
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+        // Header scroll effect
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            header.classList.add("shadow-md");
+            header.classList.add("bg-gray-900");
+            header.classList.remove("bg-opacity-95");
+            header.classList.add("bg-opacity-90");
+          } else {
+            header.classList.remove("shadow-md");
+            header.classList.remove("bg-gray-900");
+            header.classList.add("bg-opacity-95");
+            header.classList.remove("bg-opacity-90");
+          }
+        });
+        // Active link highlighting
+        const sections = document.querySelectorAll("section[id]");
+        window.addEventListener("scroll", function () {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            if (
+              window.scrollY >= sectionTop &&
+              window.scrollY < sectionTop + sectionHeight
+            ) {
+              current = section.getAttribute("id");
+            }
+          });
+          document.querySelectorAll(".nav-link").forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+    <script id="contactFormScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Form validation
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            if (!name || !email || !message) {
+              alert("Please fill in all required fields.");
+              return;
+            }
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              alert("Please enter a valid email address.");
+              return;
+            }
+            // Simulate form submission
+            const submitButton = contactForm.querySelector(
+              'button[type="submit"]'
+            );
+            submitButton.disabled = true;
+            submitButton.innerHTML = "Sending...";
+            // Simulate API call
+            setTimeout(() => {
+              alert(
+                "Thank you for your message! We will get back to you soon."
+              );
+              contactForm.reset();
+              submitButton.disabled = false;
+              submitButton.innerHTML = "Send Message";
+            }, 1500);
+          });
+        }
+      });
+    </script>
+    <div
+      id="downloadModal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-lg max-w-md w-full mx-4 overflow-hidden"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold" id="modalTitle">
+              Download Template
+            </h3>
+            <button
+              onclick="closeDownloadModal()"
+              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              <i class="ri-close-line text-2xl"></i>
+            </button>
+          </div>
+          <div id="modalContent">
+            <!-- Content will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="downloadModalScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        window.showDownloadModal = function (button) {
+          const modal = document.getElementById("downloadModal");
+          const modalContent = document.getElementById("modalContent");
+          const templateType = button.getAttribute("data-template-type");
+          const templateName = button.getAttribute("data-template-name");
+
+          let content = "";
+
+          if (!isUserLoggedIn()) {
+            content = `
+        <div class="text-center">
+          <p class="mb-4">Please sign in or register to download templates</p>
+          <div class="space-y-3">
+            <button onclick="handleSignIn()" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Sign In</button>
+            <button onclick="handleRegister()" class="w-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Register</button>
+          </div>
+        </div>
+      `;
+          } else if (templateType === "free") {
+            content = `
+        <div>
+          <p class="mb-4">Download options for ${templateName}:</p>
+          <div class="space-y-4 mb-6">
+            <label class="custom-checkbox">
+              <input type="radio" name="downloadType" value="zip" checked>
+              <span class="checkmark"></span>
+              <span class="ml-2">Complete ZIP package (HTML, CSS, JS)</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="radio" name="downloadType" value="source">
+              <span class="checkmark"></span>
+              <span class="ml-2">Source code only</span>
+            </label>
+          </div>
+          <button onclick="handleDownload('${templateName}')" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Download Now</button>
+        </div>
+      `;
+          } else {
+            content = `
+        <div>
+          <div class="bg-primary/10 rounded-lg p-4 mb-6">
+            <p class="text-primary font-medium">Premium Template</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">This template requires a Pro subscription</p>
+          </div>
+          <div class="space-y-4 mb-6">
+            <div class="flex items-center">
+              <i class="ri-check-line text-green-500 mr-2"></i>
+              <span>Access all premium templates</span>
+            </div>
+            <div class="flex items-center">
+              <i class="ri-check-line text-green-500 mr-2"></i>
+              <span>Priority support</span>
+            </div>
+            <div class="flex items-center">
+              <i class="ri-check-line text-green-500 mr-2"></i>
+              <span>Regular updates</span>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <button onclick="handleSubscribe()" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Subscribe Now</button>
+            <button onclick="handlePreview('${templateName}')" class="w-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Preview Template</button>
+          </div>
+        </div>
+      `;
+          }
+
+          modalContent.innerHTML = content;
+          modal.classList.remove("hidden");
+        };
+        window.closeDownloadModal = function () {
+          const modal = document.getElementById("downloadModal");
+          modal.classList.add("hidden");
+        };
+        window.handleDownload = function (templateName) {
+          const downloadType = document.querySelector(
+            'input[name="downloadType"]:checked'
+          ).value;
+          // Simulate download process
+          const button = document.querySelector("#modalContent button");
+          button.innerHTML = "Preparing Download...";
+          button.disabled = true;
+
+          setTimeout(() => {
+            closeDownloadModal();
+            const successModal = document.createElement("div");
+            successModal.className =
+              "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg";
+            successModal.innerHTML = `${templateName} download started!`;
+            document.body.appendChild(successModal);
+
+            setTimeout(() => {
+              successModal.remove();
+            }, 3000);
+          }, 1500);
+        };
+        // Helper functions
+        function isUserLoggedIn() {
+          // Replace with actual authentication check
+          return false;
+        }
+        window.handleSignIn = function () {
+          // Implement sign in logic
+          console.log("Sign in clicked");
+        };
+        window.handleRegister = function () {
+          // Implement register logic
+          console.log("Register clicked");
+        };
+        window.handleSubscribe = function () {
+          // Implement subscription logic
+          console.log("Subscribe clicked");
+        };
+        window.handlePreview = function (templateName) {
+          // Implement preview logic
+          console.log("Preview clicked for", templateName);
+        };
+        // Close modal when clicking outside
+        document
+          .getElementById("downloadModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) {
+              closeDownloadModal();
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
