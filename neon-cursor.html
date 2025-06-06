@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon Cursor</title>
+  <style>
+    /* Cursor Container */
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      cursor: none; /* Native cursor hide */
+      overflow: hidden;
+    }
+
+    /* Main dot */
+    .cursor-main {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      background-color: rgb(255, 80, 0);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 80, 0, 0.8);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, background-color 0.3s ease;
+      z-index: 9999;
+    }
+
+    /* Trailing circle */
+    .cursor-trail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgb(236, 101, 23);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      z-index: 9998;
+    }
+
+    /* Glow */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255, 105, 0, 0.4) 0%, rgba(255, 105, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.4;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 9997;
+    }
+
+    /* Hover effect on links/buttons */
+    a, button {
+      color: white;
+      margin: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#">Hover me!</a>
+  <button>Click me!</button>
+
+  <div class="cursor-main"></div>
+  <div class="cursor-trail"></div>
+  <div class="cursor-glow"></div>
+
+  <script>
+    const cursorMain = document.querySelector('.cursor-main');
+    const cursorTrail = document.querySelector('.cursor-trail');
+    const cursorGlow = document.querySelector('.cursor-glow');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let trailX = mouseX;
+    let trailY = mouseY;
+
+    // Smooth follow speed (0 < speed < 1)
+    const trailSpeed = 0.1;
+
+    // Update positions on mouse move
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursorMain.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      cursorGlow.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
+
+    // Animation loop to update trailing circle smoothly
+    function animate() {
+      trailX += (mouseX - trailX) * trailSpeed;
+      trailY += (mouseY - trailY) * trailSpeed;
+
+      cursorTrail.style.transform = `translate(${trailX}px, ${trailY}px) translate(-50%, -50%)`;
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Click effect: shrink main dot
+    window.addEventListener('mousedown', () => {
+      cursorMain.style.transform += ' scale(0.8)';
+    });
+
+    window.addEventListener('mouseup', () => {
+      cursorMain.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+    });
+
+    // Hover effect on links and buttons
+    function addHoverListeners() {
+      const hoverTargets = document.querySelectorAll('a, button');
+
+      hoverTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorTrail.style.borderColor = 'rgb(255, 150, 50)';
+          cursorTrail.style.transform += ' scale(1.5)';
+          cursorGlow.style.opacity = '0.8';
+          cursorGlow.style.transform += ' scale(2)';
+          cursorMain.style.transform += ' scale(1.2)';
+        });
+
+        el.addEventListener('mouseleave', () => {
+          cursorTrail.style.borderColor = 'rgb(236, 101, 23)';
+          cursorTrail.style.transform = `translate(${trailX}px, ${trailY}px) translate(-50%, -50%) scale(1)`;
+          cursorGlow.style.opacity = '0.4';
+          cursorGlow.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+          cursorMain.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+        });
+      });
+    }
+
+    addHoverListeners();
+  </script>
+</body>
+</html>
