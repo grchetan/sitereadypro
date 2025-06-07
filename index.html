@@ -21,6 +21,9 @@
     />
     <!-- Tawlind css link -->
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+
+    <!-- Animation on Display -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <script>
       tailwind.config = {
@@ -49,8 +52,58 @@
       }
       body {
         font-family: "Inter", sans-serif;
-        transition: background-color 0.3s ease;
+        
       }
+      .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+        
+        .neomorphism {
+            background: #f5f5f7;
+            box-shadow: 8px 8px 16px rgba(174, 174, 192, 0.4), 
+                        -8px -8px 16px rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+        }
+        
+        .neomorphism-button {
+            background: #f5f5f7;
+            box-shadow: 4px 4px 8px rgba(174, 174, 192, 0.4), 
+                        -4px -4px 8px rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .neomorphism-button:hover {
+            box-shadow: 2px 2px 4px rgba(174, 174, 192, 0.4), 
+                        -2px -2px 4px rgba(255, 255, 255, 0.8);
+            transform: translateY(2px);
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .glow-border:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+      /* Home section images */
+  #home {
+    background-image: url('assets/images/whitebgforhome.png');
+    background-size: cover;
+    background-position: center 30;
+    height: 100vh;
+  }
+
+  /* Mobile (max-width: 767px) */
+  @media (max-width: 767px) {
+    #home {
+      background-image: url('assets/images/mobile-bg.png'); /* mobile wali image */
+    }
+  }
 
       /* Templates cards css styel */
       .card {
@@ -180,9 +233,197 @@
       pointer-events: none;
       z-index: 9999;
     }
+
+    /* ==========Slite text style============ */
+    .split-text {
+      position: relative;
+      display: inline-block;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .split-text::before,
+    .split-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      transition: transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .split-text::before {
+      top: 0;
+      color: #06b6d4; /* cyan-500 */
+      clip-path: inset(0 0 50% 0);
+      transform: translateY(0);
+    }
+
+    .split-text::after {
+      bottom: 0;
+      color: #a855f7; /* purple-500 */
+      clip-path: inset(50% 0 0 0);
+      transform: translateY(0);
+    }
+
+    .split-text:hover::before {
+      transform: translateY(-8px);
+    }
+
+    .split-text:hover::after {
+      transform: translateY(8px);
+    }
+
+    /* Get in touch styles */
+    input:checked + .switch-slider {
+        background-color: #6366f1;
+      }
+
+      input:checked + .switch-slider:before {
+        transform: translateX(26px);
+      }
+
+      .custom-checkbox {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      .custom-checkbox input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .checkbox-mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #f5f5f7;
+        border-radius: 4px;
+        box-shadow: inset 2px 2px 5px rgba(174, 174, 192, 0.2),
+          inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+      }
+
+      .custom-checkbox input:checked ~ .checkbox-mark {
+        background-color: #6366f1;
+      }
+
+      .checkbox-mark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .custom-checkbox input:checked ~ .checkbox-mark:after {
+        display: block;
+      }
+
+      .custom-checkbox .checkbox-mark:after {
+        left: 7px;
+        top: 3px;
+        width: 6px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .custom-radio {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      .custom-radio input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .radio-mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #f5f5f7;
+        border-radius: 50%;
+        box-shadow: inset 2px 2px 5px rgba(174, 174, 192, 0.2),
+          inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+      }
+
+      .custom-radio input:checked ~ .radio-mark {
+        background-color: #f5f5f7;
+      }
+
+      .radio-mark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .custom-radio input:checked ~ .radio-mark:after {
+        display: block;
+      }
+
+      .custom-radio .radio-mark:after {
+        top: 6px;
+        left: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #6366f1;
+      }
+
+      .custom-range {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        background: #f5f5f7;
+        box-shadow: inset 2px 2px 5px rgba(174, 174, 192, 0.2),
+          inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+        outline: none;
+      }
+
+      .custom-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #6366f1;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .custom-range::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #6366f1;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border: none;
+      }
+
+      .bg-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1),
+          rgba(168, 85, 247, 0.1)
+        );
+      }
     </style>
   </head>
-  <body class=" min-h-screen">
+  <body class="overflow-x-hidden">
   <header
   class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 transition-all duration-300 shadow-lg"
   id="header"
@@ -270,25 +511,19 @@
 </script>
 
     <main>
+      <!-- Home section -->
       <section
         id="home"
         class="pt-24 md:pt-32 relative overflow-hidden"
-        style="
-          background-image: url('assets/images/whitebgforhome.png');
-          background-size: cover;
-          background-position: center;
-          height: 100vh;
-        "
-      >
         <!-- <div
           class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"
         ></div> -->
-        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10" data-aos="fade-right">
           <div class="max-w-3xl">
             <h1
               class="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6"
             >
-              Download Ready-Made Website Templates Instantly
+              Download Ready-Made <span class="split-text relative" data-text="Website Templates">Website Templates</span> Instantly
             </h1>
             <p class="text-lg md:text-xl text-black mb-8">
               Professional, responsive, and customizable templates for
@@ -297,15 +532,39 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
               <a
-                href="#templates"
-                class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
-                >Browse Templates</a
-              >
-              <a
-                href="#about"
-                class="inline-block bg-black/30 hover:bg-blue text-white border font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
-                >Learn More</a
-              >
+  href="#templates"
+  class="inline-flex items-center gap-2 bg-primary text-white font-medium py-3 px-8 rounded-full transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg group"
+>
+  Browse Templates
+  <svg
+    class="w-5 h-5 transition-transform duration-300 transform group-hover:translate-x-1"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  </svg>
+</a>
+
+             <a
+  href="#about"
+  class="inline-flex items-center gap-2 bg-black/30 border border-white/20 text-white px-8 py-3 rounded-full font-medium backdrop-blur-md transition-all duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:shadow-xl group"
+>
+  Learn More
+  <svg
+    class="w-5 h-5 transition-transform duration-300 transform group-hover:translate-x-1"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  </svg>
+</a>
+
             </div>
           </div>
         </div>
@@ -313,9 +572,12 @@
           class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[var(--bg-primary)] to-transparent"
         ></div>
       </section>
+
+
+
       <section id="features" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
+          <div class="text-center mb-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
               Why Choose SiteReadyPro?
             </h2>
@@ -327,7 +589,7 @@
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card p-8 rounded-lg text-center">
+            <div class="card p-8 rounded-lg text-center" data-aos="flip-right">
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
@@ -338,7 +600,7 @@
                 Download and deploy ready-to-use templates in minutes, not days.
               </p>
             </div>
-            <div class="card p-8 rounded-lg text-center">
+            <div class="card p-8 rounded-lg text-center" data-aos="flip-up">
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
@@ -349,7 +611,7 @@
                 All templates are designed to work perfectly on any device size.
               </p>
             </div>
-            <div class="card p-8 rounded-lg text-center">
+            <div class="card p-8 rounded-lg text-center" data-aos="flip-left">
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
@@ -371,7 +633,7 @@
         class="py-16 md:py-24 bg-pink-50"
       >
         <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
+          <div class="text-center mb-16" data-aos="zoom-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
               Browse Our Templates
             </h2>
@@ -409,32 +671,31 @@
             </button>
           </div> -->
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"
           >
 
-            <div class="card rounded-lg overflow-hidden ">
-              <div class="h-48 overflow-hidden">
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
                 <img
-                  src=""
-                  alt="Business Template"
+                  src="assets/images/template-img/fitbridge.png"
+                  alt="fitbridge"
                   class="template-image w-full h-full object-cover object-top"
                 />
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">Business Pro</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Professional template for corporate websites with service
-                  sections and testimonials.
+                <h3 class="text-lg font-semibold mb-2">Diet plan Website</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  Smart and simple diet plan template to guide, plan, and track healthy lifestyles.
                 </p>
                 <div class="flex space-x-3">
                   <a
-                    href="#"
+                    href="https://grchetan.github.io/fitbridge/"
                     class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     >Live Preview</a
                   >
                   <a
                     href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     onclick="showDownloadModal(this)"
                     data-template-type="free"
                     data-template-name="Business Pro"
@@ -446,29 +707,28 @@
             </div>
 
 
-            <div class="card rounded-lg overflow-hidden">
-              <div class="h-48 overflow-hidden">
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
                 <img
-                  src="https://readdy.ai/api/search-image?query=e-commerce%20website%20template%20with%20product%20grid%2C%20shopping%20cart%2C%20product%20details%20page%2C%20checkout%20process%2C%20clean%20modern%20design%20with%20white%20background%20and%20minimal%20aesthetic%2C%20responsive%20layout%20for%20online%20store&width=600&height=400&seq=temp2&orientation=landscape"
-                  alt="E-commerce Template"
+                  src="assets/images/template-img/landing-page.png"
+                  alt="Landing Page Template"
                   class="template-image w-full h-full object-cover object-top"
                 />
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">ShopStart</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Complete e-commerce template with product listings, cart, and
-                  checkout pages.
+                <h3 class="text-lg font-semibold mb-2">Fitness Landing page</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  High-impact fitness landing page to promote workouts, programs, and personal training.
                 </p>
                 <div class="flex space-x-3">
                   <a
-                    href="#"
+                    href="https://grchetan.github.io/fitbridge-landing-page/"
                     class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     >Live Preview</a
                   >
                   <a
                     href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     onclick="showDownloadModal(this)"
                     data-template-type="free"
                     data-template-name="Business Pro"
@@ -478,29 +738,121 @@
                 </div>
               </div>
             </div>
-            <div class="card rounded-lg overflow-hidden">
-              <div class="h-48 overflow-hidden">
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
                 <img
-                  src="https://readdy.ai/api/search-image?query=creative%20portfolio%20website%20template%20for%20designers%20and%20artists%2C%20project%20gallery%20with%20grid%20layout%2C%20about%20section%2C%20skills%20display%2C%20contact%20form%2C%20dark%20mode%20design%20with%20accent%20colors%2C%20modern%20typography&width=600&height=400&seq=temp3&orientation=landscape"
+                  src="assets/images/template-img/pixora.png"
+                  alt="pixora"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Pixora</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  Modern image gallery template to display and explore stunning visuals with ease.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="https://grchetan.github.io/Pixora/"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
+                <img
+                  src="assets/images/template-img/video-editing.png"
+                  alt="video-editing"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">video Editing Showcase</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  Showcase your video edits, reels, and creative cuts with this sleek and modern template.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="https://chetanprajapat.com/videoSamples"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
+                <img
+                  src="assets/images/template-img/rog-website.png"
+                  alt="Rog Website"
+                  class="template-image w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Rog Website</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  Power-packed gaming template built for tournaments, eSports, and hardcore players.
+                </p>
+                <div class="flex space-x-3">
+                  <a
+                    href="https://grchetan.github.io/Rog-Asus/"
+                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    >Live Preview</a
+                  >
+                  <a
+                    href="#"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    onclick="showDownloadModal(this)"
+                    data-template-type="free"
+                    data-template-name="Business Pro"
+                    data-template-id="template1"
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
+              <div class="h-100 overflow-hidden">
+                <img
+                  src="assets/images/template-img/portfolio.png"
                   alt="Portfolio Template"
                   class="template-image w-full h-full object-cover object-top"
                 />
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">Portfolio X</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Showcase your creative work with this elegant portfolio
-                  template.
+                <h3 class="text-lg font-semibold mb-2">Portfolio</h3>
+                <p class="text-gray-500 text-sm mb-4">
+                  Showcase your work and talents with this sleek and professional portfolio design.
                 </p>
                 <div class="flex space-x-3">
                   <a
-                    href="#"
+                    href="https://grchetan.github.io/My-Portfolio//"
                     class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     >Live Preview</a
                   >
                   <a
                     href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     onclick="showDownloadModal(this)"
                     data-template-type="free"
                     data-template-name="Business Pro"
@@ -510,113 +862,17 @@
                 </div>
               </div>
             </div>
-            <div class="card rounded-lg overflow-hidden">
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
               <div class="h-48 overflow-hidden">
                 <img
-                  src="https://readdy.ai/api/search-image?query=blog%20website%20template%20with%20featured%20posts%2C%20categories%2C%20sidebar%2C%20author%20profiles%2C%20comment%20section%2C%20clean%20typography%2C%20responsive%20design%20for%20content%20creators%20and%20writers&width=600&height=400&seq=temp4&orientation=landscape"
-                  alt="Blog Template"
-                  class="template-image w-full h-full object-cover object-top"
-                />
-              </div>
-              <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">BlogMaster</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Modern blog template with category filtering and comment
-                  sections.
-                </p>
-                <div class="flex space-x-3">
-                  <a
-                    href="#"
-                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    >Live Preview</a
-                  >
-                  <a
-                    href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    onclick="showDownloadModal(this)"
-                    data-template-type="free"
-                    data-template-name="Business Pro"
-                    data-template-id="template1"
-                    >Download</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card rounded-lg overflow-hidden">
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://readdy.ai/api/search-image?query=restaurant%20website%20template%20with%20food%20menu%2C%20reservation%20system%2C%20chef%20profiles%2C%20testimonials%2C%20gallery%20of%20dishes%2C%20elegant%20design%20with%20warm%20colors%2C%20perfect%20for%20cafes%20and%20restaurants&width=600&height=400&seq=temp5&orientation=landscape"
-                  alt="Restaurant Template"
-                  class="template-image w-full h-full object-cover object-top"
-                />
-              </div>
-              <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">Cuisine</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Perfect for restaurants with menu displays and reservation
-                  forms.
-                </p>
-                <div class="flex space-x-3">
-                  <a
-                    href="#"
-                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    >Live Preview</a
-                  >
-                  <a
-                    href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    onclick="showDownloadModal(this)"
-                    data-template-type="free"
-                    data-template-name="Business Pro"
-                    data-template-id="template1"
-                    >Download</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card rounded-lg overflow-hidden">
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://readdy.ai/api/search-image?query=real%20estate%20website%20template%20with%20property%20listings%2C%20search%20filters%2C%20agent%20profiles%2C%20neighborhood%20information%2C%20map%20integration%2C%20modern%20clean%20design%20for%20property%20websites&width=600&height=400&seq=temp6&orientation=landscape"
-                  alt="Real Estate Template"
-                  class="template-image w-full h-full object-cover object-top"
-                />
-              </div>
-              <div class="p-6">
-                <h3 class="text-lg font-semibold mb-2">PropertyHub</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                  Real estate template with property listings and agent
-                  profiles.
-                </p>
-                <div class="flex space-x-3">
-                  <a
-                    href="#"
-                    class="flex-1 bg-primary hover:bg-primary/90 text-white text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    >Live Preview</a
-                  >
-                  <a
-                    href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
-                    onclick="showDownloadModal(this)"
-                    data-template-type="free"
-                    data-template-name="Business Pro"
-                    data-template-id="template1"
-                    >Download</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card rounded-lg overflow-hidden">
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://readdy.ai/api/search-image?query=fitness%20website%20template%20with%20class%20schedules%2C%20trainer%20profiles%2C%20membership%20plans%2C%20testimonials%2C%20workout%20programs%2C%20modern%20energetic%20design%20with%20motivational%20elements&width=600&height=400&seq=temp7&orientation=landscape"
+                  src=""
                   alt="Fitness Template"
                   class="template-image w-full h-full object-cover object-top"
                 />
               </div>
               <div class="p-6">
                 <h3 class="text-lg font-semibold mb-2">FitLife</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                <p class="text-gray-500 text-sm mb-4">
                   Fitness studio template with class schedules and trainer
                   profiles.
                 </p>
@@ -628,7 +884,7 @@
                   >
                   <a
                     href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     onclick="showDownloadModal(this)"
                     data-template-type="free"
                     data-template-name="Business Pro"
@@ -638,17 +894,17 @@
                 </div>
               </div>
             </div>
-            <div class="card rounded-lg overflow-hidden">
+            <div class="card rounded-lg overflow-hidden" data-aos="zoom-in">
               <div class="h-48 overflow-hidden">
                 <img
-                  src="https://readdy.ai/api/search-image?query=educational%20website%20template%20with%20course%20listings%2C%20instructor%20profiles%2C%20learning%20dashboard%2C%20progress%20tracking%2C%20modern%20academic%20design%20for%20online%20learning%20platforms&width=600&height=400&seq=temp8&orientation=landscape"
+                  src=""
                   alt="Education Template"
                   class="template-image w-full h-full object-cover object-top"
                 />
               </div>
               <div class="p-6">
                 <h3 class="text-lg font-semibold mb-2">EduPortal</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                <p class="text-gray-500 text-sm mb-4">
                   Educational platform template with course listings and student
                   dashboards.
                 </p>
@@ -660,7 +916,7 @@
                   >
                   <a
                     href="#"
-                    class="flex-1 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
+                    class="flex-1 border border-gray-300 hover:bg-gray-100 text-center py-2 !rounded-button whitespace-nowrap transition-colors"
                     onclick="showDownloadModal(this)"
                     data-template-type="free"
                     data-template-name="Business Pro"
@@ -671,18 +927,22 @@
               </div>
             </div>
           </div>
-          <div class="text-center mt-12">
-            <a
-              href="#"
-              class="inline-block border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 px-8 !rounded-button transition-all whitespace-nowrap"
-              >View All Templates</a
-            >
+          <div class="text-center mt-12" data-aos="flip-right">
+           <a
+  href="#"
+  class="inline-block border border-gray-300 rounded-lg bg-white text-gray-700 font-semibold py-3 px-8
+         shadow-sm hover:bg-indigo-600 hover:text-black hover:shadow-lg
+         transition-all duration-300 ease-in-out transform hover:scale-105 whitespace-nowrap"
+>
+  View All Templates
+</a>
+
           </div>
         </div>
       </section>
       <section id="about" class="py-16 md:py-24">
-        <div class="container mx-auto px-4">
-          <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="container mx-auto px-4"  >
+          <div class="flex flex-col md:flex-row gap-12 items-center" data-aos="fade-up" >
             <div class="md:w-1/2">
               <h2 class="text-3xl md:text-4xl font-bold mb-6">
                 About SiteReadyPro
@@ -744,7 +1004,7 @@
                 </div>
               </div>
             </div>
-            <div class="md:w-1/2">
+            <div class="md:w-1/2" data-aos="fade-right">
               <img
                 src="assets/images/about-img.png"
                 alt="About SiteReadyPro"
@@ -758,18 +1018,19 @@
 
       <section class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
+          <div class="text-center mb-16" data-aos="zoom-out">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
               What Our Users Say
             </h2>
             <p
               class="text-lg text-gray-500 max-w-3xl mx-auto"
             >
-              Hear from developers and businesses who have used our templates.
+              Hear how developers and businesses are building faster, smarter, and cooler websites with our templates.
             </p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card p-8 rounded-lg">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8" >
+
+            <div class="card p-8 rounded-lg" data-aos="fade-up">
               <div class="flex items-center mb-4">
                 <div class="text-primary">
                   <i class="ri-star-fill"></i>
@@ -779,26 +1040,21 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
-                "SiteReadyPro templates saved me countless hours of development
-                time. The code is clean, well-organized, and easy to customize.
-                I was able to launch my client's website in just two days!"
+              <p class="text-black mb-6">
+                "Hard work meets smart design — just like in life, these templates push you forward. They inspired me to build my projects with confidence and deliver my best every time."
               </p>
               <div class="flex items-center">
-                <div
-                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
-                >
-                  <i class="ri-user-line text-gray-500"></i>
-                </div>
-                <div>
-                  <h4 class="font-medium">Michael Reynolds</h4>
-                  <p class="text-sm text-gray-500">
-                    Freelance Developer
-                  </p>
-                </div>
+                <div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center mr-3">
+            <img src="assets/images/gauraw.jpeg" alt="User Image" class="w-full h-full object-cover" />
+</div>
+<div>
+  <h4 class="font-medium">Gauraw Kachawa</h4>
+  <p class="text-sm text-gray-500">Motivational Speaker & Developer</p>
+</div>
+
               </div>
             </div>
-            <div class="card p-8 rounded-lg">
+            <div class="card p-8 rounded-lg" data-aos="fade-up">
               <div class="flex items-center mb-4">
                 <div class="text-primary">
                   <i class="ri-star-fill"></i>
@@ -808,26 +1064,22 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
-                "As a startup founder with limited resources, SiteReadyPro was a
-                game-changer. Their e-commerce template had everything we needed
-                to launch our online store quickly and professionally."
+              <p class="text-black mb-6">
+                "Precision, clarity, and excellence — these templates helped me achieve top results in my projects by providing a flawless structure and easy customization."
               </p>
               <div class="flex items-center">
-                <div
-                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
-                >
-                  <i class="ri-user-line text-gray-500"></i>
+                <div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center mr-3">
+  <img src="assets/images/aditya.png" alt="User Image" class="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 class="font-medium">Sarah Johnson</h4>
+                  <h4 class="font-medium">Aditya Patil</h4>
                   <p class="text-sm text-gray-500">
-                    Startup Founder
+                    Academic Topper
                   </p>
                 </div>
               </div>
             </div>
-            <div class="card p-8 rounded-lg">
+            <div class="card p-8 rounded-lg" data-aos="fade-up"s>
               <div class="flex items-center mb-4">
                 <div class="text-primary">
                   <i class="ri-star-fill"></i>
@@ -837,22 +1089,18 @@
                   <i class="ri-star-half-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
-                "I'm a design student learning web development, and these
-                templates have been invaluable for my education. Being able to
-                study professional code structure has accelerated my learning
-                tremendously."
+              <p class="text-black mb-6">
+                "These templates feel like the perfect weapon in a coder’s arsenal — sharp, swift, and stunning. Even Krishna would’ve launched his startup with this!"
               </p>
               <div class="flex items-center">
-                <div
-                  class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3"
-                >
-                  <i class="ri-user-line text-gray-500"></i>
+               <div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center mr-3">
+  <img src="assets/images/vishal.png
+  " alt="User Image" class="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 class="font-medium">David Chen</h4>
+                  <h4 class="font-medium">Vishal Chackradhari</h4>
                   <p class="text-sm text-gray-500">
-                    Design Student
+                    Code-Avenger
                   </p>
                 </div>
               </div>
@@ -860,21 +1108,24 @@
           </div>
         </div>
       </section>
+
+
+
       <section id="pricing" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
+          <div class="text-center mb-16" data-aos="flip-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
-              Simple, Transparent Pricing
+              Simple plans
             </h2>
             <p
               class="text-lg text-gray-500 max-w-3xl mx-auto"
             >
-              Choose the plan that works best for your needs.
+              choose the plan that fits, and you’re all set
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div
-              class="card p-8 rounded-lg border-t-4 border-gray-200"
+              class="card p-8 rounded-lg border-t-4 border-gray-200" data-aos="flip-left"
             >
               <h3 class="text-xl font-bold mb-2">Free</h3>
               <div class="text-3xl font-bold mb-1">₹0</div>
@@ -884,11 +1135,11 @@
               <ul class="space-y-3 mb-8">
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Access to 5 basic templates</span>
+                  <span>Basic website templates</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Basic documentation</span>
+                  <span>Limited features</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
@@ -905,13 +1156,14 @@
               </ul>
               <a
                 href="#"
-                class="block text-center border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                class="block text-center border border-gray-300 hover:bg-gray-100 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
                 >Get Started</a
               >
             </div>
+
+            
             <div
-              class="card p-8 rounded-lg border-t-4 border-primary relative transform md:-translate-y-4"
-            >
+              class="card p-8 rounded-lg border-t-4 border-primary relative transform md:-translate-y-4" data-aos="flip-up"           >
               <div
                 class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
               >
@@ -925,19 +1177,19 @@
               <ul class="space-y-3 mb-8">
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Access to all 100+ templates</span>
+                  <span>Access to all premium templates</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Detailed documentation</span>
+                  <span>High-quality UI/UX designs</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Priority email support</span>
+                  <span>Mobile-friendly & responsive</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Monthly new templates</span>
+                  <span>Regular template updates</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
@@ -952,7 +1204,7 @@
             </div>
             <div
               class="card p-8 rounded-lg border-t-4 border-gray-200 dark:border-gray-700"
-            >
+            data-aos="flip-right">
               <h3 class="text-xl font-bold mb-2">Enterprise</h3>
               <div class="text-3xl font-bold mb-1">₹1999</div>
               <p class="text-gray-500 mb-6">
@@ -969,119 +1221,294 @@
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Dedicated support manager</span>
+                  <span>1-on-1 developer support (shared)</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>Team collaboration tools</span>
+                  <span>Minor customizations included</span>
                 </li>
                 <li class="flex items-start">
                   <i class="ri-check-line text-green-500 mt-1 mr-2"></i>
-                  <span>White-label options</span>
+                  <span>Priority assistance</span>
                 </li>
               </ul>
               <a
                 href="#"
-                class="block text-center border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
-                >Contact Sales</a
+                class="block text-center border border-gray-300 hover:bg-gray-100 font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+                >Get Started</a
               >
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ===== Start: Contact Form Section ===== -->
+      <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 bg-gradient">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <p class="text-gray-700 max-w-2xl mx-auto">
+            Have questions or suggestions? We'd love to hear from you. Reach out
+            to our team.
+          </p>
+        </div>
 
-      <section id="contact" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-4">
-          <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-              <p class="text-lg text-gray-500">
-                Have questions or need help? Reach out to our team.
-              </p>
-            </div>
-            <div class="card p-8 rounded-lg">
-              <form id="contactForm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label for="name" class="block text-sm font-medium mb-2"
-                      >Name</label
-                    >
-                    <input
-                      type="text"
-                      id="name"
-                      class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                      placeholder="Your name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label for="email" class="block text-sm font-medium mb-2"
-                      >Email</label
-                    >
-                    <input
-                      type="email"
-                      id="email"
-                      class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                      placeholder="your.email@example.com"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="mb-6">
-                  <label for="subject" class="block text-sm font-medium mb-2"
-                    >Subject</label
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="neomorphism p-8" data-aos="fade-right">
+            <h3 class="text-2xl font-semibold mb-6">Contact Us</h3>
+            <form class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1"
+                    >First Name</label
                   >
                   <input
                     type="text"
-                    id="subject"
-                    class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                    placeholder="What's this about?"
+                    class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                    placeholder="Chetan"
                   />
                 </div>
-                <div class="mb-6">
-                  <label for="message" class="block text-sm font-medium mb-2"
-                    >Message</label
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1"
+                    >Last Name</label
                   >
-                  <textarea
-                    id="message"
-                    rows="5"
-                    class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                    placeholder="Your message here..."
-                    required
-                  ></textarea>
+                  <input
+                    type="text"
+                    class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                    placeholder="Prajapat"
+                  />
                 </div>
-                <!-- <div class="mb-6">
-                  <label class="custom-checkbox">
-                    <input type="checkbox" required />
-                    <span class="checkmark"></span>
-                    <span class="ml-2"
-                      >I agree to the
-                      <a href="#" class="text-primary hover:underline"
-                        >Terms of Service</a
-                      >
-                      and
-                      <a href="#" class="text-primary hover:underline"
-                        >Privacy Policy</a
-                      ></span
-                    >
-                  </label>
-                </div> -->
-                <button
-                  type="submit"
-                  class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email</label
                 >
-                  Send Message
-                </button>
-              </form>
+                <input
+                  type="email"
+                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                  placeholder="How can we help?"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Message</label
+                >
+                <textarea
+                  rows="4"
+                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                  placeholder="Your message here..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="neomorphism-button py-3 px-8 text-white bg-primary font-medium !rounded-button whitespace-nowrap"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <div data-aos="fade-left">
+            <div class="neomorphism p-8 mb-8">
+              <h3 class="text-2xl font-semibold mb-6">Connect With Us</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mr-4"
+                  >
+                    <i class="ri-mail-line ri-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Email</h4>
+                    <p class="text-gray-600">chetanprajapat340@gmail.com</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mr-4"
+                  >
+                    <i class="ri-map-pin-line ri-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Location</h4>
+                    <p class="text-gray-600">
+                      indore, madhaya pradesh, India
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mr-4"
+                  >
+                    <i class="ri-time-line ri-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Working Hours</h4>
+                    <p class="text-gray-600">
+                      Monday - Friday: 9:00 AM - 6:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              
             </div>
-           
+
+            <div class="neomorphism p-8">
+              <h3 class="text-2xl font-semibold mb-6">Newsletter</h3>
+              <p class="text-gray-700 mb-6">
+                Subscribe to our newsletter to get updates on new effects,
+                tutorials, and community events.
+              </p>
+              <div class="flex">
+                <input
+                  type="email"
+                  class="search-input flex-1 px-4 py-3 rounded-l-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+                  placeholder="your@email.com"
+                />
+                <button
+                  class="neomorphism-button py-3 px-6 text-white bg-primary font-medium rounded-r-lg !rounded-button whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-  
+      </div>
+    </section>
     </main>
+
+    <article>
+      <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">📌 Purpose / Use of the Website</h2>
+    <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
+      <strong>SiteReadyPro</strong> is a user-friendly platform designed to provide 
+      <span class="text-blue-600 font-semibold">ready-made, professionally designed website templates</span> 
+      for students, developers, freelancers, and small businesses.
+    </p>
+    <p class="mt-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
+      The main goal of the website is to <span class="text-green-600 font-medium">save time</span>, 
+      <span class="text-purple-600 font-medium">improve workflow</span>, and help users 
+      <span class="text-indigo-600 font-medium">launch websites faster</span> with clean, responsive, and customizable templates.
+    </p>
+  </div>
+</section>
+
+<!-- Advantages -->
+ <section class="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">✅ Advantages of SiteReadyPro</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Card 1 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-blue-600 mb-2">Time-Saving</h3>
+        <p class="text-gray-700">Users can directly download fully structured templates without starting from scratch.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-600 mb-2">Professional Designs</h3>
+        <p class="text-gray-700">Templates are built with modern UI/UX principles to ensure visual appeal and usability.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-green-600 mb-2">Responsive Layouts</h3>
+        <p class="text-gray-700">Every template is mobile-friendly and adapts well to all screen sizes.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-indigo-600 mb-2">Customizable Code</h3>
+        <p class="text-gray-700">Clean HTML/CSS structure allows easy customization even for beginners.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-pink-600 mb-2">Affordable Pricing</h3>
+        <p class="text-gray-700">Offers a free plan, a low-cost pro plan, and even a developer-supported elite plan.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">Developer Friendly</h3>
+        <p class="text-gray-700">Ideal for new developers, freelancers, or anyone working under deadlines.</p>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition md:col-span-2">
+        <h3 class="text-xl font-semibold text-red-600 mb-2">Supportive Resource</h3>
+        <p class="text-gray-700">Great for academic use, portfolio projects, client websites, or learning UI/UX design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tecnologies used -->
+ <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">💻 Technologies Used</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-blue-700 mb-2">HTML5</h3>
+        <p class="text-gray-700">Structure of all templates and pages</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-pink-700 mb-2">CSS3</h3>
+        <p class="text-gray-700">Styling, layout, animations</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-indigo-700 mb-2">Tailwind CSS</h3>
+        <p class="text-gray-700">Utility-first framework for fast UI design</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">JavaScript</h3>
+        <p class="text-gray-700">Interactivity like dark mode, toggle buttons</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-green-700 mb-2">AOS Library</h3>
+        <p class="text-gray-700">Scroll animations and transitions</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-xl font-semibold text-purple-700 mb-2">Responsive Design</h3>
+        <p class="text-gray-700">Media queries and flexible layouts</p>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition lg:col-span-3">
+        <h3 class="text-xl font-semibold text-red-600 mb-2">GitHub</h3>
+        <p class="text-gray-700">Hosting and version control</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </article>
 
     <footer class="bg-[gray-900] text-white pt-16 pb-8">
       <div class="container mx-auto px-4">
@@ -1089,161 +1516,144 @@
           <div>
             <a
               href="#"
-              ><img src="assets/images/logo.png" class="w-[12rem]" alt=""></a
+              ><img src="assets/images/logo.png" class="w-[12rem] pb-12" alt=""></a
             >
-            <p class="text-gray-400 mb-6">
+            <p class="text-black mb-6">
               Professional website templates for developers, students, and
               businesses.
             </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <i class="ri-github-fill text-xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <i class="ri-instagram-fill text-xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <i class="ri-twitter-x-fill text-xl"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <i class="ri-linkedin-fill text-xl"></i>
-              </a>
-            </div>
+            <div class="mt-8">
+                <h4 class="font-medium mb-4 text-black">Follow Us</h4>
+                <div class="flex space-x-4">
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                  >
+                    <i class="ri-github-fill ri-lg"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                  >
+                    <i class="ri-twitter-fill ri-lg"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                  >
+                    <i class="ri-linkedin-fill ri-lg"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                  >
+                    <i class="ri-discord-fill ri-lg"></i>
+                  </a>
+                </div>
+              </div>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-4">Templates</h4>
+            <h4 class="text-lg text-black font-semibold mb-4">Templates</h4>
             <ul class="space-y-2">
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Landing Pages</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >E-commerce</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Portfolios</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Blogs</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Business</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Education</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <h4 class="text-lg text-black font-semibold mb-4">Company</h4>
             <ul class="space-y-2">
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >About Us</a
                 >
               </li>
+            
               <li>
                 <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Careers</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  href="chetanprajapat.com" 
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Blog</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Press</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Partners</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-4">Support</h4>
+            <h4 class="text-lg text-black font-semibold mb-4">Support</h4>
             <ul class="space-y-2">
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Help Center</a
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Help</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Documentation</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Contact Us</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Terms of Service</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-gray-400 hover:text-black transition-colors"
                   >Privacy Policy</a
                 >
               </li>
@@ -1252,7 +1662,7 @@
         </div>
         <div class="border-t border-gray-800 pt-8">
           <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+            <p class="text-black text-md mb-4 md:mb-0">
               © 2025 SiteReadyPro. All rights reserved.
             </p>
           </div>
@@ -1393,134 +1803,7 @@
         </div>
       </div>
     </div>
-    <script id="downloadModalScript">
-      document.addEventListener("DOMContentLoaded", function () {
-        window.showDownloadModal = function (button) {
-          const modal = document.getElementById("downloadModal");
-          const modalContent = document.getElementById("modalContent");
-          const templateType = button.getAttribute("data-template-type");
-          const templateName = button.getAttribute("data-template-name");
 
-          let content = "";
-
-          if (!isUserLoggedIn()) {
-            content = `
-        <div class="text-center">
-          <p class="mb-4">Please sign in or register to download templates</p>
-          <div class="space-y-3">
-            <button onclick="handleSignIn()" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Sign In</button>
-            <button onclick="handleRegister()" class="w-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Register</button>
-          </div>
-        </div>
-      `;
-          } else if (templateType === "free") {
-            content = `
-        <div>
-          <p class="mb-4">Download options for ${templateName}:</p>
-          <div class="space-y-4 mb-6">
-            <label class="custom-checkbox">
-              <input type="radio" name="downloadType" value="zip" checked>
-              <span class="checkmark"></span>
-              <span class="ml-2">Complete ZIP package (HTML, CSS, JS)</span>
-            </label>
-            <label class="custom-checkbox">
-              <input type="radio" name="downloadType" value="source">
-              <span class="checkmark"></span>
-              <span class="ml-2">Source code only</span>
-            </label>
-          </div>
-          <button onclick="handleDownload('${templateName}')" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Download Now</button>
-        </div>
-      `;
-          } else {
-            content = `
-        <div>
-          <div class="bg-primary/10 rounded-lg p-4 mb-6">
-            <p class="text-primary font-medium">Premium Template</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">This template requires a Pro subscription</p>
-          </div>
-          <div class="space-y-4 mb-6">
-            <div class="flex items-center">
-              <i class="ri-check-line text-green-500 mr-2"></i>
-              <span>Access all premium templates</span>
-            </div>
-            <div class="flex items-center">
-              <i class="ri-check-line text-green-500 mr-2"></i>
-              <span>Priority support</span>
-            </div>
-            <div class="flex items-center">
-              <i class="ri-check-line text-green-500 mr-2"></i>
-              <span>Regular updates</span>
-            </div>
-          </div>
-          <div class="space-y-3">
-            <button onclick="handleSubscribe()" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Subscribe Now</button>
-            <button onclick="handlePreview('${templateName}')" class="w-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium py-3 !rounded-button whitespace-nowrap transition-colors">Preview Template</button>
-          </div>
-        </div>
-      `;
-          }
-
-          modalContent.innerHTML = content;
-          modal.classList.remove("hidden");
-        };
-        window.closeDownloadModal = function () {
-          const modal = document.getElementById("downloadModal");
-          modal.classList.add("hidden");
-        };
-        window.handleDownload = function (templateName) {
-          const downloadType = document.querySelector(
-            'input[name="downloadType"]:checked'
-          ).value;
-          // Simulate download process
-          const button = document.querySelector("#modalContent button");
-          button.innerHTML = "Preparing Download...";
-          button.disabled = true;
-
-          setTimeout(() => {
-            closeDownloadModal();
-            const successModal = document.createElement("div");
-            successModal.className =
-              "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg";
-            successModal.innerHTML = `${templateName} download started!`;
-            document.body.appendChild(successModal);
-
-            setTimeout(() => {
-              successModal.remove();
-            }, 3000);
-          }, 1500);
-        };
-        // Helper functions
-        function isUserLoggedIn() {
-          // Replace with actual authentication check
-          return false;
-        }
-        window.handleSignIn = function () {
-          // Implement sign in logic
-          console.log("Sign in clicked");
-        };
-        window.handleRegister = function () {
-          // Implement register logic
-          console.log("Register clicked");
-        };
-        window.handleSubscribe = function () {
-          // Implement subscription logic
-          console.log("Subscribe clicked");
-        };
-        window.handlePreview = function (templateName) {
-          // Implement preview logic
-          console.log("Preview clicked for", templateName);
-        };
-        // Close modal when clicking outside
-        document
-          .getElementById("downloadModal")
-          .addEventListener("click", function (e) {
-            if (e.target === this) {
-              closeDownloadModal();
-            }
-          });
-      });
-    </script>
 
 <script>
   class Particle {
@@ -1598,6 +1881,20 @@
     loop();
   })();
 </script>
+
+
+<!-- Animation on display -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script id="aos-init">
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+            });
+        });
+    </script>
+
 
 
   </body>
