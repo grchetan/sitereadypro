@@ -1197,7 +1197,7 @@
                 </li>
               </ul>
               <a
-                href="#"
+                href="https://payments.cashfree.com/forms?code=pro-subscription"
                 class="block text-center bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap transition-colors"
                 >Get Started</a
               >
@@ -1256,67 +1256,73 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="neomorphism p-8" data-aos="fade-right">
             <h3 class="text-2xl font-semibold mb-6">Contact Us</h3>
-            <form class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1"
-                    >First Name</label
-                  >
-                  <input
-                    type="text"
-                    class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
-                    placeholder="Chetan"
-                  />
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1"
-                    >Last Name</label
-                  >
-                  <input
-                    type="text"
-                    class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
-                    placeholder="Prajapat"
-                  />
-                </div>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Subject</label
-                >
-                <input
-                  type="text"
-                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
-                  placeholder="How can we help?"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Message</label
-                >
-                <textarea
-                  rows="4"
-                  class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
-                  placeholder="Your message here..."
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="neomorphism-button py-3 px-8 text-white bg-primary font-medium !rounded-button whitespace-nowrap"
-              >
-                Send Message
-              </button>
-            </form>
+
+            <!-- Form start -->
+            <form class="space-y-6" method="post" name="google-sheet">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+        placeholder="Chetan"
+      />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+      <input
+        type="text"
+        name="surname"
+        required
+        class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+        placeholder="Prajapat"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+    <input
+      type="email"
+      name="email"
+      required
+      class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+      placeholder="your@email.com"
+    />
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+    <input
+      type="text"
+      name="subject"
+      required
+      class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+      placeholder="How can we help?"
+    />
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+    <textarea
+      rows="4"
+      name="message"
+      required
+      class="search-input w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary border-none"
+      placeholder="Your message here..."
+    ></textarea>
+  </div>
+
+  <input
+    type="submit"
+    value="Send Message"
+    class="neomorphism-button py-3 px-8 text-white bg-primary font-medium !rounded-button whitespace-nowrap cursor-pointer"
+  />
+</form>
           </div>
+          
 
           <div data-aos="fade-left">
             <div class="neomorphism p-8 mb-8">
@@ -1387,6 +1393,54 @@
         </div>
       </div>
     </section>
+
+
+    <!-- Google sheet script -->
+    <!-- Thank You Message -->
+<div id="thankYouMessage" class="hidden text-green-600 text-center font-semibold mt-6">
+  ✅ Thank you for contacting Fit Bridge! We'll reach out to you soon.
+</div>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbyHVgOqVmRh2i1pVlAFoAgnwZF80A79qKNxPTf1HKbUNKE8LJcYfSBlGQvUpspvLmV3/exec";
+  const form = document.forms["google-sheet"];
+  const thankYou = document.getElementById("thankYouMessage");
+
+  function celebrate() {
+    const duration = 2 * 1000;
+    const end = Date.now() + duration;
+
+    const frame = setInterval(() => {
+      if (Date.now() > end) return clearInterval(frame);
+      confetti({
+        particleCount: 50,
+        spread: 360,
+        origin: { x: Math.random(), y: Math.random() - 0.2 },
+        zIndex: 9999,
+      });
+    }, 200);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+      .then(() => {
+        form.reset();
+        thankYou.classList.remove("hidden");
+        celebrate();
+
+        setTimeout(() => {
+          thankYou.classList.add("hidden");
+        }, 5000);
+      })
+      .catch((error) => console.error("Error!", error.message));
+  });
+</script>
     </main>
 
     <article>
@@ -1739,70 +1793,8 @@
         });
       });
     </script>
-    <script id="contactFormScript">
-      document.addEventListener("DOMContentLoaded", function () {
-        const contactForm = document.getElementById("contactForm");
-        if (contactForm) {
-          contactForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            // Form validation
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
-            if (!name || !email || !message) {
-              alert("Please fill in all required fields.");
-              return;
-            }
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-              alert("Please enter a valid email address.");
-              return;
-            }
-            // Simulate form submission
-            const submitButton = contactForm.querySelector(
-              'button[type="submit"]'
-            );
-            submitButton.disabled = true;
-            submitButton.innerHTML = "Sending...";
-            // Simulate API call
-            setTimeout(() => {
-              alert(
-                "Thank you for your message! We will get back to you soon."
-              );
-              contactForm.reset();
-              submitButton.disabled = false;
-              submitButton.innerHTML = "Send Message";
-            }, 1500);
-          });
-        }
-      });
-    </script>
-    <div
-      id="downloadModal"
-      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
-    >
-      <div
-        class="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden"
-      >
-        <div class="p-6">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-semibold" id="modalTitle">
-              Download Template
-            </h3>
-            <button
-              onclick="closeDownloadModal()"
-              class="text-gray-500 hover:text-gray-700"
-            >
-              <i class="ri-close-line text-2xl"></i>
-            </button>
-          </div>
-          <div id="modalContent">
-            <!-- Content will be dynamically inserted here -->
-          </div>
-        </div>
-      </div>
-    </div>
+    
+  
 
 
 <script>
@@ -1894,7 +1886,6 @@
             });
         });
     </script>
-
 
 
   </body>
