@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiteReadyPro Website Templates</title>
+    <!-- fav icon -->
+    <link rel="icon" href="assets/images/fav-icon.png" type="image/png" />
+    <!-- ✅ Meta Charset -->
+    <meta
+      name="description"
+      content="Download ready-made web design code, UI components, and website templates from SiteReadyPro. Perfect for developers and students."
+    />
+    <meta
+      name="keywords"
+      content="HTML CSS code, web design templates, free code snippets, portfolio templates, business website code, blog website code, ecommerce website template, gaming UI design, fitness website HTML, student projects, SiteReadyPro, site ready pro, responsive templates, landing page code, UI components, free website code"
+    />
+
+    <!-- Author Info -->
+    <meta name="author" content="Chetan Prajapat" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Open Graph Tags for Social Sharing -->
+    <meta
+      property="og:title"
+      content="SiteReadyPro | Web Design Code Templates"
+    />
+    <meta
+      property="og:description"
+      content="Free HTML CSS templates and code for websites. Made for developers, designers, and students."
+    />
+    <meta
+      property="og:image"
+      content="https://sitereadypro.tech/assets/preview.jpg"
+    />
+    <!-- Replace with your image URL -->
+    <meta property="og:url" content="https://sitereadypro.tech/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card (Optional for Social Media Preview) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="SiteReadyPro - Web Templates and Code"
+    />
+    <meta
+      name="twitter:description"
+      content="Get ready-to-use website code snippets and templates."
+    />
+    <meta
+      name="twitter:image"
+      content="https://sitereadypro.tech/assets/preview.jpg"
+    />
+
+    <!-- Canonical Link (To Avoid Duplicate Content Issue) -->
+    <link rel="canonical" href="https://sitereadypro.tech/" />
+
+    <!--  Preconnect to Google Fonts for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fonts link insta github icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <!-- Tawlind css link -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+
+    <!-- Animation on Display -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#6366f1", secondary: "#4f46e5" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 transition-all duration-300 shadow-lg"
+      id="header"
+    >
+      <div
+        class="container px-4 py-4 flex items-center justify-between mx-auto"
+      >
+        <!-- Logo -->
+        <div>
+          <a href="#">
+            <img src="assets/images/logo.png" class="w-[12rem]" alt="logo" />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a
+            href="#home"
+            class="nav-link text-lg font-medium hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="#templates"
+            class="nav-link text-lg font-medium hover:text-primary transition-colors"
+            >Templates</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-lg font-medium hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-lg font-medium hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </nav>
+
+        <!-- Hamburger Button (Visible only on Mobile) -->
+        <button
+          id="menuToggle"
+          class="md:hidden text-3xl focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          ☰
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        class="mobile-menu hidden md:hidden px-4 py-4 bg-opacity-95 backdrop-blur-sm transition-all duration-300"
+        id="mobileMenu"
+      >
+        <nav class="flex flex-col space-y-4">
+          <a
+            href="#home"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="#templates"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Templates</a
+          >
+          <a
+            href="#about"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="text-sm font-medium hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- JavaScript to toggle menu -->
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+
+    <main>
+      <section></section>
+    </main>
+
+    <footer class="bg-[gray-900] text-white pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a href="#"
+              ><img src="assets/images/logo.png" class="w-[12rem] pb-12" alt=""
+            /></a>
+            <p class="text-black mb-6">
+              Professional website templates for developers, students, and
+              businesses.
+            </p>
+            <div class="mt-8">
+              <h4 class="font-medium mb-4 text-black">Follow Us</h4>
+              <div class="flex space-x-4">
+                <a
+                  href="https://github.com/grchetan"
+                  class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                >
+                  <i class="ri-github-fill ri-lg"></i>
+                </a>
+                <a
+                  href="https://twitter.com/grchetann"
+                  class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                >
+                  <i class="ri-twitter-fill ri-lg"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/chetan-prajapat-58350b285/"
+                  class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                >
+                  <i class="ri-linkedin-fill ri-lg"></i>
+                </a>
+                <a
+                  href="https://discord.com/users/1046296418383573032"
+                  class="w-10 h-10 flex items-center justify-center neomorphism-button rounded-full text-primary"
+                >
+                  <i class="ri-discord-fill ri-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg text-black font-semibold mb-4">Templates</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="templates.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Landing Pages</a
+                >
+              </li>
+              <li>
+                <a
+                  href="templates.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >E-commerce</a
+                >
+              </li>
+              <li>
+                <a
+                  href="templates.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Portfolios</a
+                >
+              </li>
+              <li>
+                <a
+                  href="templates.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Blogs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="templates.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Business</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg text-black font-semibold mb-4">Company</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >About Us</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://grchetan.github.io/"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg text-black font-semibold mb-4">Support</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Help</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms-and-conditions.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="text-gray-400 hover:text-black transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-black text-md mb-4 md:mb-0">
+              &copy; <span id="year"></span> SiteReadyPro. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- JavaScript for dynamic year -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script id="scrollScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust for header height
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Active link highlighting
+        const sections = document.querySelectorAll("section[id]");
+        window.addEventListener("scroll", function () {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            if (
+              window.scrollY >= sectionTop &&
+              window.scrollY < sectionTop + sectionHeight
+            ) {
+              current = section.getAttribute("id");
+            }
+          });
+          document.querySelectorAll(".nav-link").forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+
+    <script>
+      class Particle {
+        constructor(x, y) {
+          this.life = Math.floor(Math.random() * 60 + 60);
+          this.initialLife = this.life;
+          this.velocity = {
+            x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 10),
+            y: -0.4 + Math.random() * -1,
+          };
+          this.position = { x, y };
+          this.size = 4;
+        }
+
+        update(ctx) {
+          this.position.x += this.velocity.x;
+          this.position.y += this.velocity.y;
+          this.velocity.x += ((Math.random() < 0.5 ? -1 : 1) * 2) / 75;
+          this.velocity.y -= Math.random() / 600;
+          this.life--;
+
+          const scale = 0.2 + (this.initialLife - this.life) / this.initialLife;
+
+          ctx.fillStyle = "#e6f1f7";
+          ctx.strokeStyle = "#3a92c5";
+          ctx.beginPath();
+          ctx.arc(
+            this.position.x - (this.size / 2) * scale,
+            this.position.y - this.size / 2,
+            this.size * scale,
+            0,
+            2 * Math.PI
+          );
+          ctx.stroke();
+          ctx.fill();
+          ctx.closePath();
+        }
+      }
+
+      (function () {
+        const canvas = document.createElement("canvas");
+        canvas.className = "bubble-cursor";
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext("2d");
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        const particles = [];
+
+        function addParticle(x, y) {
+          particles.push(new Particle(x, y));
+        }
+
+        function onMove(e) {
+          addParticle(e.clientX, e.clientY);
+        }
+
+        function loop() {
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach((p) => p.update(ctx));
+          for (let i = particles.length - 1; i >= 0; i--) {
+            if (particles[i].life < 0) particles.splice(i, 1);
+          }
+          requestAnimationFrame(loop);
+        }
+
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("resize", () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        loop();
+      })();
+    </script>
+
+    <!-- Animation on display -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script id="aos-init">
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-out",
+          once: true,
+        });
+      });
+    </script>
+  </body>
+</html>
