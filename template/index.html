@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bhagavad Gita – Peaceful Reading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A calm and spiritual Bhagavad Gita reading platform"
+    />
+
+    <style>
+      /* ------------------ GLOBAL ------------------ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Georgia, serif;
+        background: #faf7f2;
+        color: #3e2f1c;
+        line-height: 1.9;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: #8b5a2b;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      /* ------------------ HEADER ------------------ */
+      header {
+        position: sticky;
+        top: 0;
+        background: #f2e6c9;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #3e2f1c;
+        font-weight: 500;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* ------------------ HOME ------------------ */
+      #home {
+        background: #fffaf0;
+        text-align: center;
+      }
+
+      /* ------------------ CHAPTER NAV ------------------ */
+      .chapter-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .chapter-buttons button {
+        padding: 8px 15px;
+        border: 1px solid #c9a76d;
+        background: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .chapter-buttons button:hover {
+        background: #f5ecd7;
+      }
+
+      /* ------------------ SHLOK ------------------ */
+      .shlok-nav {
+        margin: 25px 0;
+      }
+
+      select {
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+
+      .shlok {
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .shlok img {
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 6px;
+      }
+
+      /* ------------------ FOOTER ------------------ */
+      footer {
+        background: #f2e6c9;
+        text-align: center;
+        padding: 25px 10px;
+        font-size: 14px;
+      }
+
+      /* ------------------ RESPONSIVE ------------------ */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header>
+      <div class="logo">Bhagavad Gita</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#chapters">Chapters</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ================= HOME ================= -->
+    <section id="home">
+      <div class="container">
+        <h1>Peaceful Bhagavad Gita Reading</h1>
+        <p>
+          A calm and distraction-free platform designed for slow, thoughtful
+          reading and reflection.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CHAPTERS ================= -->
+    <section id="chapters">
+      <div class="container">
+        <h2>Chapters</h2>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-buttons">
+          <button onclick="showChapter(1)">Chapter 1</button>
+          <button onclick="showChapter(2)">Chapter 2</button>
+          <button onclick="showChapter(3)">Chapter 3</button>
+        </div>
+
+        <!-- ========== CHAPTER 1 ========== -->
+        <div class="chapter" id="chapter1">
+          <h2>Chapter 1</h2>
+          <p>Introduction of Chapter 1 will appear here.</p>
+
+          <!-- Shlok Navigation -->
+          <div class="shlok-nav">
+            <label>Select Shlok:</label>
+            <select onchange="goToShlok(this.value)">
+              <option value="">-- Choose --</option>
+              <option value="c1s1">Shlok 1</option>
+              <option value="c1s2">Shlok 2</option>
+              <option value="c1s11">Shlok 11</option>
+              <option value="c1s22">Shlok 22</option>
+              <option value="c1s33">Shlok 33</option>
+              <option value="c1s44">Shlok 44</option>
+            </select>
+          </div>
+
+          <!-- Shloks -->
+          <div id="c1s1" class="shlok">
+            <h3>Shlok 1</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+            <img src="images/placeholder.jpg" alt="Spiritual placeholder" />
+          </div>
+
+          <div id="c1s2" class="shlok">
+            <h3>Shlok 2</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+          </div>
+
+          <div id="c1s11" class="shlok">
+            <h3>Shlok 11</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+          </div>
+
+          <div id="c1s22" class="shlok">
+            <h3>Shlok 22</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+          </div>
+
+          <div id="c1s33" class="shlok">
+            <h3>Shlok 33</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+          </div>
+
+          <div id="c1s44" class="shlok">
+            <h3>Shlok 44</h3>
+            <p>Shlok text will appear here.</p>
+            <p>Explanation will appear here.</p>
+          </div>
+        </div>
+
+        <!-- ========== CHAPTER 2 & 3 PLACEHOLDER ========== -->
+        <div class="chapter" id="chapter2" style="display: none">
+          <h2>Chapter 2</h2>
+          <p>Chapter 2 content will appear here.</p>
+        </div>
+
+        <div class="chapter" id="chapter3" style="display: none">
+          <h2>Chapter 3</h2>
+          <p>Chapter 3 content will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+      <div class="container">
+        <h2>About Bhagavad Gita</h2>
+        <p>
+          This website is created to help readers connect with the teachings of
+          the Bhagavad Gita in a calm and meaningful way.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Email: contact@example.com</p>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>© 2025 Bhagavad Gita Reading Platform</p>
+      <p>Read slowly • Reflect deeply • Live wisely</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+      function goToShlok(id) {
+        if (!id) return;
+        document.getElementById(id).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      function showChapter(num) {
+        document
+          .querySelectorAll(".chapter")
+          .forEach((ch) => (ch.style.display = "none"));
+        document.getElementById("chapter" + num).style.display = "block";
+        document
+          .getElementById("chapter" + num)
+          .scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>

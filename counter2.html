@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tap + Tab Counter App</title>
+
+    <style>
+      :root {
+        --bg: #020617;
+        --card: #0f172a;
+        --accent: #38bdf8;
+        --green: #22c55e;
+        --orange: #fb923c;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: system-ui;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #020617, #000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.9);
+        border-radius: 20px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .label {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .number {
+        font-size: clamp(2.6rem, 8vw, 3.6rem);
+        font-weight: 700;
+        color: var(--accent);
+        transition: transform 0.25s ease;
+      }
+
+      .number.pulse {
+        transform: scale(1.1);
+      }
+
+      .status {
+        margin-top: 6px;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: 0.3s;
+      }
+
+      .status.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .running {
+        color: var(--green);
+      }
+      .paused {
+        color: var(--orange);
+      }
+
+      .tap-area {
+        margin-top: 10px;
+        padding: 18px;
+        border-radius: 16px;
+        border: 2px dashed rgba(56, 189, 248, 0.4);
+        color: var(--muted);
+        font-size: 1rem;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.2s;
+      }
+
+      .tap-area:active {
+        transform: scale(0.96);
+        background: rgba(56, 189, 248, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="label">⏱ Timer Counter</div>
+        <div id="timer" class="number">0</div>
+        <div id="status" class="status running show">Running</div>
+      </div>
+
+      <div class="card">
+        <div class="label">🔁 Tab Switch Count</div>
+        <div id="tabCount" class="number">0</div>
+      </div>
+
+      <div class="card">
+        <div class="label">👆 Tap / Click Count</div>
+        <div id="tapCount" class="number">0</div>
+        <div class="tap-area" id="tapArea">Tap Anywhere Here 👆</div>
+      </div>
+    </div>
+
+    <script>
+      /* ===== Storage Keys ===== */
+      const TIMER_KEY = "timer";
+      const TAB_KEY = "tab";
+      const TAP_KEY = "tap";
+
+      /* ===== Load Data ===== */
+      let timerCount = +localStorage.getItem(TIMER_KEY) || 0;
+      let tabCount = +localStorage.getItem(TAB_KEY) || 0;
+      let tapCount = +localStorage.getItem(TAP_KEY) || 0;
+
+      /* ===== Elements ===== */
+      const timerEl = document.getElementById("timer");
+      const tabEl = document.getElementById("tabCount");
+      const tapEl = document.getElementById("tapCount");
+      const statusEl = document.getElementById("status");
+      const tapArea = document.getElementById("tapArea");
+
+      /* ===== Render ===== */
+      timerEl.textContent = timerCount;
+      tabEl.textContent = tabCount;
+      tapEl.textContent = tapCount;
+
+      let interval = null;
+
+      /* ===== Animation ===== */
+      function pulse(el) {
+        el.classList.add("pulse");
+        setTimeout(() => el.classList.remove("pulse"), 250);
+      }
+
+      /* ===== Timer ===== */
+      function startTimer() {
+        if (interval) return;
+        interval = setInterval(() => {
+          timerCount++;
+          timerEl.textContent = timerCount;
+          pulse(timerEl);
+          localStorage.setItem(TIMER_KEY, timerCount);
+        }, 1000);
+        statusEl.textContent = "Running";
+        statusEl.className = "status show running";
+      }
+
+      function stopTimer() {
+        clearInterval(interval);
+        interval = null;
+        statusEl.textContent = "Paused";
+        statusEl.className = "status show paused";
+      }
+
+      /* ===== Tab Switch Detect ===== */
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          tabCount++;
+          tabEl.textContent = tabCount;
+          pulse(tabEl);
+          localStorage.setItem(TAB_KEY, tabCount);
+          stopTimer();
+        } else {
+          startTimer();
+        }
+      });
+
+      /* ===== TAP FEATURE ===== */
+      tapArea.addEventListener("click", () => {
+        tapCount++;
+        tapEl.textContent = tapCount;
+        pulse(tapEl);
+        localStorage.setItem(TAP_KEY, tapCount);
+      });
+
+      /* ===== Start ===== */
+      startTimer();
+    </script>
+  </body>
+</html>

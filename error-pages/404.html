@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>404 - Page Not Found | Sitereadypro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, Arial, sans-serif;
+        background: radial-gradient(circle at center, #330000 0%, #000000 60%);
+        color: #eee;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        background: rgba(10, 10, 10, 0.85);
+        padding: 2.5rem;
+        width: 90%;
+        max-width: 520px;
+        border: 1px solid rgba(255, 0, 60, 0.5);
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 0 25px rgba(255, 0, 60, 0.25);
+      }
+      h1 {
+        font-size: clamp(5rem, 15vw, 6rem);
+        text-shadow: 0 0 12px rgba(255, 0, 60, 0.8);
+      }
+      .subtitle {
+        margin: 0.7rem 0 1.4rem;
+        color: #bbbbbb;
+        font-size: 1rem;
+      }
+      .glitch {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ff3355;
+        font-weight: 600;
+      }
+      .buttons {
+        margin-top: 1.8rem;
+        display: flex;
+        justify-content: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: 0.18s ease;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #ff0033, #ff3355);
+        color: #fff;
+        box-shadow: 0 0 12px rgba(255, 0, 60, 0.55);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 0, 80, 0.4);
+        color: #ff7a94;
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 0, 60, 0.15);
+      }
+      footer {
+        font-size: 0.7rem;
+        color: #888;
+        margin-top: 1rem;
+      }
+      footer span {
+        color: #ff3355;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>404</h1>
+      <div class="glitch">Not Found</div>
+      <p class="subtitle">
+        The page you are looking for doesn’t exist.<br />
+        But we tracked your curiosity 😏
+      </p>
+
+      <div class="buttons">
+        <a href="/" class="btn btn-primary">🏠 Back to Home</a>
+        <a href="mailto:support@sitereadypro.tech" class="btn btn-secondary"
+          >📧 Contact Support</a
+        >
+      </div>
+
+      <footer>Powered securely by <span>Sitereadypro</span></footer>
+    </div>
+  </body>
+</html>

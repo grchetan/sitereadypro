@@ -1,3 +1,84 @@
+# # Disable Directory Browsing
+
+Options -Indexes
+
+# # Custom Error Pages (Top is MUST)
+
+ErrorDocument 403 /error_pages/403.html
+ErrorDocument 404 /error_pages/404.html
+
+# Remove .html extension
+
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^/]+)$ $1.html [L]
+
+# Redirect direct .html requests to without .html
+
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Serve .html file without showing .html
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.\*)$ $1.html [L]
+
+# BEGIN WordPress & SpeedyCache Rules
+
+# (Thoda bhi change mat karna, warna site bigad jayegi)
+
+FileETag None
+<IfModule mod_headers.c>
+Header unset ETag
+</IfModule>
+
+<FilesMatch "\.(html)$">
+<IfModule mod_headers.c>
+Header set x-speedycache-source "Server"
+Header set Cache-Tag "sitereadypro.tech"
+Header set CDN-Cache-Control "max-age=1296000"
+Header set Cache-Control "public"
+Header unset Pragma
+Header unset Last-Modified
+</IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|svg|pdf|webp)$">
+<IfModule mod_headers.c>
+Header set Cache-Control "public, max-age=31536000"
+</IfModule>
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
+  AddOutputFilterByType DEFLATE image/svg+xml image/x-icon
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} \.(jpe?g|png|gif)$
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+  RewriteRule ^(.+)\.(jpe?g|png|gif)$ $1.webp [T=image/webp,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+
+AddType image/webp .webp
+
+# BEGIN SpeedyCache rewrite rules
+
+<IfModule mod_rewrite.c>
+  RewriteBase /
+  RewriteCond %{REQUEST_METHOD} GET
+  RewriteCond %{HTTP_USER_AGENT} !(Mediatoolkitbot|facebookexternalhit|SpeedyCacheCCSS)
+  RewriteCond %{QUERY_STRING} =""
+  RewriteCond %{HTTP:Cookie} !(comment_author_|wordpress_logged_in_)
+  RewriteCond %{REQUEST_URI} !(\/){2}$ 
+  RewriteCond %{REQUEST_URI} !^/(wp-(?:admin|login|register|comments-post|cron|json))/ [NC]
+  RewriteCond %{DOCUMENT_ROOT}/wp-content/cache/speedycache/%{HTTP_HOST}/all%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*) /wp-content/cache/speedycache/%{HTTP_HOST}/all%{REQUEST_URI}/index.html [L]
+</IfModule>
+# END SpeedyCache rules
+
+# END WordPress & SpeedyCache Rules

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>403 - Access Denied | Sitereadypro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+          circle at top,
+          #550000 0,
+          #000000 55%,
+          #000000 100%
+        );
+        color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .scan-lines::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .noise {
+        position: fixed;
+        inset: -50px;
+        background-image: url("TEMP-NOISE-IMAGE.png"); /* <-- yaha apni image ka path daal dena  */
+        opacity: 0.05;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+        animation: noiseMove 6s linear infinite alternate;
+      }
+
+      @keyframes noiseMove {
+        from {
+          transform: translate3d(0, 0, 0) scale(1.1);
+        }
+        to {
+          transform: translate3d(-30px, 20px, 0) scale(1.1);
+        }
+      }
+
+      .wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 520px;
+        width: 90%;
+        padding: 2.5rem 2rem;
+        border-radius: 16px;
+        background: rgba(10, 10, 10, 0.9);
+        border: 1px solid rgba(255, 0, 60, 0.6);
+        box-shadow: 0 0 25px rgba(255, 0, 60, 0.25),
+          0 0 80px rgba(255, 0, 60, 0.09);
+        backdrop-filter: blur(10px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 0, 60, 0.7);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .brand-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .brand-text {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.78rem;
+        color: #ff3355;
+      }
+
+      .code {
+        font-size: clamp(4rem, 15vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+        text-shadow: 0 0 12px rgba(255, 0, 80, 0.8),
+          0 0 40px rgba(255, 0, 80, 0.4);
+        position: relative;
+        display: inline-block;
+      }
+
+      .code::after {
+        content: "403";
+        position: absolute;
+        left: 2px;
+        top: 0;
+        color: rgba(255, 255, 255, 0.18);
+        text-shadow: none;
+        mix-blend-mode: screen;
+        animation: glitch 1.2s infinite alternate-reverse;
+      }
+
+      @keyframes glitch {
+        0% {
+          transform: translate(0, 0);
+          clip-path: inset(0 0 70% 0);
+        }
+        50% {
+          transform: translate(-2px, 1px);
+          clip-path: inset(20% 0 20% 0);
+        }
+        100% {
+          transform: translate(2px, -1px);
+          clip-path: inset(60% 0 0 0);
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 0, 60, 0.5);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #ff7a94;
+        margin-bottom: 1.3rem;
+        background: rgba(255, 0, 60, 0.08);
+      }
+
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ff0033;
+        box-shadow: 0 0 12px rgba(255, 0, 60, 1);
+        animation: pulse 1.4s ease-out infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        70% {
+          transform: scale(1.7);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1.7);
+          opacity: 0;
+        }
+      }
+
+      .title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+        color: #cccccc;
+        margin-bottom: 1.2rem;
+      }
+
+      .terminal-box {
+        background: #080808;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 0, 80, 0.35);
+        padding: 0.9rem;
+        font-family: "Fira Code", monospace;
+        font-size: 0.8rem;
+        color: #e8e8e8;
+        margin-bottom: 1.3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .terminal-header {
+        display: flex;
+        gap: 0.4rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
+
+      .dot.red {
+        background: #ff4b5c;
+      }
+      .dot.yellow {
+        background: #ffb347;
+      }
+      .dot.green {
+        background: #32d66b;
+      }
+
+      .terminal-line {
+        margin-bottom: 0.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .terminal-line span.prompt {
+        color: #ff3355;
+      }
+
+      .terminal-line span.info {
+        color: #999999;
+      }
+
+      .terminal-line span.warn {
+        color: #ffb347;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .btn {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0.6rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        text-decoration: none;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff0033, #ff3355);
+        color: white;
+        box-shadow: 0 0 18px rgba(255, 0, 60, 0.55);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 0 26px rgba(255, 0, 60, 0.75);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: #ff7a94;
+        border: 1px solid rgba(255, 0, 80, 0.5);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(255, 0, 60, 0.08);
+        transform: translateY(-1px);
+      }
+
+      .btn-icon {
+        font-size: 1rem;
+      }
+
+      .footer-note {
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        color: #777777;
+      }
+
+      .footer-note span {
+        color: #ff3355;
+      }
+
+      @media (max-width: 480px) {
+        .wrapper {
+          padding: 2rem 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scan-lines"></div>
+    <div class="noise"></div>
+
+    <div class="wrapper">
+      <!-- Brand -->
+      <div class="brand">
+        <div class="brand-logo">
+          <!-- Yaha tum apna real logo path daal dena -->
+          <img src="/path/to/your-logo.png" alt="Sitereadypro logo" />
+        </div>
+        <div>
+          <div class="brand-text">Sitereadypro · Secure Gateway</div>
+        </div>
+      </div>
+
+      <!-- Error Code + Badge -->
+      <div class="badge">
+        <div class="badge-dot"></div>
+        ACCESS RESTRICTED
+      </div>
+
+      <div class="code">403</div>
+
+      <h1 class="title">Unauthorized Access Detected</h1>
+      <p class="subtitle">
+        You’ve reached a protected area of <strong>Sitereadypro</strong>. Your
+        request has been logged by our security systems.
+      </p>
+
+      <!-- Terminal style info -->
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <div class="terminal-line">
+          <span class="prompt">[SECURITY]</span>
+          <span class="info"> Status: 403 Forbidden</span>
+        </div>
+        <div class="terminal-line">
+          <span class="prompt">[REQUEST]</span>
+          <span class="info"> Directory listing & direct access disabled.</span>
+        </div>
+        <div class="terminal-line">
+          <span class="prompt">[ACTION]</span>
+          <span class="warn">
+            If you believe this is a mistake, contact the site
+            administrator.</span
+          >
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="btn-row">
+        <a href="../index" class="btn btn-primary">
+          <span class="btn-icon">🏠</span> Go back to Home
+        </a>
+        <a href="mailto:support@sitereadypro.tech" class="btn btn-ghost">
+          <span class="btn-icon">📧</span> Contact Support
+        </a>
+      </div>
+
+      <p class="footer-note">
+        All activities on this endpoint may be <span>monitored</span> for
+        security purposes.
+      </p>
+    </div>
+  </body>
+</html>
