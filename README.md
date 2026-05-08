@@ -86,7 +86,9 @@
 
 Email                            
 contact.chetanprajapat@gmail.com 
-[Connect](https://grchetan.github.io/contact/)
+[Website](https://grchetan.github.io/contact/)
+
+
 ## Connect
 
 <p>
