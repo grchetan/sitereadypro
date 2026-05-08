@@ -84,12 +84,9 @@
 
 ## Contact
 
-| Email                            | Location                      | Working Hours              |
-| -------------------------------- | ----------------------------- | -------------------------- |
-| contact.chetanprajapat@gmail.com | Indore, Madhya Pradesh, India | Mon–Fri: 9:00 AM – 6:00 PM |
-
----
-
+Email                            
+contact.chetanprajapat@gmail.com 
+[Connect](https://grchetan.github.io/contact/)
 ## Connect
 
 <p>
