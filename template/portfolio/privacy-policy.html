@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy | Chetan Prajapat</title>
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body id="top">
+<div class="grid-backdrop" aria-hidden="true"></div>
+<div class="topbar">
+  <a href="index.html" class="brand-mark">&lt;CP<span>/</span>&gt;</a>
+  <div class="topbar-actions">
+    <div class="theme-toggle"><button data-mode="light" onclick="ThemeManager.setTheme('light')">☀</button><button data-mode="system" onclick="ThemeManager.setTheme('system')">⚙</button><button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾</button></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div>
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">§01 Home</a>
+  <a href="blog.html">§02 Blog</a>
+  <a href="contact.html">§03 Contact</a>
+  <a href="resume.html">§04 Resume</a>
+  <a href="hire-me.html">§05 Hire Me</a>
+</nav>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">&lt;Chetan<span>.</span>Prajapat/&gt;</span>
+      <span class="brand-role">Full Stack Web Developer</span>
+    </div>
+    <nav class="side-nav">
+      <a href="index.html"><span class="idx">§01</span> Home</a>
+      <a href="blog.html"><span class="idx">§02</span> Blog</a>
+      <a href="contact.html"><span class="idx">§03</span> Contact</a>
+      <a href="resume.html"><span class="idx">§04</span> Resume</a>
+      <a href="hire-me.html"><span class="idx">§05</span> Hire Me</a>
+    </nav>
+    <div class="theme-toggle" style="margin-top:auto"><button data-mode="light" onclick="ThemeManager.setTheme('light')">☀ Light</button><button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾ Dark</button></div>
+  </aside>
+
+  <main>
+    <section class="dossier-section legal-doc" style="border-bottom:none; padding-top:3.5rem;">
+      <div class="eyebrow rv">Legal</div>
+      <h1 class="sec-title rv" style="font-size:clamp(1.7rem,3.5vw,2.4rem)">Privacy Policy</h1>
+      <p class="legal-updated rv">Last updated: July 2026</p>
+
+      <div class="rv">
+        <h2>1. Introduction</h2>
+        <p>Welcome to <strong>Chetan Prajapat's Portfolio</strong> ("the Website"). This Privacy Policy explains how I collect, use, and protect your information when you visit <strong>grchetan.github.io</strong>.</p>
+        <p>By using this website, you agree to the terms described in this policy.</p>
+
+        <h2>2. Information I Collect</h2>
+        <p>When you use the contact form on this website, I may collect:</p>
+        <ul>
+          <li>Your name</li>
+          <li>Your email address</li>
+          <li>Your message content</li>
+          <li>Optional: budget and purpose of contact</li>
+        </ul>
+        <p>I also collect anonymous usage data (page visits, screen resolution, browser type) for analytics purposes via Google Sheets tracking.</p>
+
+        <h2>3. How I Use Your Information</h2>
+        <p>The information you provide is used only to:</p>
+        <ul>
+          <li>Respond to your inquiries and messages</li>
+          <li>Understand how visitors use this website</li>
+          <li>Improve the website experience</li>
+        </ul>
+        <p>I will never sell, rent, or share your personal information with any third party for marketing purposes.</p>
+
+        <h2>4. Data Storage</h2>
+        <p>Contact form submissions are stored in a Google Sheet accessible only to me. Google's privacy policy applies to data stored in their services.</p>
+
+        <h2>5. Cookies</h2>
+        <p>This website uses <code>localStorage</code> only to remember your theme preference (dark/light mode). No tracking cookies or third-party cookies are used.</p>
+
+        <h2>6. Third-Party Links</h2>
+        <p>This website may contain links to external websites (GitHub, LinkedIn, Instagram, etc.). I am not responsible for the privacy practices of those websites.</p>
+
+        <h2>7. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request deletion of any personal data you submitted</li>
+          <li>Ask what data is stored about you</li>
+        </ul>
+        <p>To exercise these rights, email me at <a href="mailto:contact.chetanprajapat@gmail.com" style="color:var(--accent)">contact.chetanprajapat@gmail.com</a>.</p>
+
+        <h2>8. Changes to This Policy</h2>
+        <p>This Privacy Policy may be updated occasionally. The "last updated" date at the top will reflect any changes.</p>
+
+        <h2>9. Contact</h2>
+        <p>If you have questions about this Privacy Policy, contact me at: <a href="mailto:contact.chetanprajapat@gmail.com" style="color:var(--accent)">contact.chetanprajapat@gmail.com</a></p>
+      </div>
+    </section>
+
+    <footer class="dossier-footer">
+      <span>&copy; <span id="year"></span> Chetan Prajapat</span>
+      <a href="terms.html" style="color:var(--accent)">Terms</a>
+    </footer>
+  </main>
+</div>
+
+<a href="#top" class="top-btn" id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+<script src="javascript/script.js"></script>
+</body>
+</html>

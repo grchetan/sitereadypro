@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thank You | Chetan Prajapat</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body>
+<div class="grid-backdrop" aria-hidden="true"></div>
+<div class="standalone">
+  <div class="check-circle"><i class="fa-solid fa-check"></i></div>
+  <h1>Thank <em>you.</em></h1>
+  <p class="desc" style="margin-bottom:.5rem; font-weight:600; color:var(--ink);">Message Received!</p>
+  <p class="desc">Your message has been sent successfully. <strong>Chetan will reply within 24 hours.</strong> Stay tuned — great things coming!</p>
+  <div class="btns">
+    <a href="index.html" class="btn btn-fill">← Back to Home</a>
+    <a href="index.html#projects" class="btn btn-out">View Projects</a>
+  </div>
+  <div class="standalone-counter">Redirecting in <span id="count">8</span> seconds...</div>
+</div>
+<script>
+  let sec = 8;
+  const el = document.getElementById('count');
+  const t = setInterval(() => {
+    sec--;
+    el.textContent = sec;
+    if (sec <= 0) { clearInterval(t); window.location.href = 'index.html'; }
+  }, 1000);
+</script>
+</body>
+</html>

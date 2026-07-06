@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -86,26 +86,26 @@
       tailwind.config = {
         theme: {
           extend: {
-            colors: { primary: "#6366f1", secondary: "#4f46e5" },
+            colors: { primary: '#6366f1', secondary: '#4f46e5' },
             borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
+              none: '0px',
+              sm: '4px',
+              DEFAULT: '8px',
+              md: '12px',
+              lg: '16px',
+              xl: '20px',
+              '2xl': '24px',
+              '3xl': '32px',
+              full: '9999px',
+              button: '8px',
             },
           },
         },
       };
     </script>
     <style>
-      :where([class^="ri-"])::before {
-        content: "\f3c2";
+      :where([class^='ri-'])::before {
+        content: '\f3c2';
       }
     </style>
   </head>
@@ -190,11 +190,11 @@
 
     <!-- JavaScript to toggle menu -->
     <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const mobileMenu = document.getElementById("mobileMenu");
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
 
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
       });
     </script>
 
@@ -721,31 +721,31 @@
     </footer>
     <!-- JavaScript for dynamic year -->
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
     <script id="scrollScript">
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
+          anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute("href");
-            if (targetId === "#") return;
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
               window.scrollTo({
                 top: targetElement.offsetTop - 80, // Adjust for header height
-                behavior: "smooth",
+                behavior: 'smooth',
               });
             }
           });
         });
 
         // Active link highlighting
-        const sections = document.querySelectorAll("section[id]");
-        window.addEventListener("scroll", function () {
-          let current = "";
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', function () {
+          let current = '';
           sections.forEach((section) => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
@@ -753,13 +753,13 @@
               window.scrollY >= sectionTop &&
               window.scrollY < sectionTop + sectionHeight
             ) {
-              current = section.getAttribute("id");
+              current = section.getAttribute('id');
             }
           });
-          document.querySelectorAll(".nav-link").forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-              link.classList.add("active");
+          document.querySelectorAll('.nav-link').forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
             }
           });
         });
@@ -788,15 +788,15 @@
 
           const scale = 0.2 + (this.initialLife - this.life) / this.initialLife;
 
-          ctx.fillStyle = "#e6f1f7";
-          ctx.strokeStyle = "#3a92c5";
+          ctx.fillStyle = '#e6f1f7';
+          ctx.strokeStyle = '#3a92c5';
           ctx.beginPath();
           ctx.arc(
             this.position.x - (this.size / 2) * scale,
             this.position.y - this.size / 2,
             this.size * scale,
             0,
-            2 * Math.PI
+            2 * Math.PI,
           );
           ctx.stroke();
           ctx.fill();
@@ -805,11 +805,11 @@
       }
 
       (function () {
-        const canvas = document.createElement("canvas");
-        canvas.className = "bubble-cursor";
+        const canvas = document.createElement('canvas');
+        canvas.className = 'bubble-cursor';
         document.body.appendChild(canvas);
 
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         let width = (canvas.width = window.innerWidth);
         let height = (canvas.height = window.innerHeight);
 
@@ -832,8 +832,8 @@
           requestAnimationFrame(loop);
         }
 
-        window.addEventListener("mousemove", onMove);
-        window.addEventListener("resize", () => {
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('resize', () => {
           width = canvas.width = window.innerWidth;
           height = canvas.height = window.innerHeight;
         });
@@ -845,10 +845,10 @@
     <!-- Animation on display -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script id="aos-init">
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         AOS.init({
           duration: 800,
-          easing: "ease-out",
+          easing: 'ease-out',
           once: true,
         });
       });

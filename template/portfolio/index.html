@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chetan Prajapat — Full Stack Web Developer | React, Node.js Portfolio</title>
+<meta name="description" content="Chetan Prajapat is a Full Stack Web Developer from Indore, India, skilled in React, Node.js, JavaScript, HTML, CSS and SQL. Explore his projects, freelance work and achievements." />
+<meta name="author" content="Chetan Prajapat" />
+<meta name="theme-color" content="#0D1613" />
+<link rel="canonical" href="https://grchetan.github.io/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Chetan Prajapat — Full Stack Web Developer" />
+<meta property="og:description" content="Building modern, scalable web apps with clean UI & powerful backend." />
+<meta property="og:image" content="https://raw.githubusercontent.com/grchetan/grchetan.github.io/refs/heads/main/images/favicon.png" />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Chetan Prajapat",
+  "url": "https://grchetan.github.io/",
+  "jobTitle": "Full Stack Web Developer",
+  "address": { "@type": "PostalAddress", "addressLocality": "Indore", "addressRegion": "Madhya Pradesh", "addressCountry": "IN" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Sage University Indore" },
+  "sameAs": [
+    "https://github.com/grchetan",
+    "https://www.linkedin.com/in/chetan-prajapat-58350b285/",
+    "https://www.instagram.com/chetanprajapat_/",
+    "https://twitter.com/grchetann",
+    "https://leetcode.com/u/chetanprajapat07/"
+  ]
+}
+</script>
+</head>
+<body id="top">
+<div class="grid-backdrop" aria-hidden="true"></div>
+
+<!-- ===== MOBILE TOPBAR ===== -->
+<div class="topbar">
+  <a href="#top" class="brand-mark">&lt;CP<span>/</span>&gt;</a>
+  <div class="topbar-actions">
+    <div class="theme-toggle" id="themeToggleMobile">
+      <button data-mode="light" onclick="ThemeManager.setTheme('light')">☀</button>
+      <button data-mode="system" onclick="ThemeManager.setTheme('system')">⚙</button>
+      <button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html" class="active">§01 Home</a>
+  <a href="blog.html">§02 Blog</a>
+  <a href="contact.html">§03 Contact</a>
+  <a href="resume.html">§04 Resume</a>
+  <a href="hire-me.html">§05 Hire Me</a>
+  <div class="side-jump">
+    <span class="side-jump-label">On this page</span>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+  </div>
+  <div class="side-socials" style="margin-top:1rem">
+    <a href="https://github.com/grchetan" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/chetan-prajapat-58350b285/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:chetanprajapat340@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</nav>
+
+<div class="shell">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">&lt;Chetan<span>.</span>Prajapat/&gt;</span>
+      <span class="brand-role">Full Stack Web Developer</span>
+    </div>
+
+    <div class="status-ledger">
+      <div class="row"><span><span class="status-dot"></span> STATUS</span> <b>Open to work</b></div>
+      <div class="row"><span>LOCATION</span> <b>Indore, IN</b></div>
+      <div class="row"><span>LOCAL TIME</span> <b id="istClock">—</b></div>
+    </div>
+
+    <nav class="side-nav">
+      <a href="index.html" class="active"><span class="idx">§01</span> Home</a>
+      <a href="blog.html"><span class="idx">§02</span> Blog</a>
+      <a href="contact.html"><span class="idx">§03</span> Contact</a>
+      <a href="resume.html"><span class="idx">§04</span> Resume</a>
+      <a href="hire-me.html"><span class="idx">§05</span> Hire Me</a>
+    </nav>
+
+    <div class="side-jump">
+      <span class="side-jump-label">On this page</span>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+    </div>
+
+    <div class="side-socials">
+      <a href="https://github.com/grchetan" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/chetan-prajapat-58350b285/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/chetanprajapat_/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/grchetann" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://leetcode.com/u/chetanprajapat07/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+      <a href="mailto:chetanprajapat340@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <div class="theme-toggle" id="themeToggleDesktop">
+      <button data-mode="light" onclick="ThemeManager.setTheme('light')">☀ Light</button>
+      <button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾ Dark</button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-kicker rv"><span class="status-dot"></span> Available for freelance &amp; full-time roles</div>
+      <h1 class="rv">Building clean,<br>scalable web <em>experiences</em>.</h1>
+      <p class="hero-role rv">I am <span id="typedRole"></span><span class="cursor-blink"></span></p>
+      <p class="hero-desc rv">
+        BCA student &amp; Full Stack Web Developer from Indore, building responsive,
+        performance-driven applications with React, Node.js and clean, well-structured code.
+      </p>
+      <div class="hero-actions rv">
+        <a href="#projects" class="btn btn-fill">View Projects <i class="fas fa-arrow-right"></i></a>
+        <a href="mailto:chetanprajapat340@gmail.com" class="btn btn-out">Get in Touch</a>
+      </div>
+      <div class="hero-visits rv" id="visitWrap" style="display:none">
+        <i class="fa-solid fa-eye"></i> Profile visits — <b id="visitCount">0</b>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="dossier-section" id="about">
+      <div class="eyebrow">§01 · Profile</div>
+      <h2 class="sec-title rv">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text rv">
+          <p>Hi, I'm <b>Chetan Prajapat</b> — a BCA student and Full Stack Web Developer with hands-on experience building modern, scalable, SEO-optimized web applications. I work across the stack using HTML, CSS, JavaScript, React, Node.js, Express.js and SQL.</p>
+          <p>I focus on clean UI, efficient backend logic and well-structured databases — turning ideas into responsive interfaces and code built for performance, usability and security.</p>
+        </div>
+        <div class="about-meta rv">
+          <div class="meta-row"><div class="k">Based in</div><div class="v">Indore, Madhya Pradesh, India</div></div>
+          <div class="meta-row"><div class="k">Studying</div><div class="v">BCA — Sage University, Indore</div></div>
+          <div class="meta-row"><div class="k">Primary stack</div><div class="v">React · Node.js · Express · SQL</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS -->
+    <section class="dossier-section" id="working-on">
+      <div class="eyebrow">§02 · Now</div>
+      <h2 class="sec-title rv">What I'm Working On</h2>
+      <div class="focus-card rv">
+        I'm currently strengthening my full-stack skills by building modern web applications
+        with React, Node.js, Express and SQL — focusing on scalable, responsive,
+        performance-driven solutions with clean architecture.
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="dossier-section" id="education">
+      <div class="eyebrow">§03 · Timeline</div>
+      <h2 class="sec-title rv">Education</h2>
+      <div class="timeline rv">
+        <div class="tl-item">
+          <div class="tl-year">2024 — Present</div>
+          <div class="tl-body">
+            <h4>BCA · Full-stack Developer</h4>
+            <a href="https://www.sageuniversity.in/" target="_blank" rel="noopener">Sage University, Indore, Madhya Pradesh</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023 — 2024</div>
+          <div class="tl-body">
+            <h4>Senior Secondary Education · XII (CBSE)</h4>
+            <a href="https://kisjhabua.com/" target="_blank" rel="noopener">Keshav International School, Jhabua, Madhya Pradesh</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2021 — 2022</div>
+          <div class="tl-body">
+            <h4>Computer Institute</h4>
+            <a href="https://www.rebenokinfotech.com/" target="_blank" rel="noopener">Rebenok Infotech, Mumbai, Maharashtra</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2020 — 2021</div>
+          <div class="tl-body">
+            <h4>Secondary Education · X (CBSE)</h4>
+            <a href="https://kisjhabua.com/" target="_blank" rel="noopener">Keshav International School, Jhabua, Madhya Pradesh</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="dossier-section" id="skills">
+      <div class="eyebrow">§04 · Stack</div>
+      <h2 class="sec-title rv">Skills</h2>
+      <div class="chip-cloud rv">
+        <span class="chip"><i class="fab fa-html5"></i> HTML5</span>
+        <span class="chip"><i class="fab fa-css3-alt"></i> CSS3</span>
+        <span class="chip"><i class="fab fa-js"></i> JavaScript (ES6+)</span>
+        <span class="chip"><i class="fab fa-react"></i> React.js</span>
+        <span class="chip"><i class="fab fa-node-js"></i> Node.js</span>
+        <span class="chip"><i class="fas fa-server"></i> Express.js</span>
+        <span class="chip"><i class="fas fa-database"></i> SQL / Databases</span>
+        <span class="chip"><i class="fab fa-python"></i> Python</span>
+        <span class="chip"><i class="fab fa-java"></i> Java</span>
+        <span class="chip"><i class="fab fa-git-alt"></i> Git &amp; GitHub</span>
+        <span class="chip"><i class="fab fa-linux"></i> Linux &amp; Windows</span>
+        <span class="chip"><i class="fab fa-figma"></i> Figma (UI/UX)</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="dossier-section" id="projects">
+      <div class="eyebrow">§05 · Build log</div>
+      <h2 class="sec-title rv">Selected Projects</h2>
+      <div class="module-grid rv">
+        <a class="module-card" href="https://grchetan.github.io/My-Portfolio/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/portfolio-v1</div>
+          <div class="module-title">Personal Portfolio Website</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/game/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/gaming-site</div>
+          <div class="module-title">Gaming Website</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/Rog-Asus/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/rog-asus-clone</div>
+          <div class="module-title">ROG Asus Clone Webpage</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/calculater/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/calculator</div>
+          <div class="module-title">Calculator Web App</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/sitereadypro/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/sitereadypro</div>
+          <div class="module-title">SiteReadyPro — Business Template</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/Travel-Itinerary-Generator/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/travel-ai</div>
+          <div class="module-title">Travel Itinerary Generator (AI)</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/bhagwat-gita/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/bhagavad-gita</div>
+          <div class="module-title">Bhagavad Gita Web App</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+        <a class="module-card" href="https://grchetan.github.io/weather-app/" target="_blank" rel="noopener">
+          <div class="module-path"><span class="status-dot"></span> ~/projects/weather-app</div>
+          <div class="module-title">Weather Forecast Application</div>
+          <div class="module-link">Visit site <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FREELANCE -->
+    <section class="dossier-section" id="freelance">
+      <div class="eyebrow">§06 · Client work</div>
+      <h2 class="sec-title rv">Freelance Projects</h2>
+      <div class="freelance-card rv">
+        <h4>Fit Bridge — Fitness Platform</h4>
+        <p>A fitness platform to track workouts, plan diet and monitor body transformation over time. Currently in development, with focus on both UI/UX and backend functionality.</p>
+        <a href="https://github.com/grchetan/fitbridge" target="_blank" rel="noopener">View GitHub repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="dossier-section" id="achievements">
+      <div class="eyebrow">§07 · Recognition</div>
+      <h2 class="sec-title rv">Achievements</h2>
+      <div class="ach-grid rv">
+        <div class="ach-card">
+          <img src="images/sunstone-tech-meme.png" alt="2nd Prize Tech Meme Competition Certificate" loading="lazy" />
+          <div class="ach-body">
+            <h4>2nd Prize — Tech Meme Competition</h4>
+            <p>Issued by Sunstone Tech Club</p>
+            <button onclick="openModal('images/sunstone-tech-meme.png')">View Certificate</button>
+          </div>
+        </div>
+        <div class="ach-card">
+          <img src="images/sunstone-treasure-hunt.jpg" alt="3rd Position Tech Treasure Hunt Certificate" loading="lazy" />
+          <div class="ach-body">
+            <h4>3rd Position — Tech Treasure Hunt</h4>
+            <p>Issued by Sunstone</p>
+            <button onclick="openModal('images/sunstone-treasure-hunt.jpg')">View Certificate</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEETCODE -->
+    <section class="dossier-section" id="leetcode">
+      <div class="eyebrow">§08 · Problem solving</div>
+      <h2 class="sec-title rv">LeetCode Stats</h2>
+      <div class="lc-card rv">
+        <img class="lc-img" src="https://leetcard.jacoblin.cool/chetanprajapat07?theme=dark&font=JetBrains%20Mono&ext=heatmap&border=0&radius=12" alt="LeetCode Stats for chetanprajapat07" loading="lazy" />
+        <div class="lc-badges">
+          <img src="https://img.shields.io/badge/dynamic/json?url=https://leetcode-stats-api.herokuapp.com/chetanprajapat07&query=$.easySolved&label=Easy&color=22c55e&style=for-the-badge" alt="Easy Solved" loading="lazy" />
+          <img src="https://img.shields.io/badge/dynamic/json?url=https://leetcode-stats-api.herokuapp.com/chetanprajapat07&query=$.mediumSolved&label=Medium&color=f59e0b&style=for-the-badge" alt="Medium Solved" loading="lazy" />
+          <img src="https://img.shields.io/badge/dynamic/json?url=https://leetcode-stats-api.herokuapp.com/chetanprajapat07&query=$.hardSolved&label=Hard&color=ef4444&style=for-the-badge" alt="Hard Solved" loading="lazy" />
+          <img src="https://img.shields.io/badge/dynamic/json?url=https://leetcode-stats-api.herokuapp.com/chetanprajapat07&query=$.totalSolved&label=Total+Solved&color=a78bfa&style=for-the-badge" alt="Total Solved" loading="lazy" />
+        </div>
+        <p class="lc-quote">"Every problem solved is a step closer to thinking like a machine — and breaking it."</p>
+        <a href="https://leetcode.com/u/chetanprajapat07/" target="_blank" rel="noopener" class="lc-btn"><i class="fas fa-code"></i> chetanprajapat07</a>
+      </div>
+    </section>
+
+    <footer class="dossier-footer">
+      <span>&copy; <span id="year"></span> Chetan Prajapat</span>
+      <span>Indore, Madhya Pradesh, IN</span>
+      <a href="mailto:chetanprajapat340@gmail.com" style="color:var(--accent)">chetanprajapat340@gmail.com</a>
+    </footer>
+  </main>
+</div>
+
+<!-- Certificate Modal -->
+<div id="certModal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" alt="Achievement certificate" />
+  </div>
+</div>
+
+<a href="#top" class="top-btn" id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="javascript/script.js"></script>
+</body>
+</html>

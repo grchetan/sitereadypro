@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — Chetan Prajapat</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body>
+<div class="grid-backdrop" aria-hidden="true"></div>
+<div class="standalone">
+  <div class="standalone-badge"><span class="status-dot" style="background:#ef4444"></span> error · chetan prajapat</div>
+  <div class="standalone-num">4<span class="accent">0</span>4</div>
+  <h1>You've wandered into <em>the void.</em></h1>
+  <p class="desc">This page doesn't exist — wrong link, broken URL, or it was moved. Let's get you back to somewhere real.</p>
+  <div class="btns">
+    <a href="index.html" class="btn btn-fill">← Back to Home</a>
+    <a href="contact.html" class="btn btn-out">Contact Me</a>
+  </div>
+  <div class="standalone-terminal">
+    <div class="t-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+    <div class="line">❯ curl https://grchetan.github.io<span id="reqPath"></span></div>
+    <div class="line">HTTP/1.1 <span class="accent">404 NOT FOUND</span></div>
+    <div class="line">Server: GitHub Pages</div>
+    <div class="line">Redirect: / in <span id="secDisplay">10</span>s</div>
+  </div>
+</div>
+<script>
+  document.getElementById('reqPath').textContent = location.pathname;
+  let sec = 10;
+  const el = document.getElementById('secDisplay');
+  const t = setInterval(() => {
+    sec--;
+    if (el) el.textContent = sec;
+    if (sec <= 0) { clearInterval(t); window.location.href = 'index.html'; }
+  }, 1000);
+</script>
+</body>
+</html>

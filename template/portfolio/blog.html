@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog | Chetan Prajapat — Full Stack Developer</title>
+<meta name="description" content="Dev tips, project breakdowns, tutorials and thoughts by Chetan Prajapat — Full Stack Developer from Indore." />
+<meta name="author" content="Chetan Prajapat" />
+<meta name="theme-color" content="#0D1613" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body id="top">
+<div class="grid-backdrop" aria-hidden="true"></div>
+
+<!-- ===== MOBILE TOPBAR ===== -->
+<div class="topbar">
+  <a href="index.html" class="brand-mark">&lt;CP<span>/</span>&gt;</a>
+  <div class="topbar-actions">
+    <div class="theme-toggle" id="themeToggleMobile">
+      <button data-mode="light" onclick="ThemeManager.setTheme('light')">☀</button>
+      <button data-mode="system" onclick="ThemeManager.setTheme('system')">⚙</button>
+      <button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">§01 Home</a>
+  <a href="blog.html" class="active">§02 Blog</a>
+  <a href="contact.html">§03 Contact</a>
+  <a href="resume.html">§04 Resume</a>
+  <a href="hire-me.html">§05 Hire Me</a>
+  <div class="side-socials" style="margin-top:1rem">
+    <a href="https://github.com/grchetan" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/chetan-prajapat-58350b285/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:chetanprajapat340@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</nav>
+
+<div class="shell">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">&lt;Chetan<span>.</span>Prajapat/&gt;</span>
+      <span class="brand-role">Full Stack Web Developer</span>
+    </div>
+
+    <div class="status-ledger">
+      <div class="row"><span><span class="status-dot"></span> STATUS</span> <b>Open to work</b></div>
+      <div class="row"><span>LOCATION</span> <b>Indore, IN</b></div>
+      <div class="row"><span>LOCAL TIME</span> <b id="istClock">—</b></div>
+    </div>
+
+    <nav class="side-nav">
+      <a href="index.html"><span class="idx">§01</span> Home</a>
+      <a href="blog.html" class="active"><span class="idx">§02</span> Blog</a>
+      <a href="contact.html"><span class="idx">§03</span> Contact</a>
+      <a href="resume.html"><span class="idx">§04</span> Resume</a>
+      <a href="hire-me.html"><span class="idx">§05</span> Hire Me</a>
+    </nav>
+
+    <div class="side-jump">
+      <span class="side-jump-label">Filter by topic</span>
+      <a href="#" data-cat="web-dev">Web Dev</a>
+      <a href="#" data-cat="tips">Tips &amp; Tricks</a>
+      <a href="#" data-cat="projects">Projects</a>
+      <a href="#" data-cat="career">Career</a>
+    </div>
+
+    <div class="side-socials">
+      <a href="https://github.com/grchetan" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/chetan-prajapat-58350b285/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com/grchetann" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="mailto:chetanprajapat340@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <div class="theme-toggle" id="themeToggleDesktop">
+      <button data-mode="light" onclick="ThemeManager.setTheme('light')">☀ Light</button>
+      <button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾ Dark</button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <section class="hero" style="padding-bottom:2.5rem">
+      <div class="eyebrow rv">§02 · Journal</div>
+      <h1 class="rv" style="font-size:clamp(2rem,5vw,3.4rem)">Thoughts <em>&amp;</em> Code</h1>
+      <p class="hero-desc rv">Dev tips, project breakdowns, career notes and things I learned the hard way — written by a developer, for developers.</p>
+      <div class="page-stats rv">
+        <div class="pstat"><b>6</b><span>Posts</span></div>
+        <div class="pstat"><b>4</b><span>Topics</span></div>
+        <div class="pstat"><b>2K</b><span>Reads</span></div>
+      </div>
+    </section>
+
+    <section class="dossier-section" style="border-bottom:none">
+      <div class="blog-toolbar rv">
+        <div class="filter-row" id="filters">
+          <button class="filter-chip active" data-cat="all">All</button>
+          <button class="filter-chip" data-cat="web-dev">Web Dev</button>
+          <button class="filter-chip" data-cat="tips">Tips &amp; Tricks</button>
+          <button class="filter-chip" data-cat="projects">Projects</button>
+          <button class="filter-chip" data-cat="career">Career</button>
+        </div>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search posts..." />
+        </div>
+      </div>
+
+      <a href="#" class="featured-post rv" data-cat="web-dev" data-title="how i built my portfolio website from scratch" data-post-id="how-i-built-my-portfolio-website-from-scratch">
+        <div>
+          <div class="featured-tag">⭐ Featured · Web Dev</div>
+          <h3>How I Built My Portfolio Website From Scratch</h3>
+          <p>A complete breakdown of my personal portfolio build — scroll reveal animations, Google Sheets contact form integration, dark/light mode, and every premium detail.</p>
+          <div class="featured-meta"><span>March 2026</span><span>5 min read</span></div>
+        </div>
+        <div class="featured-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <div class="post-grid" id="postGrid">
+        <a href="#" class="post-card rv" data-cat="tips" data-title="10 css tricks every developer should know" data-post-id="10-css-tricks-every-developer-should-know">
+          <div class="post-cat-row"><span class="post-cat">Tips &amp; Tricks</span><span class="post-read">3 min</span></div>
+          <h4>10 CSS Tricks Every Developer Should Know</h4>
+          <p>From glassmorphism to CSS grid magic — tricks that level up your UI instantly, no extra libraries.</p>
+          <div class="post-footer"><span>Feb 2026</span><span class="link">Read <i class="fa-solid fa-arrow-right"></i></span></div>
+        </a>
+
+        <a href="#" class="post-card rv" data-cat="career" data-title="learning to code in 2025 what actually works" data-post-id="learning-to-code-in-2025-what-actually-works">
+          <div class="post-cat-row"><span class="post-cat">Career</span><span class="post-read">4 min</span></div>
+          <h4>Learning to Code in 2025: What Actually Works</h4>
+          <p>My honest self-learning experience — what to focus on, what to skip, and staying consistent.</p>
+          <div class="post-footer"><span>Jan 2026</span><span class="link">Read <i class="fa-solid fa-arrow-right"></i></span></div>
+        </a>
+
+        <a href="#" class="post-card rv" data-cat="projects" data-title="building a travel itinerary generator with ai" data-post-id="building-a-travel-itinerary-generator-with-ai">
+          <div class="post-cat-row"><span class="post-cat">Projects</span><span class="post-read">6 min</span></div>
+          <h4>Building a Travel Itinerary Generator with AI</h4>
+          <p>Full project breakdown — idea to deployment. Integrating an AI API into a real app users actually love.</p>
+          <div class="post-footer"><span>Dec 2025</span><span class="link">Read <i class="fa-solid fa-arrow-right"></i></span></div>
+        </a>
+
+        <a href="#" class="post-card rv" data-cat="web-dev" data-title="react vs vanilla js when to use what" data-post-id="react-vs-vanilla-js-when-to-use-what">
+          <div class="post-cat-row"><span class="post-cat">Web Dev</span><span class="post-read">4 min</span></div>
+          <h4>React vs Vanilla JS: When to Use What</h4>
+          <p>Not every project needs React. My real breakdown of when plain JS wins.</p>
+          <div class="post-footer"><span>Nov 2025</span><span class="link">Read <i class="fa-solid fa-arrow-right"></i></span></div>
+        </a>
+
+        <a href="#" class="post-card rv" data-cat="tips" data-title="git commands i use every single day" data-post-id="git-commands-i-use-every-single-day">
+          <div class="post-cat-row"><span class="post-cat">Tips &amp; Tricks</span><span class="post-read">2 min</span></div>
+          <h4>Git Commands I Use Every Single Day</h4>
+          <p>Forget 100-command cheat sheets. The 12 Git commands that actually matter daily.</p>
+          <div class="post-footer"><span>Oct 2025</span><span class="link">Read <i class="fa-solid fa-arrow-right"></i></span></div>
+        </a>
+
+        <div class="post-card rv" style="align-items:center; text-align:center; border-style:dashed; cursor:default;">
+          <i class="fa-solid fa-pen-nib" style="color:var(--ink-mute); font-size:1.3rem"></i>
+          <h4 style="color:var(--ink-mute)">More Coming Soon</h4>
+          <p>Chetan is writing...</p>
+        </div>
+      </div>
+
+      <div class="no-results" id="noResults">
+        <i class="fa-solid fa-face-meh-blank" style="font-size:1.6rem; display:block; margin-bottom:.8rem;"></i>
+        No posts found. Try a different search or filter.
+      </div>
+    </section>
+
+    <footer class="dossier-footer">
+      <span>&copy; <span id="year"></span> Chetan Prajapat</span>
+      <a href="index.html" style="color:var(--accent)">← Back to Portfolio</a>
+    </footer>
+  </main>
+</div>
+
+<!-- Doc reader modal -->
+<div class="doc-modal" id="postModal">
+  <div class="doc-box">
+    <button class="doc-close" id="docClose"><i class="fa-solid fa-xmark"></i></button>
+    <div class="doc-meta"><span class="doc-cat" id="docCat"></span><span id="docDate"></span></div>
+    <h2 id="docTitle"></h2>
+    <div class="doc-content" id="docContent"></div>
+  </div>
+</div>
+
+<a href="#top" class="top-btn" id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="javascript/script.js"></script>
+<script>
+  const POSTS_DATA = {
+    "how-i-built-my-portfolio-website-from-scratch": {
+      category: "Web Dev", date: "March 2026", readTime: "5 min read",
+      title: "How I Built My Portfolio Website From Scratch",
+      content: `<p>Building a personal website is a rite of passage for every developer — it's not just a CV, it's a sandbox where you control every pixel. Here's the breakdown behind my portfolio.</p>
+      <h3>The Tech Stack</h3>
+      <p>I kept the core lightweight and customizable: HTML5, vanilla JavaScript and raw CSS3 — no heavy frameworks for the landing page, which keeps performance scores high and rendering instant.</p>
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Theme Manager:</strong> an inline script running before paint, checking <code>localStorage</code> and system defaults so there's never a flash of the wrong theme.</li>
+        <li><strong>Google Sheets Backend:</strong> a custom Apps Script endpoint capturing contact form submissions into a structured sheet.</li>
+        <li><strong>Scroll-reveal system:</strong> IntersectionObserver driven, respecting <code>prefers-reduced-motion</code>.</li>
+      </ul>
+      <p>Building this taught me how far raw web APIs can go for a premium feel without extra dependencies.</p>`
+    },
+    "10-css-tricks-every-developer-should-know": {
+      category: "Tips & Tricks", date: "Feb 2026", readTime: "3 min read",
+      title: "10 CSS Tricks Every Developer Should Know",
+      content: `<p>CSS has evolved a lot. You don't need heavy JS libraries for premium UI details anymore. Here are tricks I use on every build:</p>
+      <h3>1. Glassmorphism</h3>
+      <p>Frosted headers with <code>backdrop-filter: blur(12px)</code> plus a subtle border for elegance.</p>
+      <h3>2. Responsive type with clamp()</h3>
+      <p><code>font-size: clamp(1.5rem, 5vw, 4rem)</code> sizes headers fluidly without media queries.</p>
+      <h3>3. Instant dark mode with custom properties</h3>
+      <p>Define tokens under <code>:root</code> and swap them under a <code>[data-theme='dark']</code> selector.</p>`
+    },
+    "learning-to-code-in-2025-what-actually-works": {
+      category: "Career", date: "Jan 2026", readTime: "4 min read",
+      title: "Learning to Code in 2025: What Actually Works",
+      content: `<p>The self-teaching landscape keeps shifting. Here's what actually makes you a developer in 2025:</p>
+      <h3>Focus on problem solving, not syntax</h3>
+      <p>Use AI tools to explain algorithms, but write the logic yourself to build the mental muscle.</p>
+      <h3>Build full-stack projects</h3>
+      <p>Static pages aren't enough anymore — build apps that handle state, store data, and manage async requests.</p>`
+    },
+    "building-a-travel-itinerary-generator-with-ai": {
+      category: "Projects", date: "Dec 2025", readTime: "6 min read",
+      title: "Building a Travel Itinerary Generator with AI",
+      content: `<p>I built a web app that takes destination, budget, days and interests, then generates a day-by-day travel plan using an AI API.</p>
+      <h3>Architecture</h3>
+      <p>React frontend for state management, Node.js/Express backend for API security, and structured prompts returning JSON directly from the model.</p>`
+    },
+    "react-vs-vanilla-js-when-to-use-what": {
+      category: "Web Dev", date: "Nov 2025", readTime: "4 min read",
+      title: "React vs Vanilla JS: When to Use What",
+      content: `<p>When is React actually necessary? My practical rule: simple, static content with light interactivity (a portfolio, a simple blog) — raw HTML/CSS/JS ships faster. Complex interactive state, heavy dashboards, persistent sessions — React is the better default.</p>`
+    },
+    "git-commands-i-use-every-single-day": {
+      category: "Tips & Tricks", date: "Oct 2025", readTime: "2 min read",
+      title: "Git Commands I Use Every Single Day",
+      content: `<p>Forget the 100-command cheat sheets. These are the commands that matter daily:</p>
+      <ul>
+        <li><code>git commit --amend</code> — fix the last commit message or add missed files.</li>
+        <li><code>git reset --soft HEAD~1</code> — undo the last commit, keep your changes.</li>
+        <li><code>git stash pop</code> — stash work temporarily and restore it cleanly.</li>
+      </ul>`
+    }
+  };
+
+  const filterChips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('[data-cat]');
+  const noResults = document.getElementById('noResults');
+  let currentCat = 'all', searchVal = '';
+
+  function applyFilters(){
+    let visible = 0;
+    cards.forEach((card) => {
+      const catMatch = currentCat === 'all' || card.getAttribute('data-cat') === currentCat;
+      const searchMatch = searchVal === '' || (card.getAttribute('data-title') || '').toLowerCase().includes(searchVal);
+      const show = catMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults.classList.toggle('show', visible === 0);
+  }
+
+  filterChips.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterChips.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.getAttribute('data-cat');
+      applyFilters();
+    });
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    searchVal = e.target.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  document.querySelectorAll('.side-jump a[data-cat]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cat = a.getAttribute('data-cat');
+      filterChips.forEach((b) => b.classList.toggle('active', b.getAttribute('data-cat') === cat));
+      currentCat = cat;
+      applyFilters();
+      document.querySelector('.dossier-section').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const modal = document.getElementById('postModal');
+  const docClose = document.getElementById('docClose');
+
+  function openPost(id){
+    const post = POSTS_DATA[id];
+    if (!post) return;
+    document.getElementById('docCat').textContent = post.category;
+    document.getElementById('docDate').textContent = post.date + ' · ' + post.readTime;
+    document.getElementById('docTitle').textContent = post.title;
+    document.getElementById('docContent').innerHTML = post.content;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDoc(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  docClose.addEventListener('click', closeDoc);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeDoc(); });
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-post-id]');
+    if (card) { e.preventDefault(); openPost(card.getAttribute('data-post-id')); }
+  });
+</script>
+</body>
+</html>

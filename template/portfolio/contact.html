@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | Chetan Prajapat — Full Stack Developer</title>
+<meta name="description" content="Get in touch with Chetan Prajapat — Full Stack Developer & Video Editor. Open for freelance, internship and full-time roles." />
+<meta name="theme-color" content="#0D1613" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body id="top">
+<div class="grid-backdrop" aria-hidden="true"></div>
+
+<div class="topbar">
+  <a href="index.html" class="brand-mark">&lt;CP<span>/</span>&gt;</a>
+  <div class="topbar-actions">
+    <div class="theme-toggle"><button data-mode="light" onclick="ThemeManager.setTheme('light')">☀</button><button data-mode="system" onclick="ThemeManager.setTheme('system')">⚙</button><button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾</button></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div>
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">§01 Home</a>
+  <a href="blog.html">§02 Blog</a>
+  <a href="contact.html" class="active">§03 Contact</a>
+  <a href="resume.html">§04 Resume</a>
+  <a href="hire-me.html">§05 Hire Me</a>
+  <div class="side-socials" style="margin-top:1rem">
+    <a href="https://github.com/grchetan" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/grchetan" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:contact.chetanprajapat@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</nav>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">&lt;Chetan<span>.</span>Prajapat/&gt;</span>
+      <span class="brand-role">Full Stack Web Developer</span>
+    </div>
+    <div class="status-ledger">
+      <div class="row"><span><span class="status-dot"></span> STATUS</span> <b>Open to work</b></div>
+      <div class="row"><span>RESPONSE</span> <b>Within 24h</b></div>
+      <div class="row"><span>LOCAL TIME</span> <b id="istClock">—</b></div>
+    </div>
+    <nav class="side-nav">
+      <a href="index.html"><span class="idx">§01</span> Home</a>
+      <a href="blog.html"><span class="idx">§02</span> Blog</a>
+      <a href="contact.html" class="active"><span class="idx">§03</span> Contact</a>
+      <a href="resume.html"><span class="idx">§04</span> Resume</a>
+      <a href="hire-me.html"><span class="idx">§05</span> Hire Me</a>
+    </nav>
+    <div class="side-socials">
+      <a href="https://github.com/grchetan" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/grchetan" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com/grchetan" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://instagram.com/grchetan" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:contact.chetanprajapat@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="theme-toggle"><button data-mode="light" onclick="ThemeManager.setTheme('light')">☀ Light</button><button data-mode="dark" onclick="ThemeManager.setTheme('dark')">☾ Dark</button></div>
+  </aside>
+
+  <main>
+    <section class="hero" style="padding-bottom:2rem">
+      <div class="eyebrow rv">§03 · Get in touch</div>
+      <h1 class="rv" style="font-size:clamp(2rem,5vw,3.2rem)">Let's <em>talk.</em></h1>
+      <p class="hero-desc rv">Have a project in mind? Looking for a developer or video editor? Fill out the form and I'll get back to you within 24 hours.</p>
+    </section>
+
+    <section class="dossier-section" style="border-bottom:none">
+      <div class="contact-grid rv">
+        <div class="form-card">
+          <div class="eyebrow" style="margin-bottom:1.2rem">Send a message</div>
+
+          <div class="form-alert success" id="successMsg"><i class="fa-solid fa-circle-check"></i><span>Message sent! I'll reply within 24 hours.</span></div>
+          <div class="form-alert error" id="errorMsg"><i class="fa-solid fa-circle-exclamation"></i><span>Something went wrong. Please email me directly.</span></div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Your Name *</label>
+                <input type="text" id="fname" name="name" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="rahul@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="purpose">Purpose *</label>
+              <select id="purpose" name="purpose" required>
+                <option value="" disabled selected>Select purpose...</option>
+                <option value="Hiring">Hiring (HR)</option>
+                <option value="Freelance">Freelance Project</option>
+                <option value="Collab">Collaboration</option>
+                <option value="Internship">Internship</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="budget">Budget <span style="opacity:.6">(optional)</span></label>
+              <input type="text" id="budget" name="budget" placeholder="e.g. ₹5000 / $200 / Unpaid" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Hey Chetan, I'd love to work with you on..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span id="btnText">Send Message →</span>
+              <span class="spinner" id="spinner"></span>
+            </button>
+            <p style="text-align:center; font-family: var(--f-mono); font-size:.72rem; color: var(--ink-mute); margin-top:.9rem;">
+              <i class="fa-solid fa-shield-check"></i> Saves directly to a private Google Sheet
+            </p>
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <div class="eyebrow" style="margin-bottom:1rem">Availability</div>
+          <div class="avail-card">
+            <div class="avail-row"><span class="status-dot"></span> Open for Work</div>
+            <p style="color:var(--ink-soft); font-size:.88rem;">Available for freelance projects, internships, and full-time roles starting immediately.</p>
+          </div>
+
+          <div class="eyebrow" style="margin-bottom:1rem">Contact Info</div>
+          <div class="info-list">
+            <a class="info-item" href="mailto:contact.chetanprajapat@gmail.com">
+              <div class="info-ico"><i class="fa-solid fa-envelope"></i></div>
+              <div><div class="info-label">Email</div><div class="info-val">contact.chetanprajapat@gmail.com</div></div>
+            </a>
+            <div class="info-item">
+              <div class="info-ico"><i class="fa-solid fa-location-dot"></i></div>
+              <div><div class="info-label">Location</div><div class="info-val">Indore, Madhya Pradesh, India</div><div class="info-val">Mumbai, Maharashtra, India</div></div>
+            </div>
+            <div class="info-item">
+              <div class="info-ico"><i class="fa-solid fa-clock"></i></div>
+              <div><div class="info-label">Response Time</div><div class="info-val">Within 24 hours</div></div>
+            </div>
+          </div>
+
+          <div class="eyebrow" style="margin-bottom:1rem">Social Links</div>
+          <div class="side-socials" style="justify-content:flex-start">
+            <a href="https://github.com/grchetan" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/grchetan" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://twitter.com/grchetan" target="_blank" rel="noopener" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://instagram.com/grchetan" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="dossier-footer">
+      <span>&copy; <span id="year"></span> Chetan Prajapat</span>
+      <span><a href="hire-me.html" style="color:var(--accent)">Hire Me</a> · <a href="resume.html" style="color:var(--accent)">Resume</a></span>
+    </footer>
+  </main>
+</div>
+
+<a href="#top" class="top-btn" id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="javascript/script.js"></script>
+<script>
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx9Tc27-31h6KF4cJTbmlSwWatNE01FSBprTtLI80EQLbS7_6zmCFckW68TevOda_zuqg/exec';
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
+  const spinner = document.getElementById('spinner');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    successMsg.classList.remove('show');
+    errorMsg.classList.remove('show');
+
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const purpose = document.getElementById('purpose').value.trim();
+    const budget = document.getElementById('budget').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !purpose || !message) {
+      errorMsg.querySelector('span').textContent = '⚠️ Name, Email, Purpose and Message are required!';
+      errorMsg.classList.add('show');
+      return;
+    }
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      errorMsg.querySelector('span').textContent = '⚠️ Please enter a valid email address.';
+      errorMsg.classList.add('show');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    btnText.textContent = 'Sending...';
+    spinner.style.display = 'inline-block';
+
+    const payload = { name, email, purpose, budget, message };
+    try {
+      await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(payload) });
+      successMsg.querySelector('span').textContent = "✅ Message sent! I'll reply within 24 hours.";
+      successMsg.classList.add('show');
+      form.reset();
+    } catch (err) {
+      errorMsg.querySelector('span').textContent = '❌ Network error! Please try emailing directly.';
+      errorMsg.classList.add('show');
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message →';
+      spinner.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>

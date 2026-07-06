@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coming Soon | Chetan Prajapat</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="javascript/theme.js"></script>
+</head>
+<body>
+<div class="grid-backdrop" aria-hidden="true"></div>
+<div class="standalone">
+  <div class="standalone-badge"><span class="status-dot"></span> Something big is coming</div>
+  <h1>Coming <em>soon.</em></h1>
+  <p class="desc">This page is under construction. <strong>Chetan</strong> is working hard on something awesome. Check back soon!</p>
+  <div class="countdown">
+    <div class="c-box"><div class="c-num" id="days">00</div><div class="c-label">Days</div></div>
+    <div class="c-box"><div class="c-num" id="hours">00</div><div class="c-label">Hours</div></div>
+    <div class="c-box"><div class="c-num" id="mins">00</div><div class="c-label">Minutes</div></div>
+    <div class="c-box"><div class="c-num" id="secs">00</div><div class="c-label">Seconds</div></div>
+  </div>
+  <div class="btns">
+    <a href="index.html" class="btn btn-fill">← Back to Home</a>
+    <a href="contact.html" class="btn btn-out">Notify Me</a>
+  </div>
+</div>
+<script>
+  const launch = new Date('2026-09-01T00:00:00');
+  function tick() {
+    const now = new Date();
+    let diff = Math.max(0, launch - now);
+    const d = Math.floor(diff / 86400000); diff %= 86400000;
+    const h = Math.floor(diff / 3600000); diff %= 3600000;
+    const m = Math.floor(diff / 60000); diff %= 60000;
+    const s = Math.floor(diff / 1000);
+    document.getElementById('days').textContent = String(d).padStart(2, '0');
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('mins').textContent = String(m).padStart(2, '0');
+    document.getElementById('secs').textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
