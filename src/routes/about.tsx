@@ -20,8 +20,8 @@ const WORK_LINKS = [
     eyebrow: "Side project",
     title: "CodeSpark — ready-made code",
     body: "My second project: a growing library of copy-paste, ready-made components and animated effects for developers who want polish without the build time.",
-    cta: "Visit CodeSpark",
-    href: "https://codespark.lovable.app",
+    cta: "Explore templates",
+    to: "/templates" as const,
   },
 ];
 

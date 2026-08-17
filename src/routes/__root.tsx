@@ -11,7 +11,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar, Footer } from "@/components/site-chrome";
 import { themeInitScript } from "@/components/theme-toggle";
 
@@ -39,11 +38,8 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
+  console.error("Root Route Error:", error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -93,8 +89,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..800,0..100&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
-
-
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "alternate icon", type: "image/png", href: "/favicon.png" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
     ],
   }),
   shellComponent: RootShell,

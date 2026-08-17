@@ -241,6 +241,12 @@
   display: flex;
   width: max-content;
   animation: marquee 45s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 @keyframes float-slow {

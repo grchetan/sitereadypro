@@ -317,17 +317,27 @@ export function Blobs({ variant = "clay" }: { variant?: "clay" | "sage" | "butte
 }
 
 export function MarqueeBanner({ items }: { items: string[] }) {
-  const list = [...items, ...items];
+  const list = [...items, ...items, ...items, ...items];
   return (
-    <div className="relative overflow-hidden border-y border-foreground/10 bg-[var(--ink)] py-5 text-[var(--cream)]">
-      <div className="marquee-track gap-14 whitespace-nowrap">
+    <div className="marquee-container group/marquee relative overflow-hidden border-y border-foreground/10 bg-[var(--ink)] py-5 text-[var(--cream)] select-none">
+      {/* Left/Right subtle gradient fade masks */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--ink)] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--ink)] to-transparent" />
+
+      <div className="marquee-track gap-14 whitespace-nowrap group-hover/marquee:[animation-play-state:paused]">
         {list.map((t, i) => (
-          <span key={i} className="flex items-center gap-14 font-editorial text-3xl italic-serif">
-            {t}
-            <span className="h-2 w-2 rounded-full bg-[var(--butter)]" />
+          <span
+            key={i}
+            className="group/item inline-flex cursor-pointer items-center gap-14 font-editorial text-3xl italic-serif transition-all duration-300 hover:scale-105 hover:text-[var(--butter)] hover:drop-shadow-[0_2px_12px_rgba(235,178,85,0.4)]"
+          >
+            <span className="transition-transform duration-300">
+              {t}
+            </span>
+            <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-all duration-300 group-hover/item:scale-150 group-hover/item:bg-[var(--clay)] group-hover/item:shadow-[0_0_10px_var(--butter)]" />
           </span>
         ))}
       </div>
     </div>
   );
 }
+
