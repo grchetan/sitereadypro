@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Star, Trash2, Mail, Phone, MessageCircle, Search } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Star, Trash2, Mail, Phone, MessageCircle, Search, RefreshCw } from "lucide-react";
 import {
   AdminButton,
   EmptyState,
@@ -23,6 +23,7 @@ import {
   type ClientRequest,
   type RequestStatus,
 } from "@/lib/admin-store";
+import { fetchRequests, updateRequest } from "@/lib/firestore";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin/requests")({
@@ -44,14 +45,49 @@ export const Route = createFileRoute("/admin/requests")({
 const statuses: RequestStatus[] = ["new", "in-review", "quoted", "won", "lost"];
 
 function RequestsPage() {
-  const { requests } = useAdmin();
+  const { requests: localRequests } = useAdmin();
+  const [firestoreRequests, setFirestoreRequests] = useState<ClientRequest[] | null>(null);
+  const [loadingFirestore, setLoadingFirestore] = useState(false);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | RequestStatus | "starred">("all");
   const [openId, setOpenId] = useState<string | null>(null);
 
+  // Merge Firestore requests (real) with local store requests (demo/old)
+  // Firestore requests shown first if available
+  const allRequests: ClientRequest[] = useMemo(() => {
+    if (firestoreRequests) {
+      // Map Firestore format to ClientRequest format
+      return firestoreRequests.map((r) => ({
+        ...r,
+        status: (r as any).status ?? "new",
+        starred: (r as any).starred ?? false,
+        note: (r as any).note ?? "",
+        channel: (r as any).preferred ?? (r as any).channel ?? "email",
+        summary: (r as any).message ?? (r as any).summary ?? "",
+        createdAt: (r as any).createdAt?.toDate?.()?.toISOString?.() ?? new Date().toISOString(),
+      }));
+    }
+    return localRequests;
+  }, [firestoreRequests, localRequests]);
+
+  const loadFromFirestore = async () => {
+    setLoadingFirestore(true);
+    try {
+      const data = await fetchRequests();
+      setFirestoreRequests(data as unknown as ClientRequest[]);
+    } catch {
+      // Firestore not available — fall back to local requests
+    } finally {
+      setLoadingFirestore(false);
+    }
+  };
+
+  // Auto-load Firestore requests on mount
+  useEffect(() => { loadFromFirestore(); }, []);
+
   const shown = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return requests
+    return allRequests
       .filter((r) =>
         filter === "all" ? true : filter === "starred" ? r.starred : r.status === filter,
       )
@@ -61,17 +97,28 @@ function RequestsPage() {
           : [r.name, r.email, r.projectType, r.summary].join(" ").toLowerCase().includes(needle),
       )
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  }, [requests, q, filter]);
+  }, [allRequests, q, filter]);
 
-  const active = requests.find((r) => r.id === openId) ?? null;
+  const active = allRequests.find((r) => r.id === openId) ?? null;
 
   return (
     <div>
       <PageHead
         eyebrow="Inbox"
         title="Client requests."
-        sub="Every enquiry from the brief wizard — update status, add notes and follow up directly."
+        sub="All enquiries from the contact form — update status, add notes and follow up directly."
+        action={
+          <AdminButton variant="ghost" onClick={loadFromFirestore} disabled={loadingFirestore}>
+            <RefreshCw className={cn("h-4 w-4", loadingFirestore && "animate-spin")} />
+            {loadingFirestore ? "Loading…" : "Refresh from database"}
+          </AdminButton>
+        }
       />
+      {firestoreRequests !== null && (
+        <div className="mb-4 rounded-2xl border border-green-500/20 bg-green-500/5 px-4 py-3 text-xs text-green-700 dark:text-green-400">
+          ✓ Showing {firestoreRequests.length} real request{firestoreRequests.length !== 1 ? "s" : ""} from Firestore database.
+        </div>
+      )}
 
       <Panel className="mb-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">

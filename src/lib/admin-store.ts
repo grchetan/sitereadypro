@@ -18,7 +18,15 @@ export type AdminTemplate = {
   type: TemplateType;
   price: number;
   tagline: string;
+  description: string;
   image: string;
+  /** Tech stack labels e.g. ["HTML5", "CSS3", "Alpine.js"] */
+  techStack: string[];
+  siteType: "static" | "dynamic";
+  backendUsed: "None" | "Firebase" | "Supabase" | "MongoDB" | "Node.js" | "Custom";
+  previewUrl: string;
+  zipStoragePath: string;
+  zipUrl: string;
   status: "published" | "draft";
   featured: boolean;
   updatedAt: string;
@@ -476,7 +484,14 @@ export const emptyTemplate = (): TemplateDraft => ({
   type: "free",
   price: 0,
   tagline: "",
+  description: "",
   image: "",
+  techStack: [],
+  siteType: "static",
+  backendUsed: "None",
+  previewUrl: "",
+  zipStoragePath: "",
+  zipUrl: "",
   status: "draft",
   featured: false,
 });
