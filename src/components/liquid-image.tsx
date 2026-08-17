@@ -31,10 +31,14 @@ uniform float u_strength;
 varying vec2 v_uv;
 
 void main() {
-  vec2 uv = (v_uv - 0.5) * u_scale + 0.5;
-  uv.y = 1.0 - uv.y;
+  // Screen UV where (0,0) is top-left, (1,1) is bottom-right
+  vec2 screen_uv = vec2(v_uv.x, 1.0 - v_uv.y);
 
-  vec2 px = v_uv * u_res;
+  // Scaled UV for object-cover image texture
+  vec2 uv = (screen_uv - 0.5) * u_scale + 0.5;
+
+  // Pixel coordinates where (0,0) is top-left matching DOM mouse coordinates
+  vec2 px = screen_uv * u_res;
   float m = max(u_res.x, u_res.y);
   float d = distance(px, u_mouse) / m;
   float falloff = exp(-d * 5.5) * u_strength;
