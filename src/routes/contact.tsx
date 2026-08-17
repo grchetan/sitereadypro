@@ -398,7 +398,7 @@ function BriefWizard() {
             scope: state.scope,
             features: state.features.join(", "),
             preferred_contact: state.preferred,
-            to_name: "Chetan",
+            to_name: "SiteReadyPro",
           },
           publicKey,
         );

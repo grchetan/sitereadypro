@@ -336,7 +336,7 @@ function FreelancePage() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/919000000000?text=Hi%20Chetan%2C%20I%20want%20a%20website%20made%20for%20my%20business."
+                href="https://wa.me/919000000000?text=Hi%20SiteReadyPro%2C%20I%20want%20a%20website%20made%20for%20my%20business."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-[var(--cream)]/15 p-5 text-[var(--cream)] transition-all hover:bg-[var(--cream)]/10"
@@ -350,14 +350,14 @@ function FreelancePage() {
 
               {/* Email */}
               <a
-                href="mailto:chetanprajapat340@gmail.com?subject=Website%20Project%20Enquiry&body=Hi%20Chetan%2C%0A%0AI'm%20interested%20in%20getting%20a%20website%20made.%0A%0AProject%20idea%3A%20%0ABudget%3A%20%0ATimeline%3A"
+                href="mailto:sitereadypro@gmail.com?subject=Website%20Project%20Enquiry&body=Hi%20SiteReadyPro%2C%0A%0AI'm%20interested%20in%20getting%20a%20website%20made.%0A%0AProject%20idea%3A%20%0ABudget%3A%20%0ATimeline%3A"
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-[var(--cream)]/15 p-5 text-[var(--cream)] transition-all hover:bg-[var(--cream)]/10"
               >
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-[var(--clay)]/30">
                   <Mail className="h-5 w-5 text-[var(--butter)]" />
                 </span>
                 <span className="font-editorial text-lg">Email directly</span>
-                <span className="text-xs text-[var(--cream)]/60">chetanprajapat340@gmail.com — reply within 24 hours guaranteed.</span>
+                <span className="text-xs text-[var(--cream)]/60">sitereadypro@gmail.com — reply within 24 hours guaranteed.</span>
               </a>
             </div>
           </div>
