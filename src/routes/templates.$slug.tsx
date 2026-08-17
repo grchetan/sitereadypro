@@ -1,22 +1,21 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ArrowLeft,
-  ArrowRight,
   Check,
   Download,
+  ExternalLink,
   Eye,
-  Layers,
+  Globe,
   Lock,
-  Monitor,
-  Smartphone,
-  Sparkles,
-  Star,
-  Tablet,
+  Server,
   X,
+  Zap,
+  Code2,
 } from "lucide-react";
 import { getTemplate, templates, type Template } from "@/data/templates";
 import { cn } from "@/lib/utils";
+import { Container } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/templates/$slug")({
   loader: ({ params }) => {
@@ -40,497 +39,409 @@ export const Route = createFileRoute("/templates/$slug")({
         { name: "description", content: t.tagline },
         { property: "og:title", content: `${t.title} — SiteReadyPro` },
         { property: "og:description", content: t.tagline },
-        { property: "og:type", content: "website" },
+        { property: "og:image", content: t.image },
       ],
     };
   },
   component: TemplateDetail,
   notFoundComponent: () => (
-    <div className="grid min-h-screen place-items-center px-6 text-center">
+    <div className="grid min-h-screen place-items-center px-6 text-center band-cream">
       <div>
-        <h1 className="text-4xl font-bold">Template not found</h1>
-        <p className="mt-3 text-muted-foreground">This template doesn't exist or has moved.</p>
-        <Link
-          to="/"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-primary-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to home
+        <h1 className="font-editorial text-5xl">Template not found</h1>
+        <p className="mt-3 text-muted-foreground">This template doesn't exist or has been moved.</p>
+        <Link to="/templates" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--cream)]">
+          <ArrowLeft className="h-4 w-4" /> Back to templates
         </Link>
       </div>
     </div>
   ),
 });
 
-/* ---------- Screenshot mockups (pure CSS browser frames) ---------- */
+/* ─── Tech badge colours ─── */
+const TECH_COLORS: Record<string, string> = {
+  "HTML5":       "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  "CSS3":        "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  "Vanilla JS":  "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  "Alpine.js":   "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300",
+  "GSAP":        "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  "AOS":         "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  "React":       "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+  "Firebase":    "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
+  "Supabase":    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
+  "MongoDB":     "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300",
+};
 
-function BrowserFrame({
-  tone,
-  variant,
-  className,
-}: {
-  tone: string;
-  variant: "home" | "features" | "pricing";
-  className?: string;
-}) {
+function TechBadge({ label }: { label: string }) {
+  const cls = TECH_COLORS[label] ?? "bg-foreground/8 text-foreground/70";
   return (
-    <div
-      className={cn(
-        "surface-card relative overflow-hidden rounded-2xl border border-foreground/10",
-        className,
-      )}
-    >
+    <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium", cls)}>
+      {label}
+    </span>
+  );
+}
+
+/* ─── Live Preview Modal (iframe) ─── */
+function PreviewModal({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col bg-background/95 backdrop-blur-xl">
       {/* Top bar */}
-      <div className="flex items-center gap-2 border-b border-foreground/10 bg-foreground/40 px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-        <div className="ml-3 flex-1 truncate rounded-md bg-foreground/5 px-3 py-1 text-[10px] text-muted-foreground">
-          sitereadypro.com/preview
+      <div className="flex h-14 shrink-0 items-center justify-between border-b border-foreground/8 px-4">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <span className="h-3 w-3 rounded-full bg-red-400/80" />
+            <span className="h-3 w-3 rounded-full bg-amber-400/80" />
+            <span className="h-3 w-3 rounded-full bg-green-400/80" />
+          </div>
+          <span className="rounded-lg border border-foreground/10 bg-foreground/5 px-3 py-1 text-xs text-muted-foreground">
+            {url}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-foreground/10 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground"
+          >
+            <ExternalLink className="h-3.5 w-3.5" /> Open in new tab
+          </a>
+          <button
+            onClick={onClose}
+            className="grid h-9 w-9 place-items-center rounded-full border border-foreground/10 bg-foreground/5 text-muted-foreground hover:text-foreground"
+            aria-label="Close preview"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
       </div>
-      {/* Content */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <div className={cn("absolute inset-0 bg-gradient-to-br", tone)} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-        <div className="relative flex h-full flex-col p-5">
-          {/* Fake nav */}
-          <div className="flex items-center justify-between">
-            <div className="h-3 w-24 rounded bg-foreground/40" />
-            <div className="flex gap-3">
-              <div className="h-2 w-10 rounded bg-foreground/25" />
-              <div className="h-2 w-10 rounded bg-foreground/25" />
-              <div className="h-2 w-10 rounded bg-foreground/25" />
-            </div>
-          </div>
-
-          {variant === "home" && (
-            <div className="mt-6 flex flex-1 items-center gap-6">
-              <div className="flex-1 space-y-3">
-                <div className="h-4 w-3/4 rounded bg-foreground/60" />
-                <div className="h-4 w-2/3 rounded bg-foreground/50" />
-                <div className="h-2 w-4/5 rounded bg-foreground/30" />
-                <div className="h-2 w-3/5 rounded bg-foreground/30" />
-                <div className="flex gap-2 pt-2">
-                  <div className="h-6 w-20 rounded-full bg-white/80" />
-                  <div className="h-6 w-20 rounded-full border border-foreground/40" />
-                </div>
-              </div>
-              <div className="hidden h-32 w-40 rounded-xl border border-foreground/30 bg-foreground/10 backdrop-blur md:block" />
-            </div>
-          )}
-
-          {variant === "features" && (
-            <div className="mt-6 grid flex-1 grid-cols-3 gap-3">
-              {[0, 1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  className="flex flex-col gap-2 rounded-lg bg-foreground/10 p-3 backdrop-blur"
-                >
-                  <div className="h-4 w-4 rounded bg-white/70" />
-                  <div className="h-2 w-3/4 rounded bg-foreground/50" />
-                  <div className="h-1.5 w-full rounded bg-foreground/25" />
-                  <div className="h-1.5 w-4/5 rounded bg-foreground/25" />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {variant === "pricing" && (
-            <div className="mt-6 grid flex-1 grid-cols-3 gap-3">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex flex-col gap-2 rounded-lg border p-3 backdrop-blur",
-                    i === 1
-                      ? "border-foreground/60 bg-foreground/20"
-                      : "border-foreground/20 bg-foreground/10",
-                  )}
-                >
-                  <div className="h-2 w-1/2 rounded bg-foreground/40" />
-                  <div className="h-5 w-3/4 rounded bg-white/70" />
-                  <div className="mt-2 space-y-1">
-                    <div className="h-1.5 w-full rounded bg-foreground/30" />
-                    <div className="h-1.5 w-4/5 rounded bg-foreground/30" />
-                    <div className="h-1.5 w-3/5 rounded bg-foreground/30" />
-                  </div>
-                  <div className="mt-auto h-5 w-full rounded-full bg-white/70" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+      {/* iframe */}
+      <div className="flex-1 overflow-hidden">
+        <iframe
+          src={url}
+          title={`Live preview — ${title}`}
+          className="h-full w-full border-0"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+          loading="lazy"
+        />
       </div>
     </div>
   );
 }
 
-/* ---------- Checkout modal ---------- */
-
-type Step = "details" | "payment" | "success";
-
-function CheckoutModal({
+/* ─── Download / Checkout modal ─── */
+function DownloadModal({
   open,
   onClose,
   template,
 }: {
   open: boolean;
   onClose: () => void;
-  template: ReturnType<typeof getTemplate>;
+  template: Template;
 }) {
-  const [step, setStep] = useState<Step>("details");
-  const [form, setForm] = useState({ name: "", email: "" });
-  const [processing, setProcessing] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      setStep(template && template.price === 0 ? "success" : "details");
-      setProcessing(false);
-    }
-  }, [open, template]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
-
-  if (!open || !template) return null;
+  const [email, setEmail] = useState("");
+  const [downloading, setDownloading] = useState(false);
+  const [done, setDone] = useState(false);
 
   const isFree = template.price === 0;
 
-  const goPayment = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStep("payment");
-  };
+  if (!open) return null;
 
-  const finalize = (e: React.FormEvent) => {
+  const handleFreeDownload = (e: React.FormEvent) => {
     e.preventDefault();
-    setProcessing(true);
+    setDownloading(true);
+    // In production: call server fn → get signed Firebase Storage URL → trigger download
+    // For now: simulate and show message
     setTimeout(() => {
-      setProcessing(false);
-      setStep("success");
-    }, 1400);
+      setDownloading(false);
+      setDone(true);
+    }, 1200);
   };
 
-  const steps: { key: Step; label: string }[] = isFree
-    ? [{ key: "success", label: "Download" }]
-    : [
-        { key: "details", label: "Details" },
-        { key: "payment", label: "Payment" },
-        { key: "success", label: "Download" },
-      ];
-
-  const currentIdx = steps.findIndex((s) => s.key === step);
+  const handlePaidCheckout = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In production: call server fn → create Cashfree order → redirect to payment
+    // For now: show "coming soon"
+    alert("Cashfree payment integration coming soon! Contact via WhatsApp to purchase: +91 90000 00000");
+  };
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <button
-        aria-label="Close"
-        onClick={onClose}
-        className="absolute inset-0 bg-foreground/70 backdrop-blur-sm"
-      />
-      <div className="surface-card relative z-10 w-full max-w-lg rounded-3xl p-6 shadow-2xl md:p-8 animate-fade-up">
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-foreground/10 bg-foreground/5 text-muted-foreground transition-colors hover:text-foreground"
-          aria-label="Close checkout"
-        >
-          <X className="h-4 w-4" />
-        </button>
+      <button aria-label="Close" onClick={onClose} className="absolute inset-0 bg-foreground/50 backdrop-blur-sm" />
+      <div className="relative z-10 w-full max-w-md animate-fade-up">
+        <div className="relative overflow-hidden rounded-3xl border border-foreground/8 bg-card shadow-2xl">
+          <button
+            onClick={onClose}
+            className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-foreground/10 bg-foreground/5 text-muted-foreground hover:text-foreground z-10"
+            aria-label="Close"
+          >
+            <X className="h-4 w-4" />
+          </button>
 
-        {/* Progress */}
-        {!isFree && (
-          <div className="mb-6 flex items-center gap-2">
-            {steps.map((s, i) => (
-              <div key={s.key} className="flex flex-1 items-center gap-2">
-                <div
-                  className={cn(
-                    "grid h-7 w-7 shrink-0 place-items-center rounded-full border text-xs font-semibold transition-all",
-                    i <= currentIdx
-                      ? "border-transparent bg-gradient-to-br from-primary to-secondary text-primary-foreground"
-                      : "border-foreground/10 bg-foreground/5 text-muted-foreground",
-                  )}
-                >
-                  {i < currentIdx ? <Check className="h-3.5 w-3.5" /> : i + 1}
+          <div className="p-6 sm:p-8">
+            {done ? (
+              /* Success state */
+              <div className="text-center py-4">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[var(--clay)] text-[var(--cream)]">
+                  <Check className="h-8 w-8" />
                 </div>
-                <span className="text-xs text-muted-foreground">{s.label}</span>
-                {i < steps.length - 1 && (
-                  <div
-                    className={cn(
-                      "h-px flex-1 transition-colors",
-                      i < currentIdx ? "bg-gradient-to-r from-primary to-secondary" : "bg-foreground/10",
-                    )}
+                <h3 className="mt-5 font-editorial text-2xl">Ready to download!</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Your download is starting. The ZIP includes all source files with the proper folder structure.
+                </p>
+                <div className="mt-6 rounded-2xl border border-foreground/8 bg-foreground/5 p-4 text-left text-xs text-muted-foreground">
+                  <p className="font-medium text-foreground mb-2">📁 What's inside the ZIP:</p>
+                  <p>• index.html + all pages</p>
+                  <p>• /css — stylesheets</p>
+                  <p>• /js — scripts</p>
+                  <p>• /images — all assets</p>
+                  <p>• README.md — setup guide</p>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="mt-5 inline-flex items-center gap-2 rounded-full border border-foreground/10 px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Close
+                </button>
+              </div>
+            ) : isFree ? (
+              /* Free download form */
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[var(--ink)] text-[var(--cream)]">
+                    <Download className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="eyebrow">Free Template</div>
+                    <h3 className="font-editorial text-xl">{template.title}</h3>
+                  </div>
+                </div>
+                <form onSubmit={handleFreeDownload} className="space-y-3">
+                  <input
+                    required
+                    type="email"
+                    placeholder="Your email (optional — for updates)"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full rounded-2xl border border-foreground/10 bg-background px-4 py-3 text-sm outline-none focus:border-[var(--clay)]/60"
                   />
-                )}
-              </div>
-            ))}
+                  <button
+                    type="submit"
+                    disabled={downloading}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3.5 text-sm font-medium text-[var(--cream)] transition-all hover:opacity-90 disabled:opacity-60"
+                  >
+                    {downloading ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--cream)]/30 border-t-[var(--cream)]" />
+                        Preparing download…
+                      </>
+                    ) : (
+                      <>
+                        <Download className="h-4 w-4" />
+                        Download {template.title}.zip
+                      </>
+                    )}
+                  </button>
+                </form>
+                <p className="mt-4 text-center text-xs text-muted-foreground">
+                  Free forever · Commercial license · No signup required
+                </p>
+              </>
+            ) : (
+              /* Paid checkout */
+              <>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[var(--ink)] text-[var(--cream)]">
+                    <Lock className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="eyebrow">Premium Template</div>
+                    <h3 className="font-editorial text-xl">{template.title}</h3>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-foreground/8 bg-foreground/5 p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{template.title}</span>
+                    <span className="font-editorial text-2xl text-[var(--clay)]">
+                      ₹{template.price.toLocaleString("en-IN")}
+                    </span>
+                  </div>
+                  <div className="mt-2 text-xs text-muted-foreground">Commercial license · All source files · 1 year free updates</div>
+                </div>
+                <form onSubmit={handlePaidCheckout} className="space-y-3">
+                  <input
+                    required
+                    type="email"
+                    placeholder="Your email (download link sent here)"
+                    className="w-full rounded-2xl border border-foreground/10 bg-background px-4 py-3 text-sm outline-none focus:border-[var(--clay)]/60"
+                  />
+                  <button
+                    type="submit"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--clay)] px-6 py-3.5 text-sm font-medium text-[var(--primary-foreground)] transition-all hover:opacity-90"
+                  >
+                    Pay ₹{template.price.toLocaleString("en-IN")} via Cashfree
+                  </button>
+                </form>
+                <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                  <Lock className="h-3 w-3" />
+                  Secured by Cashfree · 100% refund if not satisfied
+                </div>
+              </>
+            )}
           </div>
-        )}
-
-        {step === "details" && (
-          <>
-            <h3 className="text-2xl font-bold">Checkout</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              You're getting <span className="text-foreground">{template.title}</span>.
-            </p>
-            <form onSubmit={goPayment} className="mt-6 space-y-3">
-              <input
-                required
-                type="text"
-                placeholder="Your name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-2xl border border-foreground/10 bg-background/60 px-4 py-3 text-sm outline-none transition-colors focus:border-primary/60"
-              />
-              <input
-                required
-                type="email"
-                placeholder="Email (we'll send the download link here)"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full rounded-2xl border border-foreground/10 bg-background/60 px-4 py-3 text-sm outline-none transition-colors focus:border-primary/60"
-              />
-              <div className="flex items-center justify-between rounded-2xl border border-foreground/10 bg-foreground/5 px-4 py-3 text-sm">
-                <span className="text-muted-foreground">Total</span>
-                <span className="text-lg font-bold text-gradient">
-                  ₹{template.price.toLocaleString("en-IN")}
-                </span>
-              </div>
-              <button
-                type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-primary-foreground btn-glow transition-all hover:scale-[1.01]"
-              >
-                Continue to payment
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </form>
-          </>
-        )}
-
-        {step === "payment" && (
-          <>
-            <h3 className="text-2xl font-bold">Payment</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Secure checkout · encrypted</p>
-            <form onSubmit={finalize} className="mt-6 space-y-3">
-              <input
-                required
-                placeholder="Card number"
-                inputMode="numeric"
-                className="w-full rounded-2xl border border-foreground/10 bg-background/60 px-4 py-3 text-sm outline-none focus:border-primary/60"
-              />
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  required
-                  placeholder="MM / YY"
-                  className="w-full rounded-2xl border border-foreground/10 bg-background/60 px-4 py-3 text-sm outline-none focus:border-primary/60"
-                />
-                <input
-                  required
-                  placeholder="CVC"
-                  className="w-full rounded-2xl border border-foreground/10 bg-background/60 px-4 py-3 text-sm outline-none focus:border-primary/60"
-                />
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Lock className="h-3 w-3" />
-                Your card details never touch our servers.
-              </div>
-              <button
-                type="submit"
-                disabled={processing}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-primary-foreground btn-glow transition-all hover:scale-[1.01] disabled:opacity-70"
-              >
-                {processing ? (
-                  <>
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground" />
-                    Processing…
-                  </>
-                ) : (
-                  <>Pay ₹{template.price.toLocaleString("en-IN")}</>
-                )}
-              </button>
-              <button
-                type="button"
-                onClick={() => setStep("details")}
-                className="w-full text-center text-xs text-muted-foreground hover:text-foreground"
-              >
-                ← Back to details
-              </button>
-            </form>
-          </>
-        )}
-
-        {step === "success" && (
-          <div className="text-center">
-            <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-primary to-secondary text-primary-foreground animate-float">
-              <Check className="h-8 w-8" />
-            </div>
-            <h3 className="mt-5 text-2xl font-bold">
-              {isFree ? "Ready to download" : "Payment successful"}
-            </h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {isFree
-                ? `${template.title} is free — grab your copy below.`
-                : `We've sent a receipt to your email. Your download is ready.`}
-            </p>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-primary-foreground btn-glow"
-            >
-              <Download className="h-4 w-4" />
-              Download {template.title}.zip
-            </a>
-            <div className="mt-4 text-xs text-muted-foreground">
-              Includes source files, docs, and 1 year of updates.
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
 }
 
-/* ---------- Detail page ---------- */
+/* ─── Main Detail Page ─── */
 
 function TemplateDetail() {
   const { template } = Route.useLoaderData() as { template: Template };
-  const navigate = useNavigate();
-  const [checkoutOpen, setCheckoutOpen] = useState(false);
-  const [device, setDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
-  const [activeShot, setActiveShot] = useState(0);
-
-  const shots: { variant: "home" | "features" | "pricing"; label: string }[] = [
-    { variant: "home", label: "Home" },
-    { variant: "features", label: "Features" },
-    { variant: "pricing", label: "Pricing" },
-  ];
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [downloadOpen, setDownloadOpen] = useState(false);
 
   const related = templates.filter((t) => t.slug !== template.slug).slice(0, 3);
-
   const isFree = template.price === 0;
 
+  // Determine site type badge based on tech stack
+  const isDynamic = template.tech.some((t) =>
+    ["React", "Vue", "Angular", "Firebase", "Supabase", "MongoDB", "Node.js"].includes(t)
+  );
+  const siteType = isDynamic ? "Dynamic" : "Static";
+
+  // Determine backend
+  const backends = ["Firebase", "Supabase", "MongoDB", "Node.js"];
+  const backend = template.tech.find((t) => backends.includes(t)) ?? null;
+
   return (
-    <div className="min-h-screen pb-24">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-foreground/5 bg-background/70 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
-          <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
-              <Sparkles className="h-4 w-4" />
-            </span>
-            SiteReady<span className="text-gradient">Pro</span>
-          </Link>
-          <button
-            onClick={() => navigate({ to: "/", hash: "templates" })}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+    <div className="min-h-screen band-cream">
+      {/* Back bar */}
+      <div className="border-b border-foreground/8 bg-background/85 backdrop-blur-xl">
+        <Container className="flex h-14 items-center gap-4">
+          <Link
+            to="/templates"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" /> All templates
-          </button>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-7xl px-6 pt-10 lg:px-10">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-foreground">
-            Home
           </Link>
-          <span>/</span>
-          <Link to="/" hash="templates" className="hover:text-foreground">
-            Templates
-          </Link>
-          <span>/</span>
-          <span className="text-foreground">{template.title}</span>
-        </nav>
+          <span className="text-foreground/20">/</span>
+          <span className="text-sm text-foreground/70">{template.title}</span>
+        </Container>
+      </div>
 
-        {/* Hero split */}
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-          <div className="animate-fade-up">
-            {/* Preview area */}
-            <div className="flex items-center justify-between">
-              <div className="flex gap-1 rounded-full border border-foreground/10 bg-foreground/5 p-1">
-                {[
-                  { key: "desktop", Icon: Monitor },
-                  { key: "tablet", Icon: Tablet },
-                  { key: "mobile", Icon: Smartphone },
-                ].map(({ key, Icon }) => (
-                  <button
-                    key={key}
-                    onClick={() => setDevice(key as typeof device)}
-                    className={cn(
-                      "grid h-8 w-9 place-items-center rounded-full transition-all",
-                      device === key
-                        ? "bg-gradient-to-br from-primary to-secondary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground",
-                    )}
-                    aria-label={key}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </button>
-                ))}
-              </div>
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
+      <Container className="py-10 lg:py-14">
+        <div className="grid gap-12 lg:grid-cols-[1fr_380px] lg:items-start">
+
+          {/* LEFT — preview image + info */}
+          <div>
+            {/* Preview image */}
+            <div className="relative overflow-hidden rounded-2xl border border-foreground/8 shadow-[var(--shadow-lift)]">
+              <img
+                src={template.image}
+                alt={template.title}
+                className="w-full object-cover"
+              />
+              {/* Live preview overlay button */}
+              <button
+                onClick={() => setPreviewOpen(true)}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[var(--ink)]/0 text-transparent transition-all duration-300 hover:bg-[var(--ink)]/60 hover:text-[var(--cream)]"
               >
-                <Eye className="h-4 w-4" /> Open live preview
-              </a>
+                <Eye className="h-8 w-8 drop-shadow-lg" />
+                <span className="text-sm font-medium drop-shadow-lg">Open live preview</span>
+              </button>
             </div>
 
-            <div className="mt-4 flex justify-center">
-              <div
-                className={cn(
-                  "w-full transition-all duration-500",
-                  device === "desktop" && "max-w-full",
-                  device === "tablet" && "max-w-xl",
-                  device === "mobile" && "max-w-xs",
-                )}
-              >
-                <BrowserFrame
-                  key={activeShot + device}
-                  tone={template.tone}
-                  variant={shots[activeShot].variant}
-                  className="animate-fade-up"
-                />
-              </div>
-            </div>
-
-            {/* Screenshot thumbs */}
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {shots.map((s, i) => (
-                <button
-                  key={s.label}
-                  onClick={() => setActiveShot(i)}
-                  className={cn(
-                    "group overflow-hidden rounded-xl border transition-all",
-                    activeShot === i
-                      ? "border-primary/60 ring-1 ring-primary/40"
-                      : "border-foreground/10 hover:border-foreground/25",
-                  )}
-                >
-                  <BrowserFrame tone={template.tone} variant={s.variant} className="rounded-none border-0" />
-                  <div className="bg-foreground/40 px-3 py-1.5 text-left text-[11px] text-muted-foreground">
-                    {s.label}
-                  </div>
-                </button>
+            {/* Badges row */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {/* Site type badge */}
+              <span className={cn(
+                "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium",
+                isDynamic
+                  ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                  : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+              )}>
+                <Zap className="h-3 w-3" />
+                {siteType}
+              </span>
+              {/* Backend badge */}
+              {backend ? (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ink)] px-3 py-1 text-xs font-medium text-[var(--cream)]">
+                  <Server className="h-3 w-3" />
+                  Backend: {backend}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground/8 px-3 py-1 text-xs font-medium text-muted-foreground">
+                  <Globe className="h-3 w-3" />
+                  No backend
+                </span>
+              )}
+              {/* Tech stack badges */}
+              {template.tech.map((t) => (
+                <TechBadge key={t} label={t} />
               ))}
+            </div>
+
+            {/* Description + Features */}
+            <div className="mt-10 grid gap-10 sm:grid-cols-2">
+              <div>
+                <h2 className="font-editorial text-2xl">About this template</h2>
+                <p className="mt-3 text-muted-foreground leading-relaxed">{template.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {template.pages.map((p) => (
+                    <span
+                      key={p}
+                      className="rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1 text-xs text-muted-foreground"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h2 className="font-editorial text-2xl">What's included</h2>
+                <ul className="mt-3 space-y-2.5">
+                  {template.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Check className="h-4 w-4 shrink-0 text-[var(--clay)]" />
+                      {f}
+                    </li>
+                  ))}
+                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Check className="h-4 w-4 shrink-0 text-[var(--clay)]" />
+                    Proper folder structure (ZIP)
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Check className="h-4 w-4 shrink-0 text-[var(--clay)]" />
+                    README with setup instructions
+                  </li>
+                  {!isFree && (
+                    <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Check className="h-4 w-4 shrink-0 text-[var(--clay)]" />
+                      1 year free updates
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+
+            {/* Code security note */}
+            <div className="mt-8 rounded-2xl border border-foreground/8 bg-foreground/3 p-4">
+              <div className="flex items-start gap-3">
+                <Code2 className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground" />
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Source code is protected.</strong> The live preview runs on an external host — you can inspect its HTML but the complete organized source (all files, folder structure, assets, documentation) is only available via the official ZIP download after purchase.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Sidebar */}
-          <aside className="lg:sticky lg:top-24 lg:h-fit">
-            <div className="surface-card rounded-3xl p-6 md:p-8">
-              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1 text-xs text-muted-foreground">
-                <Layers className="h-3 w-3" /> {template.category}
-              </span>
-              <h1 className="mt-4 text-3xl font-bold sm:text-4xl">{template.title}</h1>
-              <p className="mt-2 text-muted-foreground">{template.tagline}</p>
-
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-4xl font-extrabold text-gradient">
+          {/* RIGHT — sticky purchase card */}
+          <aside className="lg:sticky lg:top-20">
+            <div className="rounded-3xl border border-foreground/8 bg-card p-6 shadow-[var(--shadow-soft)]">
+              {/* Price */}
+              <div className="flex items-baseline gap-3">
+                <span className="font-editorial text-4xl text-[var(--clay)]">
                   {isFree ? "Free" : `₹${template.price.toLocaleString("en-IN")}`}
                 </span>
                 {!isFree && (
@@ -539,117 +450,134 @@ function TemplateDetail() {
                   </span>
                 )}
               </div>
-              <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-secondary text-secondary" />
-                ))}
-                <span className="ml-1">4.9 · 120+ downloads</span>
+              <div className="eyebrow mt-1">{template.category} Template</div>
+
+              {/* CTA buttons */}
+              <div className="mt-6 space-y-3">
+                <button
+                  id={`btn-${isFree ? "download" : "buy"}-${template.slug}`}
+                  onClick={() => setDownloadOpen(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3.5 text-sm font-medium text-[var(--cream)] transition-all hover:opacity-90 active:scale-[0.98]"
+                >
+                  {isFree ? (
+                    <><Download className="h-4 w-4" /> Download Free</>
+                  ) : (
+                    <><Lock className="h-4 w-4" /> Buy · ₹{template.price.toLocaleString("en-IN")}</>
+                  )}
+                </button>
+                <button
+                  id={`btn-preview-${template.slug}`}
+                  onClick={() => setPreviewOpen(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-foreground/15 px-6 py-3 text-sm font-medium transition-all hover:bg-foreground/5"
+                >
+                  <Eye className="h-4 w-4" /> Live Preview
+                </button>
               </div>
 
-              <button
-                onClick={() => setCheckoutOpen(true)}
-                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3.5 text-sm font-semibold text-primary-foreground btn-glow transition-all hover:scale-[1.01]"
-              >
-                <Download className="h-4 w-4" />
-                {isFree ? "Download for free" : "Buy & Download"}
-              </button>
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-foreground/30 hover:bg-foreground/10"
-              >
-                <Eye className="h-4 w-4" /> Live preview
-              </a>
-
-              <div className="mt-6 border-t border-foreground/5 pt-6 text-sm">
-                <div className="flex justify-between py-1.5 text-muted-foreground">
-                  <span>License</span>
-                  <span className="text-foreground">Commercial</span>
+              {/* Details table */}
+              <div className="mt-6 space-y-2 border-t border-foreground/8 pt-5 text-sm">
+                <div className="flex justify-between py-1">
+                  <span className="text-muted-foreground">License</span>
+                  <span className="font-medium">Commercial</span>
                 </div>
-                <div className="flex justify-between py-1.5 text-muted-foreground">
-                  <span>Pages</span>
-                  <span className="text-foreground">{template.pages.length}</span>
+                <div className="flex justify-between py-1">
+                  <span className="text-muted-foreground">Pages</span>
+                  <span className="font-medium">{template.pages.length}</span>
                 </div>
-                <div className="flex justify-between py-1.5 text-muted-foreground">
-                  <span>Tech</span>
-                  <span className="text-foreground">{template.tech.join(", ")}</span>
+                <div className="flex justify-between py-1">
+                  <span className="text-muted-foreground">Type</span>
+                  <span className="font-medium">{siteType}</span>
                 </div>
-                <div className="flex justify-between py-1.5 text-muted-foreground">
-                  <span>Updates</span>
-                  <span className="text-foreground">1 year free</span>
+                <div className="flex justify-between py-1">
+                  <span className="text-muted-foreground">Tech</span>
+                  <span className="font-medium text-right max-w-[160px]">{template.tech.join(", ")}</span>
                 </div>
+                {backend && (
+                  <div className="flex justify-between py-1">
+                    <span className="text-muted-foreground">Backend</span>
+                    <span className="font-medium">{backend}</span>
+                  </div>
+                )}
+                {!isFree && (
+                  <div className="flex justify-between py-1">
+                    <span className="text-muted-foreground">Updates</span>
+                    <span className="font-medium">1 year free</span>
+                  </div>
+                )}
               </div>
+
+              {/* Security note */}
+              <div className="mt-5 flex items-center gap-2 rounded-2xl bg-foreground/5 px-4 py-3 text-xs text-muted-foreground">
+                <Lock className="h-3 w-3 shrink-0" />
+                {isFree
+                  ? "Download via secure signed link · No account needed"
+                  : "Secure Cashfree payment · Instant ZIP download after payment"}
+              </div>
+            </div>
+
+            {/* Contact for custom build */}
+            <div className="mt-4 rounded-2xl border border-foreground/8 bg-card p-5 text-center">
+              <p className="text-sm text-muted-foreground">Need this customised for your brand?</p>
+              <Link
+                to="/contact"
+                className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--clay)] hover:underline"
+              >
+                Get a free quote →
+              </Link>
             </div>
           </aside>
         </div>
 
-        {/* Description + Features */}
-        <div className="mt-20 grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-2xl font-bold">About this template</h2>
-            <p className="mt-4 text-muted-foreground">{template.description}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {template.pages.map((p) => (
-                <span
-                  key={p}
-                  className="rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1 text-xs text-muted-foreground"
-                >
-                  {p}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold">What's included</h2>
-            <ul className="mt-4 grid gap-3">
-              {template.features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-sm">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-secondary/20 text-secondary">
-                    <Check className="h-3.5 w-3.5" />
-                  </span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Related */}
-        <div className="mt-24">
-          <div className="flex items-end justify-between">
-            <h2 className="text-2xl font-bold">You might also like</h2>
-            <Link to="/" hash="templates" className="text-sm text-muted-foreground hover:text-foreground">
-              Browse all →
+        {/* Related templates */}
+        <div className="mt-20">
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="font-editorial text-3xl">You might also like</h2>
+            <Link to="/templates" className="text-sm text-muted-foreground hover:text-foreground">
+              View all →
             </Link>
           </div>
-          <div className="mt-6 grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-3">
             {related.map((r) => (
               <Link
                 key={r.slug}
                 to="/templates/$slug"
                 params={{ slug: r.slug }}
-                className="group surface-card overflow-hidden rounded-2xl transition-all duration-500 hover:-translate-y-1"
+                className="group overflow-hidden rounded-2xl border border-foreground/8 bg-card hover-lift"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <div className={cn("absolute inset-0 bg-gradient-to-br", r.tone)} />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]" />
-                </div>
-                <div className="flex items-center justify-between p-5">
-                  <div>
-                    <h3 className="font-semibold">{r.title}</h3>
-                    <p className="text-xs text-muted-foreground">{r.category}</p>
-                  </div>
-                  <span className="text-xs font-semibold text-gradient">
+                  <img
+                    src={r.image}
+                    alt={r.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute right-3 top-3 rounded-full bg-[var(--cream)] px-3 py-1 text-xs font-medium text-[var(--ink)]">
                     {r.price === 0 ? "Free" : `₹${r.price.toLocaleString("en-IN")}`}
-                  </span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="font-editorial text-lg">{r.title}</div>
+                  <div className="eyebrow mt-1">{r.category}</div>
                 </div>
               </Link>
             ))}
           </div>
         </div>
-      </div>
+      </Container>
 
-      <CheckoutModal open={checkoutOpen} onClose={() => setCheckoutOpen(false)} template={template} />
+      {/* Modals */}
+      {previewOpen && (
+        <PreviewModal
+          url={`https://${template.slug}.netlify.app`}
+          title={template.title}
+          onClose={() => setPreviewOpen(false)}
+        />
+      )}
+      <DownloadModal
+        open={downloadOpen}
+        onClose={() => setDownloadOpen(false)}
+        template={template}
+      />
     </div>
   );
 }

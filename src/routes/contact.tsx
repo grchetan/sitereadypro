@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
+import emailjs from "@emailjs/browser";
+import { saveContactRequest } from "@/lib/firestore";
 import { Container, Eyebrow, GradientButton, Blobs } from "@/components/site-chrome";
 import {
   Mail,
@@ -352,8 +354,58 @@ function BriefWizard() {
       }
     }
     setStatus("sending");
-    // Simulated send — replace with server function later
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      // 1. Save to Firestore
+      await saveContactRequest({
+        name: state.name,
+        email: state.email,
+        phone: state.phone,
+        projectType: state.projectType,
+        budget: state.budget,
+        timeline: state.timeline,
+        message: [
+          `Project: ${state.projectType}`,
+          `Goals: ${state.goals.join(", ")}`,
+          `Scope: ${state.scope}`,
+          `Features: ${state.features.join(", ")}`,
+          `Pages: ${state.pages}`,
+          `References: ${state.references}`,
+          `Has brand: ${state.hasBrand}`,
+          `Has content: ${state.hasContent}`,
+          `Preferred contact: ${state.preferred}`,
+          state.company ? `Company: ${state.company}` : "",
+        ].filter(Boolean).join("\n"),
+      }).catch(() => null); // non-blocking — continue even if Firestore fails
+
+      // 2. Send email via EmailJS
+      const serviceId = import.meta.env['VITE_EMAILJS_SERVICE_ID'] as string;
+      const templateId = import.meta.env['VITE_EMAILJS_TEMPLATE_ID'] as string;
+      const publicKey = import.meta.env['VITE_EMAILJS_PUBLIC_KEY'] as string;
+
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: state.name,
+            from_email: state.email,
+            phone: state.phone || "Not provided",
+            company: state.company || "Not provided",
+            project_type: state.projectType,
+            budget: state.budget,
+            timeline: state.timeline,
+            goals: state.goals.join(", "),
+            scope: state.scope,
+            features: state.features.join(", "),
+            preferred_contact: state.preferred,
+            to_name: "Chetan",
+          },
+          publicKey,
+        );
+      }
+    } catch {
+      // Email sending failed silently — request is still saved in Firestore
+    }
     setStatus("sent");
     try {
       localStorage.removeItem(DRAFT_KEY);
