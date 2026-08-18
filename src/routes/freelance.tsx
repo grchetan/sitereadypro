@@ -311,7 +311,7 @@ function FreelancePage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <span className="eyebrow !text-[var(--butter)]">Freelance, available now</span>
-            <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight">
+            <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight !text-[var(--cream)]">
               Tell me your idea and{" "}
               <span className="italic-serif text-[var(--butter)]">budget</span>.
             </h2>

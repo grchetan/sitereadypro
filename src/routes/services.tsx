@@ -262,7 +262,7 @@ function ServicesPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <span className="eyebrow !text-[var(--butter)]">Ready when you are</span>
-            <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight">
+            <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight !text-[var(--cream)]">
               Let's start with a{" "}
               <span className="italic-serif text-[var(--butter)]">hello</span>.
             </h2>

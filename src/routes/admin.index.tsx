@@ -40,7 +40,7 @@ function Dashboard() {
     <div>
       <PageHead
         eyebrow="Overview"
-        title="Aaj ka control room."
+        title="Studio overview."
         sub={`Everything for ${settings.brandName} in one place — requests, templates, portfolio and pricing.`}
       />
 

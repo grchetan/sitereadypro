@@ -277,7 +277,7 @@ function RequestDetail({ req }: { req: ClientRequest }) {
         <TextArea
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Quote bheja, call schedule, requirements…"
+          placeholder="Quote sent, call scheduled, client requirements…"
         />
       </Field>
       <AdminButton variant="clay" onClick={() => setRequestNote(req.id, note)}>

@@ -671,7 +671,7 @@ function Home() {
           <div className="grid gap-14 md:grid-cols-[1fr_1fr] md:items-center">
             <div>
               <span className="eyebrow !text-[var(--butter)]">Let's build</span>
-              <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight">
+              <h2 className="mt-6 font-editorial text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-tight !text-[var(--cream)]">
                 Ready to ship something{" "}
                 <span className="italic-serif text-[var(--butter)]">beautiful?</span>
               </h2>
