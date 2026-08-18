@@ -91,9 +91,13 @@ export function LiquidImage({
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
+      window.innerWidth < 1024
+    ) {
+      return;
+    }
 
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
@@ -102,6 +106,7 @@ export function LiquidImage({
 
     let raf = 0;
     let disposed = false;
+    let running = false;
     const mouse = { x: -9999, y: -9999 };
     let strength = 0;
     let target = 0;
@@ -155,7 +160,7 @@ export function LiquidImage({
       let h = 0;
       const resize = () => {
         const rect = wrap.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
         w = Math.max(1, Math.round(rect.width));
         h = Math.max(1, Math.round(rect.height));
         canvas.width = Math.round(w * dpr);
@@ -172,15 +177,25 @@ export function LiquidImage({
       const ro = new ResizeObserver(resize);
       ro.observe(wrap);
 
+      const startLoop = () => {
+        if (running || disposed) return;
+        running = true;
+        raf = requestAnimationFrame(frame);
+      };
+
       const onMove = (e: PointerEvent) => {
+        if (e.pointerType !== "mouse") return;
         const rect = wrap.getBoundingClientRect();
         mouse.x = e.clientX - rect.left;
         mouse.y = e.clientY - rect.top;
+        startLoop();
       };
       const onEnter = (e: PointerEvent) => {
+        if (e.pointerType !== "mouse") return;
         onMove(e);
         target = 1;
         setActive(true);
+        startLoop();
       };
       const onLeave = () => {
         target = 0;
@@ -196,6 +211,8 @@ export function LiquidImage({
         if (strength < 0.002 && target === 0) {
           strength = 0;
           setActive(false);
+          running = false;
+          return; // Stop animation loop when idle
         }
         gl.uniform1f(uTime, (performance.now() - t0) / 1000);
         gl.uniform1f(uStrength, strength);
@@ -203,7 +220,6 @@ export function LiquidImage({
         gl.drawArrays(gl.TRIANGLES, 0, 6);
         raf = requestAnimationFrame(frame);
       };
-      frame();
 
       return () => {
         ro.disconnect();
