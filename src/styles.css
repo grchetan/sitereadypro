@@ -234,7 +234,13 @@
 
 @media (max-width: 768px) {
   .blob {
-    filter: blur(30px);
+    filter: blur(25px);
+    animation: none !important;
+  }
+  .animate-float {
+    animation: none !important;
+  }
+  .animate-blob {
     animation: none !important;
   }
 }
@@ -249,11 +255,18 @@
   }
 }
 
-/* Marquee track with hardware acceleration */
+/* Marquee isolated container & hardware accelerated track */
+@utility marquee-container {
+  isolation: isolate;
+  contain: layout paint;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
 @utility marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 30s linear infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   will-change: transform;

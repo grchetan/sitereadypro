@@ -105,7 +105,16 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 16);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -120,12 +129,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-      <Container className={cn("relative z-50 transition-all duration-500", scrolled ? "pt-2.5" : "pt-4 sm:pt-6")}>
+      <Container className={cn("relative z-50 transition-all duration-300", scrolled ? "pt-2" : "pt-3 sm:pt-6")}>
         <div
           className={cn(
-            "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-full border transition-all duration-500 md:grid-cols-[auto_minmax(0,1fr)_auto]",
+            "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-full border transition-all duration-300 md:grid-cols-[auto_minmax(0,1fr)_auto]",
             scrolled
-              ? "border-foreground/10 bg-background/80 px-3 py-2 shadow-[var(--shadow-soft)] backdrop-blur-xl"
+              ? "border-foreground/10 bg-background/90 px-3 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md"
               : "border-transparent bg-transparent px-1 py-2",
           )}
         >
@@ -147,11 +156,9 @@ export function Navbar() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
+                    className="rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-foreground/75 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    activeProps={{ className: "!bg-foreground !text-background font-semibold" }}
                     activeOptions={{ exact: l.to === "/" }}
-                    className="relative block rounded-full px-3 py-2 text-[12.5px] font-medium tracking-wide text-foreground/60 transition-colors hover:text-foreground lg:px-4 lg:text-[13px]"
-                    activeProps={{
-                      className: "!text-[var(--primary-foreground)] !bg-[var(--clay)] shadow-[0_6px_18px_-8px_oklch(0.66_0.170_32/0.7)]",
-                    }}
                   >
                     {l.label}
                   </Link>
@@ -160,13 +167,14 @@ export function Navbar() {
             </ul>
           </nav>
 
-          {/* Right side */}
-          <div className="flex shrink-0 items-center gap-2">
+          {/* Right CTA */}
+          <div className="flex items-center gap-2 pr-1">
             <ThemeToggle />
-            <GradientButton to="/contact" className="hidden !px-5 !py-3 lg:inline-flex">
-              Start a project
+            <GradientButton to="/contact" className="hidden sm:inline-flex">
+              Start brief
             </GradientButton>
             <button
+              type="button"
               onClick={() => setOpen(!open)}
               className="grid h-11 w-11 place-items-center rounded-full border border-foreground/15 bg-card/70 backdrop-blur transition-colors hover:bg-foreground hover:text-background md:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -249,19 +257,24 @@ export function Footer() {
               { to: "/about", label: "About" },
               { to: "/services", label: "Services" },
               { to: "/freelance", label: "Freelance" },
-            ]}
-          />
-          <FooterCol
-            title="Shop"
-            links={[
               { to: "/templates", label: "Templates" },
               { to: "/pricing", label: "Pricing" },
             ]}
           />
           <FooterCol
-            title="Contact"
+            title="Templates"
             links={[
-              { to: "/contact", label: "Say hello" },
+              { to: "/templates/aurora-portfolio", label: "Aurora — Portfolio" },
+              { to: "/templates/atelier-cafe", label: "Atelier — Café" },
+              { to: "/templates/solis-boutique", label: "Solis — Store" },
+              { to: "/templates/haven-dining", label: "Haven — Dining" },
+            ]}
+          />
+          <FooterCol
+            title="Start"
+            links={[
+              { to: "/contact", label: "Project brief" },
+              { to: "/pricing", label: "Compare plans" },
               { to: "/contact", label: "Get a quote" },
             ]}
           />
@@ -319,25 +332,24 @@ export function Blobs({ variant = "clay" }: { variant?: "clay" | "sage" | "butte
 export function MarqueeBanner({ items }: { items: string[] }) {
   const list = [...items, ...items];
   return (
-    <div className="marquee-container group/marquee relative overflow-hidden border-y border-foreground/10 bg-[var(--ink)] py-4 sm:py-5 text-[var(--cream)] select-none [contain:paint]">
-      {/* Left/Right subtle gradient fade masks */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-16 bg-gradient-to-r from-[var(--ink)] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l from-[var(--ink)] to-transparent" />
+    <div className="marquee-container group/marquee relative overflow-hidden border-y border-foreground/10 bg-[var(--ink)] py-4 sm:py-5 text-[var(--cream)] select-none">
+      {/* Left/Right subtle gradient fade masks (desktop only) */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-16 bg-gradient-to-r from-[var(--ink)] to-transparent sm:block" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-[var(--ink)] to-transparent sm:block" />
 
       <div className="marquee-track gap-8 sm:gap-14 whitespace-nowrap group-hover/marquee:[animation-play-state:paused]">
         {list.map((t, i) => (
           <span
             key={i}
-            className="group/item inline-flex cursor-pointer items-center gap-8 sm:gap-14 font-editorial text-2xl sm:text-3xl italic-serif transition-colors duration-300 hover:text-[var(--butter)]"
+            className="group/item inline-flex cursor-pointer items-center gap-8 sm:gap-14 font-editorial text-2xl sm:text-3xl italic-serif transition-colors duration-200 hover:text-[var(--butter)]"
           >
             <span>
               {t}
             </span>
-            <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-all duration-300 group-hover/item:scale-125 group-hover/item:bg-[var(--clay)]" />
+            <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-colors duration-200 group-hover/item:bg-[var(--clay)]" />
           </span>
         ))}
       </div>
     </div>
   );
 }
-
