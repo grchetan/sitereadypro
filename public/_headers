@@ -1,0 +1,12 @@
+# Cache-Control configuration for instant version updates
+# HTML and SSR routes must always revalidate so users never see stale cached versions
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Hashed production static assets (JS, CSS, images) can be cached long-term
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicon and icons
+/favicon.*
+  Cache-Control: public, max-age=86400, must-revalidate

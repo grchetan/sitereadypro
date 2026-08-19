@@ -255,25 +255,23 @@
   }
 }
 
-/* Marquee isolated container & hardware accelerated track */
+/* Marquee isolated container & hardware accelerated twin-track */
 @utility marquee-container {
   isolation: isolate;
-  contain: layout paint;
+  contain: paint layout;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
 }
 
 @utility marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee-scroll 28s linear infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   will-change: transform;
 }
 
 .marquee-container:hover .marquee-track,
-.marquee-track:hover {
+.group\/marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 
@@ -286,9 +284,9 @@
   33% { transform: translate3d(20px, -15px, 0) scale(1.05); }
   66% { transform: translate3d(-15px, 15px, 0) scale(0.96); }
 }
-@keyframes marquee {
+@keyframes marquee-scroll {
   0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
 }
 @keyframes fade-up {
   from { opacity: 0; transform: translate3d(0, 20px, 0); }

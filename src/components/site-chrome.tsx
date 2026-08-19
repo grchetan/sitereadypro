@@ -330,25 +330,38 @@ export function Blobs({ variant = "clay" }: { variant?: "clay" | "sage" | "butte
 }
 
 export function MarqueeBanner({ items }: { items: string[] }) {
-  const list = [...items, ...items];
   return (
     <div className="marquee-container group/marquee relative overflow-hidden border-y border-foreground/10 bg-[var(--ink)] py-4 sm:py-5 text-[var(--cream)] select-none">
       {/* Left/Right subtle gradient fade masks (desktop only) */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-16 bg-gradient-to-r from-[var(--ink)] to-transparent sm:block" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-[var(--ink)] to-transparent sm:block" />
 
-      <div className="marquee-track gap-8 sm:gap-14 whitespace-nowrap group-hover/marquee:[animation-play-state:paused]">
-        {list.map((t, i) => (
-          <span
-            key={i}
-            className="group/item inline-flex cursor-pointer items-center gap-8 sm:gap-14 font-editorial text-2xl sm:text-3xl italic-serif transition-colors duration-200 hover:text-[var(--butter)]"
-          >
-            <span>
-              {t}
+      <div className="flex w-max">
+        {/* Track 1 */}
+        <div className="marquee-track flex shrink-0 items-center justify-around gap-8 whitespace-nowrap pr-8 sm:gap-14 sm:pr-14">
+          {items.map((t, i) => (
+            <span
+              key={`t1-${i}`}
+              className="group/item inline-flex cursor-pointer items-center gap-8 font-editorial text-2xl italic-serif transition-colors duration-200 hover:text-[var(--butter)] sm:gap-14 sm:text-3xl"
+            >
+              <span>{t}</span>
+              <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-colors duration-200 group-hover/item:bg-[var(--clay)]" />
             </span>
-            <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-colors duration-200 group-hover/item:bg-[var(--clay)]" />
-          </span>
-        ))}
+          ))}
+        </div>
+
+        {/* Track 2 (Duplicate for 100% seamless loop) */}
+        <div className="marquee-track flex shrink-0 items-center justify-around gap-8 whitespace-nowrap pr-8 sm:gap-14 sm:pr-14" aria-hidden="true">
+          {items.map((t, i) => (
+            <span
+              key={`t2-${i}`}
+              className="group/item inline-flex cursor-pointer items-center gap-8 font-editorial text-2xl italic-serif transition-colors duration-200 hover:text-[var(--butter)] sm:gap-14 sm:text-3xl"
+            >
+              <span>{t}</span>
+              <span className="h-2 w-2 rounded-full bg-[var(--butter)] transition-colors duration-200 group-hover/item:bg-[var(--clay)]" />
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
