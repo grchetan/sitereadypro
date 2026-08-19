@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Navbar, Footer } from "@/components/site-chrome";
+import { CookieConsent } from "@/components/cookie-consent";
 import { themeInitScript } from "@/components/theme-toggle";
 
 
@@ -147,6 +148,7 @@ function SiteFrame() {
         <Outlet />
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
