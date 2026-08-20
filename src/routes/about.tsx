@@ -77,8 +77,8 @@ function AboutPage() {
             </div>
 
             <div className="relative">
-              <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-[var(--clay)]/25 via-[var(--butter)]/30 to-[var(--sage)]/25 blur-3xl" />
-              <div className="animate-float overflow-hidden rounded-[2rem] border border-foreground/8 shadow-[var(--shadow-lift)]">
+              <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-[var(--clay)]/20 via-[var(--butter)]/25 to-[var(--sage)]/20 blur-xl sm:blur-3xl" />
+              <div className="overflow-hidden rounded-[2rem] border border-foreground/8 shadow-[var(--shadow-lift)] sm:animate-float">
                 <img
                   src={founderPortrait}
                   alt="Portrait of the founder at their desk"

@@ -121,70 +121,98 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    // iOS Safari resets scrollY to 0 when overflow:hidden is applied to body.
+    // Instead: freeze at current position using position:fixed + top offset.
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const prevStyle = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+
     return () => {
-      document.body.style.overflow = "";
+      // Restore previous styles
+      body.style.position = prevStyle.position;
+      body.style.top = prevStyle.top;
+      body.style.left = prevStyle.left;
+      body.style.right = prevStyle.right;
+      body.style.width = prevStyle.width;
+      // Restore scroll position without visible jump
+      window.scrollTo({ top: scrollY, behavior: "instant" });
     };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50">
-      <Container className={cn("relative z-50 transition-all duration-300", scrolled ? "pt-2" : "pt-3 sm:pt-6")}>
-        <div
-          className={cn(
-            "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-full border transition-all duration-300 md:grid-cols-[auto_minmax(0,1fr)_auto]",
-            scrolled
-              ? "border-foreground/10 bg-background/90 px-3 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md"
-              : "border-transparent bg-transparent px-1 py-2",
-          )}
-        >
-          {/* Wordmark */}
-          <Link
-            to="/"
-            onClick={() => setOpen(false)}
-            className="group flex min-w-0 items-baseline gap-1 pl-2 font-editorial text-[22px] leading-none sm:text-[26px]"
-          >
-            <span className="truncate">SiteReady</span>
-            <span className="italic-serif text-[var(--clay)]">Pro</span>
-            <span className="ml-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--clay)] transition-transform duration-500 group-hover:scale-150" />
-          </Link>
-
-          {/* Desktop capsule nav */}
-          <nav className="hidden min-w-0 items-center justify-center md:flex">
-            <ul className="flex items-center gap-0.5 rounded-full border border-foreground/10 bg-card/60 p-1 backdrop-blur lg:gap-1">
-              {navLinks.map((l) => (
-                <li key={l.to}>
-                  <Link
-                    to={l.to}
-                    className="rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-foreground/75 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    activeProps={{ className: "!bg-foreground !text-background font-semibold" }}
-                    activeOptions={{ exact: l.to === "/" }}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Right CTA */}
-          <div className="flex items-center gap-2 pr-1">
-            <ThemeToggle />
-            <GradientButton to="/contact" className="hidden sm:inline-flex">
-              Start brief
-            </GradientButton>
-            <button
-              type="button"
-              onClick={() => setOpen(!open)}
-              className="grid h-11 w-11 place-items-center rounded-full border border-foreground/15 bg-card/70 backdrop-blur transition-colors hover:bg-foreground hover:text-background md:hidden"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
+    <header className="sticky top-0 z-50 w-full">
+      <div
+        className={cn(
+          "w-full transition-all duration-300",
+          scrolled
+            ? "border-b border-foreground/8 bg-background/92 shadow-[0_4px_24px_-10px_rgba(0,0,0,0.06)] backdrop-blur-md py-3 sm:py-3.5"
+            : "border-b border-transparent bg-transparent py-4 sm:py-6",
+        )}
+      >
+        <Container>
+          <div className="flex items-center justify-between gap-6">
+            {/* Wordmark */}
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="group flex shrink-0 items-baseline gap-1 font-editorial text-[24px] leading-none sm:text-[28px]"
             >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+              <span className="truncate">SiteReady</span>
+              <span className="italic-serif text-[var(--clay)]">Pro</span>
+              <span className="ml-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--clay)] transition-transform duration-500 group-hover:scale-150" />
+            </Link>
+
+            {/* Desktop Editorial Navigation Links (Larger with Square Hover & Active Effect) */}
+            <nav className="hidden items-center md:flex">
+              <ul className="flex items-center gap-1.5 lg:gap-2">
+                {navLinks.map((l) => (
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
+                      className="group relative inline-flex items-center rounded-lg border border-transparent px-3.5 py-2 text-[16px] font-medium tracking-normal text-foreground/75 transition-all duration-200 hover:border-foreground/10 hover:bg-foreground/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      activeProps={{
+                        className: "!bg-card !border-foreground/12 !text-foreground !font-semibold !shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)] dark:!bg-card dark:!border-foreground/15",
+                      }}
+                      activeOptions={{ exact: l.to === "/" }}
+                    >
+                      <span>{l.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Right Action Suite (Tactile Slider Theme Toggle + Start Brief Button) */}
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <GradientButton to="/contact" className="hidden sm:inline-flex !px-6 !py-2.5 !text-sm">
+                Start brief
+              </GradientButton>
+              <button
+                type="button"
+                onClick={() => setOpen(!open)}
+                className="grid h-10 w-10 place-items-center rounded-full border border-foreground/15 bg-card/70 backdrop-blur transition-colors hover:bg-foreground hover:text-background md:hidden"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+              >
+                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Mobile full-screen editorial menu */}
       {open && (

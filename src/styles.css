@@ -131,6 +131,12 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Prevent iOS rubber-band scroll causing jump when menu closes */
+    overscroll-behavior-y: none;
+    /* Critical: disable smooth-scroll on mobile to prevent jump-to-top */
+    @media (max-width: 767px) {
+      scroll-behavior: auto;
+    }
   }
   body {
     background-color: var(--color-background);
@@ -140,6 +146,9 @@
     -webkit-font-smoothing: antialiased;
     background-image: var(--paper-grain);
     background-size: 200px 200px;
+    /* iOS scroll momentum */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
   }
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);

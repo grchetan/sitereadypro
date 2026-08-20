@@ -100,14 +100,35 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
-      title={isDark ? "Light mode" : "Dark mode"}
+      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
       className={cn(
-        "grid h-11 w-11 place-items-center rounded-full border border-foreground/15 bg-card/70 text-foreground/75 backdrop-blur transition-all duration-500 hover:border-[var(--clay)] hover:text-[var(--clay)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "group relative flex h-10 w-[70px] cursor-pointer items-center justify-between rounded-full border border-foreground/12 bg-card/60 px-1.5 backdrop-blur-md transition-all duration-300 hover:border-[var(--clay)]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] select-none",
         className,
       )}
     >
-      <Sun className={cn("h-[18px] w-[18px] transition-all duration-500", isDark && "hidden")} />
-      <Moon className={cn("h-[18px] w-[18px] transition-all duration-500", !isDark && "hidden")} />
+      {/* Background track icons */}
+      <span className={cn("grid h-5 w-5 place-items-center transition-opacity duration-300", !isDark ? "opacity-0" : "opacity-40 text-foreground")}>
+        <Sun className="h-3.5 w-3.5" />
+      </span>
+      <span className={cn("grid h-5 w-5 place-items-center transition-opacity duration-300", isDark ? "opacity-0" : "opacity-40 text-foreground")}>
+        <Moon className="h-3.5 w-3.5" />
+      </span>
+
+      {/* Sliding Tactile Thumb */}
+      <span
+        className={cn(
+          "absolute top-[3px] grid h-[32px] w-[32px] place-items-center rounded-full border transition-all duration-300 ease-out shadow-sm",
+          isDark
+            ? "left-[34px] border-white/15 bg-[#252422] text-[var(--butter)] shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
+            : "left-[4px] border-neutral-200 bg-white text-[var(--clay)] shadow-[0_2px_8px_rgba(0,0,0,0.08)]",
+        )}
+      >
+        {isDark ? (
+          <Moon className="h-4 w-4 fill-current transition-transform duration-300 group-hover:-rotate-12" />
+        ) : (
+          <Sun className="h-4 w-4 fill-current transition-transform duration-300 group-hover:rotate-45" />
+        )}
+      </span>
     </button>
   );
 }
