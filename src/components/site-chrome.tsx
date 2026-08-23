@@ -266,16 +266,23 @@ export function Footer() {
               A one-person studio building quiet, considered websites for students, creators and small businesses.
             </p>
             <div className="mt-8 flex gap-3">
-              {[Instagram, Twitter, Github, Linkedin].map((I, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="social"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-[var(--cream)]/70 transition-all hover:border-[var(--clay)] hover:bg-[var(--clay)] hover:text-[var(--primary-foreground)]"
-                >
-                  <I className="h-4 w-4" />
-                </a>
-              ))}
+            {[
+              { icon: Instagram, href: "https://instagram.com/sitereadypro", label: "Instagram" },
+              { icon: Twitter, href: "https://twitter.com/sitereadypro", label: "Twitter / X" },
+              { icon: Github, href: "https://github.com/grchetan", label: "GitHub" },
+              { icon: Linkedin, href: "https://linkedin.com/in/grchetan", label: "LinkedIn" },
+            ].map(({ icon: I, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-[var(--cream)]/70 transition-all hover:border-[var(--clay)] hover:bg-[var(--clay)] hover:text-[var(--primary-foreground)]"
+              >
+                <I className="h-4 w-4" />
+              </a>
+            ))}
             </div>
           </div>
           <FooterCol
@@ -293,9 +300,9 @@ export function Footer() {
             title="Templates"
             links={[
               { to: "/templates/aurora-portfolio", label: "Aurora — Portfolio" },
-              { to: "/templates/atelier-cafe", label: "Atelier — Café" },
-              { to: "/templates/solis-boutique", label: "Solis — Store" },
-              { to: "/templates/haven-dining", label: "Haven — Dining" },
+              { to: "/templates/bistro-landing", label: "Bistro — Restaurant" },
+              { to: "/templates/cafe-noir", label: "Café Noir — Café" },
+              { to: "/templates/studio-mono", label: "Studio Mono — Agency" },
             ]}
           />
           <FooterCol

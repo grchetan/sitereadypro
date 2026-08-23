@@ -184,20 +184,10 @@ function AboutPage() {
               );
               const cls =
                 "group flex flex-col rounded-[2rem] border border-foreground/8 bg-card/75 p-7 hover-lift sm:p-9";
-              return l.to ? (
+              return (
                 <Link key={l.title} to={l.to} className={cls}>
                   {inner}
                 </Link>
-              ) : (
-                <a
-                  key={l.title}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cls}
-                >
-                  {inner}
-                </a>
               );
             })}
           </div>

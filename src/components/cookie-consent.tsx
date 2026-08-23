@@ -63,8 +63,11 @@ export function CookieConsent() {
 
   const handleDismiss = () => {
     closeWithAnimation(() => {
-      // Dismiss for current session without persistent acceptance
-      sessionStorage.setItem("srp_cookie_dismissed", "true");
+      // Save a "dismissed" record so popup won't show again until cleared
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ dismissed: true, date: new Date().toISOString() })
+      );
     });
   };
 
