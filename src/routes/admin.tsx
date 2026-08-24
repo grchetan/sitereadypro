@@ -26,6 +26,7 @@ import {
 import { firebaseReady } from "@/lib/firebase";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
+import craftWorkspaceImg from "@/assets/craft-workspace.jpg";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -217,10 +218,12 @@ function LoginScreen() {
     });
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden band-cream px-5 py-16">
-      <div className="w-full max-w-md">
-        <Panel className="p-6 sm:p-8">
-          <div className="mb-6 flex items-center gap-3">
+    <div className="flex min-h-screen">
+      {/* ── Left: Login form ── */}
+      <div className="relative flex w-full flex-col items-center justify-center band-cream px-6 py-14 lg:w-[480px] lg:shrink-0 xl:w-[520px]">
+        <div className="w-full max-w-sm">
+          {/* Logo + title */}
+          <div className="mb-8 flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[var(--ink)] text-[var(--cream)]">
               <ShieldCheck className="h-5 w-5" />
             </div>
@@ -294,19 +297,10 @@ function LoginScreen() {
             onClick={() => void run("google", adminSignInWithGoogle)}
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-              <path
-                fill="#4285F4"
-                d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.8 2.8-2.4 3.9l3.6 2.8c2.2-2 3.7-5 3.7-8.6z"
-              />
-              <path
-                fill="#34A853"
-                d="M12 24c3.2 0 5.9-1.1 7.8-2.9l-3.6-2.8c-1 .7-2.4 1.2-4.2 1.2-3.2 0-5.9-2.1-6.9-5l-3.7 2.9C3.3 21.3 7.3 24 12 24z"
-              />
+              <path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.8 2.8-2.4 3.9l3.6 2.8c2.2-2 3.7-5 3.7-8.6z" />
+              <path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.8-2.9l-3.6-2.8c-1 .7-2.4 1.2-4.2 1.2-3.2 0-5.9-2.1-6.9-5l-3.7 2.9C3.3 21.3 7.3 24 12 24z" />
               <path fill="#FBBC05" d="M5.1 14.5c-.3-.8-.4-1.6-.4-2.5s.2-1.7.4-2.5L1.4 6.6C.5 8.2 0 10 0 12s.5 3.8 1.4 5.4l3.7-2.9z" />
-              <path
-                fill="#EA4335"
-                d="M12 4.7c2.3 0 3.8.9 4.7 1.8l3.2-3.1C17.9 1.5 15.2 0 12 0 7.3 0 3.3 2.7 1.4 6.6l3.7 2.9C6.1 6.8 8.8 4.7 12 4.7z"
-              />
+              <path fill="#EA4335" d="M12 4.7c2.3 0 3.8.9 4.7 1.8l3.2-3.1C17.9 1.5 15.2 0 12 0 7.3 0 3.3 2.7 1.4 6.6l3.7 2.9C6.1 6.8 8.8 4.7 12 4.7z" />
             </svg>
             {busy === "google" ? "Opening Google…" : "Continue with Google"}
           </AdminButton>
@@ -314,11 +308,70 @@ function LoginScreen() {
           <p className="mt-6 text-center text-xs leading-relaxed text-muted-foreground">
             Secured by Firebase Authentication. Only allowlisted admin accounts can open this panel.
           </p>
-        </Panel>
-        <div className="mt-5 text-center">
-          <Link to="/" className={cn("text-sm text-muted-foreground hover:text-foreground", FOCUS_RING)}>
-            ← Back to site
-          </Link>
+
+          <div className="mt-6 text-center">
+            <Link to="/" className={cn("text-sm text-muted-foreground hover:text-foreground", FOCUS_RING)}>
+              ← Back to site
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Right: Editorial image panel (hidden on mobile) ── */}
+      <div className="relative hidden flex-1 overflow-hidden lg:block">
+        {/* Background image */}
+        <img
+          src={craftWorkspaceImg}
+          alt="Creative workspace"
+          className="absolute inset-0 h-full w-full object-cover"
+          draggable={false}
+        />
+
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ink)]/80 via-[var(--ink)]/55 to-[var(--clay)]/40" />
+
+        {/* Content overlay */}
+        <div className="relative flex h-full flex-col justify-between p-10 xl:p-14">
+          {/* Top wordmark */}
+          <div className="font-editorial text-[26px] leading-none text-[var(--cream)]">
+            SiteReady<span className="italic-serif text-[var(--butter)]">Pro</span>
+          </div>
+
+          {/* Center quote */}
+          <div className="max-w-sm">
+            <div className="font-editorial text-5xl italic-serif leading-none text-[var(--butter)]">"</div>
+            <p className="mt-4 font-editorial text-[clamp(1.4rem,2.5vw,2rem)] leading-snug text-[var(--cream)]">
+              Quiet craft.<br />
+              Considered work.<br />
+              <span className="italic-serif text-[var(--butter)]">Every pixel earns its place.</span>
+            </p>
+            <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-[var(--cream)]/50">
+              — Studio notes
+            </p>
+          </div>
+
+          {/* Bottom stat row */}
+          <div className="flex items-end justify-between">
+            <div className="space-y-1">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--cream)]/40">
+                Est. 2025 · India
+              </div>
+              <div className="font-editorial text-sm text-[var(--cream)]/60">
+                Available for new projects
+              </div>
+            </div>
+            <div className="flex gap-5 text-right">
+              {[
+                { n: "50+", l: "Clients" },
+                { n: "4.9", l: "Rating" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <div className="font-editorial text-2xl italic-serif text-[var(--butter)]">{s.n}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--cream)]/50">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
