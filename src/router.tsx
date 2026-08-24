@@ -10,6 +10,8 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    // Preload next page on hover/focus → navigation feels near-instant
+    defaultPreload: "intent",
   });
 
   return router;

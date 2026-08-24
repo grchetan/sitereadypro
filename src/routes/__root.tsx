@@ -15,6 +15,7 @@ import { Navbar, Footer } from "@/components/site-chrome";
 import { CookieConsent } from "@/components/cookie-consent";
 import { Professional404, Professional500 } from "@/components/error-pages";
 import { themeInitScript } from "@/components/theme-toggle";
+import { TopProgressBar, PageTransition } from "@/components/page-progress";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -79,20 +80,29 @@ function SiteFrame() {
   if (isAdmin) {
     return (
       <main className="min-h-screen">
-        <Outlet />
+        {/* Global top loading bar for all navigations */}
+        <TopProgressBar />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
     );
   }
 
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Global top loading bar for all navigations */}
+      <TopProgressBar />
       <Navbar />
       <main className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
       <CookieConsent />
     </div>
   );
 }
+
 
