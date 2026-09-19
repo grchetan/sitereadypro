@@ -1,12 +1,25 @@
-# Cache-Control configuration for instant version updates
-# HTML and SSR routes must always revalidate so users never see stale cached versions
+# ── Cache-Control ──────────────────────────────────────────────────────────
+# HTML and SSR routes always revalidate — users never see stale versions
 /*
   Cache-Control: public, max-age=0, must-revalidate
 
-# Hashed production static assets (JS, CSS, images) can be cached long-term
+# Hashed production static assets (JS, CSS) can be cached long-term
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 # Favicon and icons
 /favicon.*
   Cache-Control: public, max-age=86400, must-revalidate
+
+# ── Security Headers (applied to all routes) ───────────────────────────────
+/*
+  # Prevent clickjacking — site cannot be embedded in iframes
+  Content-Security-Policy: frame-ancestors 'none'
+  # Prevent MIME-type sniffing attacks
+  X-Content-Type-Options: nosniff
+  # Don't send Referer header to third-party origins
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Disable unnecessary browser features
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  # Force HTTPS for 1 year (Cloudflare already enforces HTTPS, this is belt-and-suspenders)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains

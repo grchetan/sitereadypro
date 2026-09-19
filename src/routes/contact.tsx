@@ -185,6 +185,44 @@ const stepTitles = [
 ];
 
 const DRAFT_KEY = "srp_brief_draft_v1";
+// SECURITY: rate limiting — store submission timestamps in sessionStorage
+const RATE_KEY = "srp_form_sends";
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+
+function getRateLimitEntries(): number[] {
+  try {
+    const raw = sessionStorage.getItem(RATE_KEY);
+    if (!raw) return [];
+    const entries: unknown = JSON.parse(raw);
+    if (!Array.isArray(entries)) return [];
+    const now = Date.now();
+    return (entries as number[]).filter((t) => typeof t === "number" && now - t < RATE_LIMIT_WINDOW_MS);
+  } catch {
+    return [];
+  }
+}
+
+function isRateLimited(): boolean {
+  return getRateLimitEntries().length >= RATE_LIMIT_MAX;
+}
+
+function recordSubmission() {
+  try {
+    const entries = getRateLimitEntries();
+    entries.push(Date.now());
+    sessionStorage.setItem(RATE_KEY, JSON.stringify(entries));
+  } catch {}
+}
+
+// SECURITY: PII fields (name, email, phone, company) are deliberately excluded
+// from the localStorage draft to prevent personal data leakage in shared browsers.
+const DRAFT_SAFE_FIELDS: (keyof BriefState)[] = [
+  "projectType", "goals", "otherGoal",
+  "scope", "features", "pages", "references",
+  "budget", "timeline", "hasBrand", "hasContent",
+  "preferred",
+];
 
 /* ---------------- Page ---------------- */
 
@@ -301,7 +339,11 @@ function BriefWizard() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+      // SECURITY: Only persist non-PII fields to localStorage draft
+      const safeDraft = Object.fromEntries(
+        DRAFT_SAFE_FIELDS.map((k) => [k, state[k]])
+      );
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(safeDraft));
     } catch {}
   }, [state]);
 
@@ -346,6 +388,13 @@ function BriefWizard() {
   }
 
   async function submit() {
+    // SECURITY: check rate limit before processing
+    if (isRateLimited()) {
+      setErrors({ _rate: "Too many submissions. Please wait a few minutes before trying again." });
+      requestAnimationFrame(() => summaryRef.current?.focus());
+      return;
+    }
+
     // final validate every step
     for (let i = 0; i < stepSchemas.length; i++) {
       if (!validateStep(i)) {
@@ -403,6 +452,9 @@ function BriefWizard() {
           publicKey,
         );
       }
+
+      // SECURITY: record successful submission for rate limiting
+      recordSubmission();
     } catch {
       // Email sending failed silently — request is still saved in Firestore
     }

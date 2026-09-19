@@ -143,13 +143,29 @@ export async function deleteTemplate(id: string, zipStoragePath?: string): Promi
 
 /* ─────────────── Storage Uploads ─────────────── */
 
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024;  // 5 MB
+const MAX_ZIP_BYTES   = 50 * 1024 * 1024; // 50 MB
+
 export async function uploadTemplateImage(
   file: File,
   slug: string
 ): Promise<string> {
   const storage = getFirebaseStorage();
   if (!storage) throw new Error("Storage not available");
-  const storageRef = ref(storage, `templates/${slug}/preview-${Date.now()}.${file.name.split(".").pop()}`);
+
+  // SECURITY: validate MIME type and size before upload
+  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+    throw new Error("Only JPEG, PNG, and WebP images are allowed.");
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    throw new Error("Image must be under 5 MB.");
+  }
+
+  // SECURITY: generate a safe storage path — never use the original filename
+  const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+  const safeSlug = slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
+  const storageRef = ref(storage, `templates/${safeSlug}/preview-${Date.now()}.${ext}`);
   await uploadBytes(storageRef, file);
   return getDownloadURL(storageRef);
 }
@@ -160,7 +176,18 @@ export async function uploadTemplateZip(
 ): Promise<{ path: string; url: string }> {
   const storage = getFirebaseStorage();
   if (!storage) throw new Error("Storage not available");
-  const path = `templates/${slug}/source-${Date.now()}.zip`;
+
+  // SECURITY: validate MIME type and size before upload
+  if (file.type !== "application/zip" && file.type !== "application/x-zip-compressed" && !file.name.toLowerCase().endsWith(".zip")) {
+    throw new Error("Only ZIP files are allowed.");
+  }
+  if (file.size > MAX_ZIP_BYTES) {
+    throw new Error("ZIP file must be under 50 MB.");
+  }
+
+  // SECURITY: generate a safe storage path — never use the original filename
+  const safeSlug = slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
+  const path = `templates/${safeSlug}/source-${Date.now()}.zip`;
   const storageRef = ref(storage, path);
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);

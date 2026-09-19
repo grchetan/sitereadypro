@@ -39,7 +39,9 @@ function digits(v: string) {
 
 export function isAllowedAdmin(email: string | null | undefined) {
   if (!email) return false;
-  if (ADMIN_EMAILS.length === 0) return true; // no allowlist configured
+  // SECURITY: fail-closed — if the allowlist is not configured, deny ALL access.
+  // This prevents accidental open access if the env var is accidentally cleared.
+  if (ADMIN_EMAILS.length === 0) return false;
   return ADMIN_EMAILS.includes(email.toLowerCase());
 }
 
@@ -55,9 +57,11 @@ export function resolveIdentifier(identifier: string): string | null {
 
 const MESSAGES: Record<string, string> = {
   "auth/invalid-email": "That email address doesn't look right.",
+  // SECURITY: both user-not-found and wrong-password return the same message
+  // to prevent account enumeration attacks.
   "auth/invalid-credential": "Wrong email or password. Please try again.",
   "auth/wrong-password": "Wrong email or password. Please try again.",
-  "auth/user-not-found": "No admin account exists with these details.",
+  "auth/user-not-found": "Wrong email or password. Please try again.",
   "auth/user-disabled": "This account has been disabled.",
   "auth/too-many-requests": "Too many attempts. Wait a minute and try again.",
   "auth/network-request-failed": "Network problem — check your connection.",
